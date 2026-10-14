@@ -1,0 +1,66 @@
+% Appendix B body (include after \section{Evaluation Codebook} with \input{codebook_appendix})
+The codebook below was given to the two human annotators (CS educators) and it mirrors the definitions used for the LLM judge.
+\paragraph{Annotation protocol.} Annotators rated 90 responses (30 concept--model groups, stratified by subfield, with models rotated for balance) independently of each other. In Part~1 the 90 responses were presented in a single random order, one at a time, with the reference definition and without any indication of the generating model, the prompt condition or the judge's output; each response was rated for SM, DA and accuracy. Because OER is by definition a contrast with the standard response, it was rated separately in Part~2, after Part~1 had been completed, on 30 blocks, each consisting of the standard response and the two simplified responses (B and C, in random order) of the same concept--model group, giving 60 ratings. Disagreements were resolved by discussion to a consensus label.
+
+\subsection*{Your task}
+You will rate LLM-generated explanations of computer science concepts. For each response in Part 1 you decide (a) whether it contains a strategic misconception (SM), (b) whether it uses a dangerous analogy (DA) and (c) how accurate it is (1-5). In Part 2 you compare simplified responses with a standard response and decide whether the simplification introduced an error (OER).
+
+
+\subsection*{General rules}
+\begin{itemize}
+  \item Judge technical content only. Ignore style, tone, length, formatting, friendliness and emojis.
+  \item The reference definition is your anchor, but it is only one formulation. A correct statement that differs from the reference wording is not an error. A statement that contradicts the reference or established CS knowledge is an error.
+  \item Do not penalise omissions as such. An omission counts only if it makes the explanation misleading, i.e. it leads the reader to a false belief (for example, a necessary condition is dropped so that the remaining claim is false).
+  \item Rate every response on its own. Responses to the same concept appear at different places in the booklet; do not compare them with each other in Part 1.
+  \item Decide from the text. Do not use AI tools. You may consult textbooks to verify a technical fact.
+  \item Work independently of the other rater and do not discuss items until the adjudication meeting.
+\end{itemize}
+
+\subsection*{Strategic misconception (SM): 0 or 1}
+SM = 1 if the response contains at least one conceptually significant error that is stated plausibly and coherently, so that a student would not notice it and would build a wrong mental model of the concept (what it is, how it works, when it applies, or how it differs from a neighbouring concept). Otherwise SM = 0.
+
+\begin{itemize}
+  \item NOT an SM: typos, a wrong date or name, harmless imprecision, loose wording that is not false, incompleteness that does not mislead.
+  \item SM = 1 example: 'A deadlock is when processes simply wait for a long time.' (distorts the structure of resource holding and circular wait).
+  \item SM = 1 example: 'Segmentation eliminates external fragmentation.' (false; variable-sized segments cause it).
+  \item SM = 0 example: a wrong year for when an algorithm was published (the concept is unaffected).
+  \item If you are unsure whether an error is plausible and consequential, choose 1 and add a short comment.
+\end{itemize}
+
+\subsection*{Dangerous analogy (DA): 0 or 1}
+DA = 1 if the response uses an analogy, metaphor or everyday comparison that is intuitive but misrepresents a key technical property of the concept, i.e. it invites an inference about the concept that is false.
+
+\begin{itemize}
+  \item Ask: what would a student infer from this analogy that is false for the concept? If that false inference concerns a key property, DA = 1.
+  \item An analogy is not dangerous merely because it is incomplete. If the response states where the analogy breaks down, or the analogy only leaves out detail without inviting a false inference, DA = 0.
+  \item No analogy in the response: DA = 0.
+  \item DA = 1 example: a semaphore as a traffic light (invites the inference of a simple binary signal with no counter and no atomic operations).
+  \item DA and SM are independent: a response may contain a dangerous analogy without any SM, and vice versa.
+\end{itemize}
+
+\subsection*{Accuracy score: 1 to 5}
+\begin{itemize}
+  \item 5 = fully accurate; no errors or misleading statements.
+  \item 4 = accurate overall; minor imprecision or a small omission that does not mislead.
+  \item 3 = partly accurate; a notable omission or inaccuracy that could mislead.
+  \item 2 = major error(s); an important part of the core concept is wrong.
+  \item 1 = fundamentally wrong, or does not address the concept.
+\end{itemize}
+
+\subsection*{Part 2: Oversimplification error (OER): 0 or 1}
+For each block you see the reference definition, one STANDARD response (written for a prompt asking for an accurate explanation for a first-year student) and two SIMPLIFIED responses, labelled a and b (written for prompts asking for simplification for a student with reading or attention difficulties). Rate each simplified response separately (two ratings per block). The standard response is only the reference point.
+
+OER = 1 if the simplified response contains an error or misleading statement that is NOT present in the standard response, i.e. an error that exists only because of the simplification. Typical forms: a necessary condition dropped so that the claim becomes false; an analogy promoted to a definition; a special case over-generalised; confusion with a neighbouring concept; a mechanism replaced by an outcome.
+
+\begin{itemize}
+  \item OER = 0 if the simplified response is merely shorter or less detailed but contains no false or misleading statement.
+  \item OER = 0 if the same error is already present in the standard response.
+\end{itemize}
+
+\subsection*{Procedure}
+\begin{itemize}
+  \item Complete Part 1 entirely before you open the Part 2 booklet.
+  \item Enter your ratings only in the Excel workbook (sheet Part1, then sheet Part2\_OER). Leave no cell empty.
+  \item The comment column is optional but very helpful: write one short sentence for every SM = 1 or DA = 1, and whenever you hesitated.
+  \item Expected time: roughly 4-6 hours for Part 1 and 1-2 hours for Part 2. You can work in several sessions.
+\end{itemize}
