@@ -1113,289 +1113,239 @@ def judge_validation(eval_df: pd.DataFrame, annotations_final: pd.DataFrame,
 
 
 # ---------------------------------------------------------------------------
-# Figures
+# Figures (verzija 2)
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Figures (verzija 4)
+# Pretpostavlja da već postoje: pd, np, math, Path, as_float, wilson_ci,
+# CONDITION_ORDER, CONDITION_LABEL, MODEL_ORDER, SUBFIELD_ORDER, SUBFIELD_SHORT
+# ---------------------------------------------------------------------------
+
 
 def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib import rcParams
+    from matplotlib.colors import LinearSegmentedColormap
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
 
-    # ---- Global style (matches the reference example) ----
     rcParams.update({
         "font.family": "serif",
         "font.serif": ["Times New Roman", "Times", "DejaVu Serif"],
-        "font.size": 22,
-        "axes.titlesize": 30,
-        "axes.titleweight": "bold",
-        "axes.labelsize": 26,
-        "axes.labelweight": "bold",
-        "xtick.labelsize": 22,
-        "ytick.labelsize": 22,
-        "legend.fontsize": 20,
+        "mathtext.fontset": "dejavuserif",
+        "font.size": 10,
+        "axes.labelsize": 10,
+        "xtick.labelsize": 9,
+        "ytick.labelsize": 9,
+        "legend.fontsize": 8.5,
         "axes.edgecolor": "#333333",
-        "axes.linewidth": 1.2,
+        "axes.linewidth": 0.7,
+        "axes.grid": True,
+        "axes.axisbelow": True,
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        "grid.color": "#E3E3E3",
+        "grid.linewidth": 0.5,
+        "legend.frameon": False,
+        "legend.handlelength": 1.2,
+        "legend.handletextpad": 0.4,
         "figure.facecolor": "white",
         "axes.facecolor": "white",
         "savefig.facecolor": "white",
         "savefig.bbox": "tight",
-        "savefig.pad_inches": 0.1,
+        "savefig.pad_inches": 0.03,
+        "figure.dpi": 150,
+        "savefig.dpi": 600,
     })
 
-    # ---- Palette (5 distinct, warm/cool, colour-blind safe) ----
-    COL = {
-        "A":   "#2F7F6F",   # deep teal
-        "B":   "#B36A3C",   # warm terracotta
-        "C":   "#5F63A6",   # indigo
-        "SMR": "#2F7F6F",   # deep teal
-        "DAR": "#B36A3C",   # terracotta
-        "OER": "#5F63A6",   # indigo
-        "acc": "#2A86A1",   # cool cyan-blue
-        "delta": "#5F8A3A", # olive green
-        "grand": "#FF1F1F", # red for grand mean / reference lines
-    }
+    COND_COL = {"A_standard": "#9DB9D6",
+                "B_simplified": "#4A7FB0",
+                "C_highly_simplified": "#1F3F66"}
+    COND_TXT = {"A_standard": "#222222",
+                "B_simplified": "white",
+                "C_highly_simplified": "white"}
+    METRIC_COL = {"SMR": "#2F7F6F", "DAR": "#C0763A", "OER": "#7A5CA8"}
+    MEAN_COL = "#D1495B"
+    TXT, REF = "#222222", "#666666"
 
-    def _style_axes(ax, grid_axis="y"):
-        """Apply the reference style: soft grid behind bars, no top/right spine."""
-        ax.set_axisbelow(True)
-        ax.grid(axis=grid_axis, alpha=0.3, linewidth=1.0)
-        ax.spines["top"].set_visible(False)
-        ax.spines["right"].set_visible(False)
-        for tick in ax.get_yticklabels():
-            tick.set_fontweight("bold")
-        for tick in ax.get_xticklabels():
-            tick.set_fontweight("bold")
-
-    def _bar_value_labels(ax, bars, values, y_min, color="white", fmt="{:.2f}"):
-        """Place value labels inside the bars, vertically centred."""
-        for bar, val in zip(bars, values):
-            label_y = y_min + (val - y_min) / 2
-            ax.text(bar.get_x() + bar.get_width() / 2,
-                    label_y,
-                    fmt.format(val),
-                    ha="center", va="center",
-                    color=color, fontsize=20, fontweight="bold")
+    XLAB = ["A\n(standard)", "B\n(simplified)", "C\n(highly simplified)"]
+    ERR = dict(ecolor="#333333", elinewidth=0.8, capthick=0, capsize=0)
 
     figdir = outdir / "figures"
     figdir.mkdir(parents=True, exist_ok=True)
+
+    def _save(fig, name):
+        fig.savefig(figdir / f"{name}.pdf")
+        fig.savefig(figdir / f"{name}.png", dpi=600)
+        plt.close(fig)
+
+    def _fmt(v):
+        return "0.0" if abs(v) < 0.05 else f"{v:+.1f}".replace("-", "−")
+
+    def _wrap(name):
+        # prelomi dugačko ime u dva reda na razmaku najbližem sredini
+        if len(name) <= 11 or " " not in name:
+            return name
+        spaces = [i for i, ch in enumerate(name) if ch == " "]
+        k = min(spaces, key=lambda i: abs(i - len(name) / 2))
+        return name[:k] + "\n" + name[k + 1:]
+
+    def _bar(ax, xpos, m, w, color, lo, hi, label_fs=8.5):
+        """Bar s error barom i vrijednošću iznad; ako je 0, nacrta crtu na 0."""
+        ax.bar(xpos, m, w, color=color, edgecolor="white", linewidth=0.5,
+               zorder=3, yerr=[[max(m - lo, 0)], [max(hi - m, 0)]],
+               error_kw=ERR)
+        if m == 0:
+            ax.hlines(0, xpos - w / 2, xpos + w / 2, color=color,
+                      linewidth=2.2, zorder=4)
+        ax.text(xpos, hi + 0.4, f"{m:.1f}", ha="center", va="bottom",
+                fontsize=label_fs, color=TXT)
+
+    models = [m for m in MODEL_ORDER if m in eval_df["model"].unique()]
+
+    # Wilson statistika po (model, uvjet) — koristi se u više grafova
+    stats = {}
+    for m in models:
+        for cond in CONDITION_ORDER:
+            sub = eval_df[(eval_df["model"] == m) & (eval_df["condition"] == cond)]
+            nn = len(sub)
+            if nn == 0:
+                continue
+            k = int(as_float(sub["strategic_misconception"]).sum())
+            lo, hi = wilson_ci(k, nn)
+            stats[(m, cond)] = (100 * k / nn, 100 * lo, 100 * hi)
 
     def _rates(df, outcome):
         out = []
         for cond in CONDITION_ORDER:
             sub = df[df["condition"] == cond]
-            n = len(sub); k = int(as_float(sub[outcome]).sum())
+            n = len(sub)
+            k = int(as_float(sub[outcome]).sum())
             lo, hi = wilson_ci(k, n)
-            out.append((k / n, lo, hi))
-        return out
+            out.append((100 * k / n, 100 * lo, 100 * hi))
+        return np.array(out)
 
     # =====================================================================
-    # Figure 1: SMR, DAR, OER by condition
+    # Figure 1: accuracy po uvjetu — bar chart, os od 2,
+    # "overall mean" linija IZNAD barova, brojevi na dnu barova
     # =====================================================================
-    fig, ax = plt.subplots(figsize=(14, 8))
-    x = np.arange(3)
-    width = 0.26
-    series = [
-        ("strategic_misconception", "SMR", COL["SMR"]),
-        ("dangerous_analogy",       "DAR", COL["DAR"]),
-        ("oversimplification_error","OER", COL["OER"]),
-    ]
-    offsets = [-width, 0.0, width]
-    y_min = 0.0
-    for (outcome, lab, color), off in zip(series, offsets):
-        rates = _rates(eval_df, outcome)
-        means = np.array([r[0] for r in rates])
-        err_lo = np.array([r[0] - r[1] for r in rates])
-        err_hi = np.array([r[2] - r[0] for r in rates])
-        if lab == "OER":
-            mask = np.array([c != "A_standard" for c in CONDITION_ORDER])
-            bars = ax.bar(x[mask] + off, means[mask], width,
-                          yerr=[err_lo[mask], err_hi[mask]],
-                          label=lab, color=color, capsize=4,
-                          edgecolor="white", linewidth=0.8, zorder=3,
-                          error_kw=dict(ecolor="#333333", elinewidth=1.2))
-            _bar_value_labels(ax, bars, means[mask], y_min, fmt="{:.0f}%",
-                              color="white")
-            # Scale values shown as per cent:
-            for bar, val in zip(bars, means[mask]):
-                pass
-        else:
-            bars = ax.bar(x + off, means, width,
-                          yerr=[err_lo, err_hi],
-                          label=lab, color=color, capsize=4,
-                          edgecolor="white", linewidth=0.8, zorder=3,
-                          error_kw=dict(ecolor="#333333", elinewidth=1.2))
-            # Show percentage values inside bars
-            for bar, val in zip(bars, means):
-                ax.text(bar.get_x() + bar.get_width() / 2,
-                        y_min + (val - y_min) / 2,
-                        f"{100*val:.1f}",
-                        ha="center", va="center",
-                        color="white", fontsize=18, fontweight="bold")
-    ax.set_xticks(x)
-    ax.set_xticklabels(["A\n(standard)", "B\n(simplified)", "C\n(highly simplified)"])
-    ax.set_ylabel("Rate (%)", labelpad=12)
-    ax.set_title("Error rates by condition", pad=20)
-    ax.set_ylim(0, max(0.35, ax.get_ylim()[1] * 1.15))
-    ax.legend(loc="upper left", frameon=False, ncol=1)
-    _style_axes(ax, grid_axis="y")
-    plt.tight_layout()
-    plt.savefig(figdir / "fig_rates_by_condition.pdf", format="pdf",
-                bbox_inches="tight")
-    plt.savefig(figdir / "fig_rates_by_condition.png", format="png",
-                bbox_inches="tight", dpi=600)
-    plt.close(fig)
-
-    # =====================================================================
-    # Figure 2: accuracy by condition
-    # =====================================================================
-    fig, ax = plt.subplots(figsize=(11, 8))
+    YMIN = 2.0
+    fig, ax = plt.subplots(figsize=(5.6, 3.5), layout="constrained")
     means, errs = [], []
     for cond in CONDITION_ORDER:
         sub = eval_df[eval_df["condition"] == cond]["accuracy_score"]
         means.append(sub.mean())
         errs.append(1.96 * sub.std(ddof=1) / math.sqrt(len(sub)))
-    colors = [COL["A"], COL["B"], COL["C"]]
-    y_min = 1.0
-    bars = ax.bar(["A\n(standard)", "B\n(simplified)", "C\n(highly simplified)"],
-                  means, yerr=errs, capsize=6,
-                  color=colors, edgecolor="white", linewidth=1.0, zorder=3,
-                  error_kw=dict(ecolor="#333333", elinewidth=1.2))
-    for bar, m in zip(bars, means):
-        ax.text(bar.get_x() + bar.get_width() / 2,
-                y_min + (m - y_min) / 2,
-                f"{m:.2f}",
-                ha="center", va="center",
-                color="white", fontsize=24, fontweight="bold")
-    grand = float(np.mean(means))
-    ax.axhline(grand, color=COL["grand"], linewidth=2.0, linestyle="--", zorder=4)
-    ax.text(0.01, grand + 0.05, f"Grand mean = {grand:.2f}",
-            transform=ax.get_yaxis_transform(),
-            color=COL["grand"], fontsize=18, style="italic",
-            fontweight="bold", va="bottom")
-    ax.set_ylabel("Mean accuracy (1-5)", labelpad=12)
-    ax.set_title("Accuracy by condition", pad=20)
-    ax.set_ylim(1.0, 5.0)
-    _style_axes(ax, grid_axis="y")
-    plt.tight_layout()
-    plt.savefig(figdir / "fig_accuracy_by_condition.pdf", format="pdf",
-                bbox_inches="tight")
-    plt.savefig(figdir / "fig_accuracy_by_condition.png", format="png",
-                bbox_inches="tight", dpi=600)
-    plt.close(fig)
-
-    # =====================================================================
-    # Figure 3: SMR by model and condition
-    # =====================================================================
-    models = [m for m in MODEL_ORDER if m in eval_df["model"].unique()]
-    fig, ax = plt.subplots(figsize=(18, 9))
-    # Vertical positions: group per model, offset per condition
-    group_positions = np.arange(len(models))
-    offsets = {"A_standard": -0.22, "B_simplified": 0.0, "C_highly_simplified": 0.22}
-    markers = {"A_standard": "o", "B_simplified": "s", "C_highly_simplified": "^"}
-    cond_colors = {"A_standard": COL["A"], "B_simplified": COL["B"], "C_highly_simplified": COL["C"]}
-
-    # Compute Wilson CIs for each (model, condition)
-    for cond in CONDITION_ORDER:
-        ys, xs, errs_lo, errs_hi = [], [], [], []
-        for i, m in enumerate(models):
-            sub = eval_df[(eval_df["model"] == m) & (eval_df["condition"] == cond)]
-            n = len(sub)
-            k = int(as_float(sub["strategic_misconception"]).sum())
-            if n == 0:
-                continue
-            p = k / n
-            lo, hi = wilson_ci(k, n)
-            ys.append(group_positions[i] + offsets[cond])
-            xs.append(100 * p)
-            errs_lo.append(100 * (p - lo))
-            errs_hi.append(100 * (hi - p))
-        if not xs:
-            continue
-        xs = np.array(xs); ys = np.array(ys)
-        errs_lo = np.array(errs_lo); errs_hi = np.array(errs_hi)
-        ax.errorbar(xs, ys, xerr=[errs_lo, errs_hi],
-                    fmt=markers[cond], markersize=14,
-                    color=cond_colors[cond],
-                    markeredgecolor="white", markeredgewidth=1.5,
-                    ecolor=cond_colors[cond], elinewidth=2.0, capsize=5,
-                    label=CONDITION_LABEL[cond], zorder=3)
-        # Numeric label next to each dot
-        for xv, yv in zip(xs, ys):
-            ax.text(xv + 1.0, yv, f"{xv:.0f}",
-                    va="center", ha="left",
-                    fontsize=14, fontweight="bold",
-                    color=cond_colors[cond])
-
-    # Horizontal grid only; labels on the y-axis are the models
-    ax.set_yticks(group_positions)
-    ax.set_yticklabels(models, fontsize=20, fontweight="bold")
-    ax.invert_yaxis()   # first model at top
-    ax.set_xlabel("SMR (%) with Wilson 95% CI", labelpad=12)
-    ax.set_title("Strategic misconception rate by model and condition", pad=20)
-    ax.set_xlim(-3, max(55, ax.get_xlim()[1] * 1.05))
-    ax.legend(loc="lower right", frameon=False, ncol=1)
-    ax.set_axisbelow(True)
-    ax.grid(axis="x", alpha=0.3, linewidth=1.0)
-    ax.grid(axis="y", alpha=0.15, linewidth=0.8)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    for tick in ax.get_xticklabels():
-        tick.set_fontweight("bold")
-    plt.tight_layout()
-    plt.savefig(figdir / "fig_smr_by_model.pdf", format="pdf", bbox_inches="tight")
-    plt.savefig(figdir / "fig_smr_by_model.png", format="png", bbox_inches="tight", dpi=600)
-    plt.close(fig)
-
-    # =====================================================================
-    # Figure 4: delta SMR (A -> C) by model with bootstrap CI
-    # =====================================================================
-    fig, ax = plt.subplots(figsize=(14, 8))
-    deltas, los, his = [], [], []
-    for m in models:
-        pa = eval_df[(eval_df["model"] == m) & (eval_df["condition"] == "A_standard")][
-            ["concept_id", "strategic_misconception"]].set_index("concept_id")
-        pc = eval_df[(eval_df["model"] == m) & (eval_df["condition"] == "C_highly_simplified")][
-            ["concept_id", "strategic_misconception"]].set_index("concept_id")
-        pa["strategic_misconception"] = as_float(pa["strategic_misconception"])
-        pc["strategic_misconception"] = as_float(pc["strategic_misconception"])
-        joined = pa.join(pc, lsuffix="_A", rsuffix="_C").dropna()
-        d = (joined["strategic_misconception_C"]
-             - joined["strategic_misconception_A"]).values.astype(float)
-        deltas.append(d.mean())
-        lo, hi = bootstrap_ci_mean(d)
-        los.append(lo); his.append(hi)
-    deltas = np.array(deltas); los = np.array(los); his = np.array(his)
-    yerr = np.vstack([deltas - los, his - deltas])
-    x = np.arange(len(models))
-    bars = ax.bar(x, deltas, 0.55,
-                  color=COL["delta"], edgecolor="white", linewidth=0.9,
-                  yerr=yerr, capsize=6, zorder=3,
-                  error_kw=dict(ecolor="#333333", elinewidth=1.2))
-    # Value labels: above bar if positive, below if negative
-    for bar, val in zip(bars, deltas):
-        offset = 0.005 if val >= 0 else -0.005
-        va = "bottom" if val >= 0 else "top"
-        ax.text(bar.get_x() + bar.get_width() / 2,
-                val + offset,
-                f"{100*val:+.1f}",
-                ha="center", va=va,
-                color="#222222", fontsize=16, fontweight="bold")
-    ax.axhline(0, color="#666666", linewidth=1.2, linestyle="--", zorder=4)
+    grand = float(eval_df["accuracy_score"].mean())
+    x = np.arange(3)
+    ax.bar(x, means, 0.55, color=[COND_COL[c] for c in CONDITION_ORDER],
+           edgecolor="white", linewidth=0.6, zorder=3,
+           yerr=errs, error_kw=ERR)
+    ax.axhline(grand, color=MEAN_COL, linewidth=1.4, linestyle="--", zorder=5)
+    for xi, cond, m in zip(x, CONDITION_ORDER, means):
+        ax.text(xi, YMIN + 0.12, f"{m:.2f}", ha="center", va="bottom",
+                fontsize=10.5, fontweight="bold", color=COND_TXT[cond], zorder=6)
+    ax.set_ylim(YMIN, 5.0)
+    ax.set_yticks(np.arange(YMIN, 5.01, 0.5))
     ax.set_xticks(x)
-    ax.set_xticklabels(models, rotation=20, ha="right")
-    ax.set_ylabel("Δ SMR (C − A, pp)", labelpad=12)
-    ax.set_title("Change in SMR from standard to highly simplified", pad=20)
-    _style_axes(ax, grid_axis="y")
-    plt.tight_layout()
-    plt.savefig(figdir / "fig_model_delta_smr.pdf", format="pdf",
-                bbox_inches="tight")
-    plt.savefig(figdir / "fig_model_delta_smr.png", format="png",
-                bbox_inches="tight", dpi=600)
-    plt.close(fig)
+    ax.set_xticklabels(XLAB)
+    ax.set_ylabel("Mean accuracy (1–5), 95% CI")
+    ax.grid(axis="x", visible=False)
+    ax.legend(handles=[Line2D([0], [0], color=MEAN_COL, linestyle="--",
+                              linewidth=1.4,
+                              label=f"Overall mean = {grand:.2f}")],
+              loc="lower center", bbox_to_anchor=(0.5, 1.0))
+    _save(fig, "fig_accuracy_by_condition")
 
     # =====================================================================
-    # Figure 5: subfield heatmap of SMR
+    # Figure 2: SMR po modelu, A vs C — grupirani barovi
+    # Δ (C − A) piše se ispod imena modela.
+    # =====================================================================
+    order = sorted(models, key=lambda m: stats[(m, "C_highly_simplified")][0],
+                   reverse=True)
+    w = 0.34
+    fig, ax = plt.subplots(figsize=(8.0, 3.9), layout="constrained")
+    top = 0
+    xt = []
+    for i, m in enumerate(order):
+        for off, cond in ((-w / 2, "A_standard"), (w / 2, "C_highly_simplified")):
+            p, lo, hi = stats[(m, cond)]
+            _bar(ax, i + off, p, w, COND_COL[cond], lo, hi)
+            top = max(top, hi)
+        d = stats[(m, "C_highly_simplified")][0] - stats[(m, "A_standard")][0]
+        xt.append(f"{_wrap(m)}\n$\\Delta$ = {_fmt(d)}")
+    ax.set_ylim(0, top * 1.18)
+    ax.set_xticks(range(len(order)))
+    ax.set_xticklabels(xt, fontsize=8.5)
+    ax.set_ylabel("SMR (%), Wilson 95% CI")
+    ax.grid(axis="x", visible=False)
+    ax.legend(handles=[Patch(color=COND_COL[c], label=CONDITION_LABEL[c])
+                       for c in ("A_standard", "C_highly_simplified")],
+              loc="upper right", ncol=2, columnspacing=1.0)
+    _save(fig, "fig_model_delta_smr")
+
+    # =====================================================================
+    # Figure 3: SMR, DAR, OER po uvjetu — nule su prikazane crtom i "0.0"
+    # =====================================================================
+    fig, ax = plt.subplots(figsize=(7.2, 3.6), layout="constrained")
+    series = [("strategic_misconception", "SMR"),
+              ("dangerous_analogy", "DAR"),
+              ("oversimplification_error", "OER")]
+    rates = {lab: _rates(eval_df, col) for col, lab in series}
+    width = 0.24
+    offsets = [-width, 0.0, width]
+    top = 0
+    for i, cond in enumerate(CONDITION_ORDER):
+        for (_, lab), off in zip(series, offsets):
+            if lab == "OER" and cond == "A_standard":
+                m, lo, hi = 0.0, 0.0, 0.0      # OER u A = 0
+            else:
+                m, lo, hi = rates[lab][i]
+            _bar(ax, i + off, m, width, METRIC_COL[lab], lo, hi)
+            top = max(top, hi)
+    ax.set_ylim(0, top * 1.18)
+    ax.set_xticks(range(3))
+    ax.set_xticklabels(XLAB)
+    ax.set_ylabel("Rate (%), Wilson 95% CI")
+    ax.grid(axis="x", visible=False)
+    ax.legend(handles=[Patch(color=METRIC_COL[l], label=l) for _, l in series],
+              loc="upper left", ncol=3, columnspacing=1.0)
+    _save(fig, "fig_rates_by_condition")
+
+    # =====================================================================
+    # Figure 4: SMR po modelu i uvjetu — grupirani barovi (A/B/C)
+    # Modeli sortirani po prosječnom SMR-u, vrijednosti iznad barova.
+    # =====================================================================
+    order4 = sorted(models, reverse=True,
+                    key=lambda m: np.mean([stats[(m, c)][0]
+                                           for c in CONDITION_ORDER
+                                           if (m, c) in stats]))
+    w4 = 0.26
+    offs4 = [-w4, 0.0, w4]
+    fig, ax = plt.subplots(figsize=(9.0, 4.0), layout="constrained")
+    top = 0
+    for i, m in enumerate(order4):
+        for off, cond in zip(offs4, CONDITION_ORDER):
+            if (m, cond) not in stats:
+                continue
+            p, lo, hi = stats[(m, cond)]
+            _bar(ax, i + off, p, w4, COND_COL[cond], lo, hi, label_fs=7.5)
+            top = max(top, hi)
+    ax.set_ylim(0, top * 1.18)
+    ax.set_xticks(range(len(order4)))
+    ax.set_xticklabels([_wrap(m) for m in order4], fontsize=8.5)
+    ax.set_ylabel("SMR (%), Wilson 95% CI")
+    ax.grid(axis="x", visible=False)
+    ax.legend(handles=[Patch(color=COND_COL[c], label=CONDITION_LABEL[c])
+                       for c in CONDITION_ORDER],
+              loc="upper right", ncol=3, columnspacing=1.0)
+    _save(fig, "fig_smr_by_model")
+
+    # =====================================================================
+    # Figure 5: heatmap po poddomeni — NEPROMIJENJENO
     # =====================================================================
     domain_map = corpus[["concept_id", "domain"]].drop_duplicates()
     ev2 = eval_df.drop(columns=["domain"], errors="ignore").merge(
@@ -1405,44 +1355,35 @@ def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
         for j, cond in enumerate(CONDITION_ORDER):
             sub = ev2[(ev2["domain"] == dom) & (ev2["condition"] == cond)]
             if len(sub):
-                mat[i, j] = as_float(sub["strategic_misconception"]).mean()
-    fig, ax = plt.subplots(figsize=(11, 8))
-    im = ax.imshow(mat, cmap="YlOrRd", aspect="auto", vmin=0, vmax=0.5)
-    ax.set_xticks([0, 1, 2])
-    ax.set_xticklabels(["A\n(standard)", "B\n(simplified)", "C\n(highly simplified)"])
+                mat[i, j] = 100 * as_float(sub["strategic_misconception"]).mean()
+    vmax = max(10, np.ceil(mat.max() / 5) * 5)
+    cmap = LinearSegmentedColormap.from_list("smr_seq", ["#F4F8FB", "#1F3F66"])
+
+    fig, ax = plt.subplots(figsize=(5.8, 3.2), layout="constrained")
+    im = ax.imshow(mat, cmap=cmap, aspect="auto", vmin=0, vmax=vmax)
+    ax.set_xticks(range(3))
+    ax.set_xticklabels(XLAB)
     ax.set_yticks(range(len(SUBFIELD_ORDER)))
-    ax.set_yticklabels([SUBFIELD_SHORT[d].replace("\\\\", "") for d in SUBFIELD_ORDER],
-                       fontsize=18)
+    ax.set_yticklabels([SUBFIELD_SHORT[d].replace("\\\\", "").replace("\\", "")
+                        for d in SUBFIELD_ORDER], fontsize=8.5)
     for i in range(mat.shape[0]):
         for j in range(mat.shape[1]):
-            val = 100 * mat[i, j]
-            txt_color = "white" if mat[i, j] > 0.28 else "#222222"
-            ax.text(j, i, f"{val:.0f}",
-                    ha="center", va="center",
-                    color=txt_color, fontsize=24, fontweight="bold")
-    cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    cbar.set_label("SMR (%)", fontsize=18, fontweight="bold")
+            v = mat[i, j]
+            ax.text(j, i, f"{v:.0f}", ha="center", va="center", fontsize=9.5,
+                    fontweight="bold",
+                    color="white" if v > vmax * 0.5 else TXT)
+    ax.set_xticks(np.arange(-0.5, 3, 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(SUBFIELD_ORDER), 1), minor=True)
+    ax.grid(which="minor", color="white", linewidth=1.5)
+    ax.grid(which="major", visible=False)
+    ax.tick_params(which="both", length=0)
+    for s in ax.spines.values():
+        s.set_visible(False)
+    cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.03)
+    cbar.set_label("SMR (%)", fontsize=8.5)
     cbar.outline.set_visible(False)
-    cbar.ax.tick_params(labelsize=14)
-    for tick in cbar.ax.get_yticklabels():
-        tick.set_fontweight("bold")
-    ax.set_title("SMR by subfield and condition", pad=20)
-    # No grid on heatmap, but keep spines off
-    ax.grid(False)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    for tick in ax.get_xticklabels():
-        tick.set_fontweight("bold")
-    for tick in ax.get_yticklabels():
-        tick.set_fontweight("bold")
-    plt.tight_layout()
-    plt.savefig(figdir / "fig_subfield_heatmap.pdf", format="pdf",
-                bbox_inches="tight")
-    plt.savefig(figdir / "fig_subfield_heatmap.png", format="png",
-                bbox_inches="tight", dpi=600)
-    plt.close(fig)
-
-
+    cbar.ax.tick_params(labelsize=8, length=0)
+    _save(fig, "fig_subfield_heatmap")
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
