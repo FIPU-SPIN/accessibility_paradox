@@ -1,0 +1,181 @@
+rater,concept_id,model,condition,SM,DA,OER,accuracy,comment
+h1,ALG_05,deepseek-r1:8b,A_standard,1,0,,3,"Revidirana AI procjena; nije drugi neovisni ljudski ocjenjivač. Pretraga lanca opisana je obrnuto: 1 je korijen, a do 10 treba proći sve čvorove; pogrešna atribucija autora ne računa se kao SM."
+h1,ALG_05,gemma4:31b,C_highly_simplified,1,1,1.0,3,Preslagivanje svake police pri svakom unosu sugerira globalnu obnovu umjesto lokalnih rotacija i održavanja invarijanti.
+h1,PLP_04,ministral-3:14b,B_simplified,1,1,0.0,2,"Sigurnost tipova miješa se s vremenom provjere, a analogije sugeriraju da dinamički sustav dopušta nevaljane operacije do nastanka štete."
+h1,OS_04,ministral-3:14b,B_simplified,1,1,1.0,2,Konkurencija za jedan kontroler i kviz nisu dovoljan prikaz deadlocka; obična zauzetost resursa nije trajno kružno čekanje.
+h1,NET_03,deepseek-r1:32b,B_simplified,0,0,0.0,5,Pretraga u ime klijenta i samostalno praćenje preporuka pravilno su razdvojeni.
+h1,OS_04,ministral-3:14b,C_highly_simplified,0,0,0.0,4,"Izraz zamrzavanje sustava tumačim kao blokadu opisanog skupa sudionika, ne nužno svih procesa računala; prikazan je stvaran ciklus čekanja."
+h1,DB_04,gpt-oss:20b,C_highly_simplified,1,1,1.0,3,Pravilo samo nekoliko redaka preusko je: pokrivajući indeksi i indeksi izraza mogu pomoći i u isključenim slučajevima.
+h1,OS_07,gpt-oss:20b,C_highly_simplified,0,0,0.0,5,"Ograničen broj ulaznica, čekanje i vraćanje dozvole vjerno prikazuju upravljanje kapacitetom."
+h1,ALG_01,gpt-oss:20b,B_simplified,0,0,0.0,4,"Srednji položaj dopušten je pivot, ali nije medijan vrijednosti; loše podjele ipak su prepoznate."
+h1,ALG_07,mistral:7b,B_simplified,1,1,1.0,3,Rast programa i dobivanje bogatijeg izlaza zamjenjuju rast ulaznih podataka i vremensko-prostorni kompromis za isti problem.
+h1,PLP_06,phi4:14b,C_highly_simplified,1,0,0.0,3,Brojanje referenci ne jamči odsutnost velikih stanki jer oslobađanje može pokrenuti veliku kaskadu.
+h1,NET_06,deepseek-r1:8b,C_highly_simplified,1,1,1.0,3,"Distance-vector može naći najkraći put bez cijele karte, a link-state izračun provodi svaki usmjerivač zasebno, ne zajednički."
+h1,OS_02,deepseek-r1:8b,B_simplified,1,1,1.0,3,Trenutačni povratak bez troška pogrešna je implikacija analogije; stvarni prijelaz zahtijeva spremanje i obnovu konteksta.
+h1,OS_04,deepseek-r1:32b,B_simplified,0,0,0.0,5,Svaki resurs u primjeru ima jednu kopiju i prikazan je zatvoren ciklus čekanja; navedeni primjer doista je deadlock.
+h1,OS_04,deepseek-r1:32b,C_highly_simplified,0,0,0.0,5,Trajno uzajamno čekanje uz zadržavanje resursa ispravno ilustrira deadlock bez potrebe za punim formalnim popisom.
+h1,PLP_06,deepseek-r1:32b,B_simplified,1,1,1.0,2,"Mark-and-sweep označava dohvatljivo, ne smeće, a reference counting ne jamči da ništa nekorišteno neće ostati zbog ciklusa."
+h1,ALG_07,mistral:7b,C_highly_simplified,1,1,1.0,1,Kapacitet i veličina kutije nisu prostorna složenost kao funkcija veličine ulaza; analogija zamjenjuje sam koncept.
+h1,ALG_05,gemma4:31b,A_standard,0,0,,4,Precizno navedena dopuštena razlika jedan razjašnjava kasniju hiperbolu savršene ravnoteže; apsolutne usporedbe brzine neprecizne su.
+h1,OS_01,mistral:7b,B_simplified,0,0,0.0,4,"Izolirani procesi i izvršavanje unutar procesa dobro su prikazani; ubrzanje je tipična mogućnost, ne univerzalno jamstvo."
+h1,OS_01,mistral:7b,C_highly_simplified,0,0,0.0,4,Dodatna aktivnost unutar istog glazbenika prikazuje izvršavanje unutar procesa; izostavljeni memorijski detalji nisu izričito poricani.
+h1,ALG_02,phi4:14b,B_simplified,1,1,1.0,2,Sugerira lokalni izbor sljedećeg susjeda umjesto globalnog minimuma udaljenosti i zabranjuje valjane bridove težine nula.
+h1,ALG_05,gemma4:31b,B_simplified,1,1,1.0,2,"AVL smije imati razliku visina jedan, suprotno tvrdnji da se ispravlja i najmanja razlika."
+h1,PLP_04,ministral-3:14b,A_standard,1,1,,2,"Pogrešno dopušta string eksplicitnom number tipu TypeScripta, pogrešno opisuje Java broj-plus-string i izjednačuje statičko tipiziranje sa sigurnošću."
+h1,PLP_01,deepseek-r1:8b,C_highly_simplified,0,0,0.0,4,"LSP ovdje čitam kao zahtjev da Cat bude zamjenjiv za Animal, ne kao tvrdnju da svako nasljeđivanje automatski jamči ugovor; formulacija je dvojbena."
+h1,DB_03,gemma4:31b,C_highly_simplified,0,0,0.0,5,Analogija pravilno razlikuje podudaranja i zadržavanje nepodudarenih sudionika s odabranih strana.
+h1,PLP_06,gpt-oss:20b,A_standard,1,0,,3,"Odsutnost stanki nije zajamčena, a pseudokod dodjele može prerano osloboditi objekt kod samododjele."
+h1,NET_05,mistral:7b,C_highly_simplified,0,0,0.0,4,Isti PUT na istom resursu daje isto stanje; nova krila prikazuju mogućnost kumulativnog učinka POST-a.
+h1,OS_02,deepseek-r1:8b,A_standard,1,0,,3,"Neograničena tvrdnja da CPU može izvršavati samo jedan program zanemaruje više jezgri, premda je mehanizam spremanja i obnove dobar."
+h1,DB_04,gpt-oss:20b,A_standard,1,0,,2,Pogrešno zabranjuje kombiniranje OR pretraga i zahtijeva silazni indeks za silazni ORDER BY; više tvrdnji o nekorištenju indeksa preopćenito je.
+h1,PLP_06,phi4:14b,A_standard,1,0,,3,"Uvod opisuje memoriju Java/Python objekata kao zauzetu do eksplicitnog oslobađanja, suprotno automatskom prikupljanju."
+h1,OS_02,deepseek-r1:8b,C_highly_simplified,0,0,0.0,5,Pamćenje mjesta nastavka i izmjena pažnje prenose osnovni mehanizam bez tvrdnje da nema troška.
+h1,ALG_05,deepseek-r1:8b,C_highly_simplified,0,0,0.0,4,"Vrtlar ilustrira relativnu strogoću ravnoteže; superlativ o pretrazi neprecizan je, ali ne zamjenjuje pravilo konkretnom pogrešnom invarijantom."
+h1,OS_04,deepseek-r1:32b,A_standard,0,0,,4,Četiri uvjeta i prekidanje jednog pravilno su navedeni; izraz o nedijeljenju čitam u kontekstu barem jednog isključivog resursa.
+h1,NET_04,phi4:14b,B_simplified,1,1,1.0,2,"Broj nakon kose crte označava mrežne bitove, a ne broj kuća ili uređaja."
+h1,NET_06,gpt-oss:20b,A_standard,1,0,,3,OSPF može imati prolazne petlje i ne jamči konvergenciju uvijek kraću od sekunde ili trenutačan prijelaz nakon kvara.
+h1,PLP_06,gemma4:31b,A_standard,1,0,,3,Real-time i stalan mali trošak nisu opće jamstvo brojanja referenci zbog mogućih kaskada oslobađanja.
+h1,PLP_04,ministral-3:14b,C_highly_simplified,1,1,1.0,2,"Statičko tipiziranje ne uklanja sve pogreške, a dinamičko tipiziranje ne nagađa proizvoljnu namjeru poput kuhara u analogiji."
+h1,PLP_06,gemma4:31b,C_highly_simplified,1,0,0.0,3,"Poredak brzine previše je kategoričan; držanje za ruke prihvaćam kao nepotpunu sliku povezanosti s korijenom, ne izričitu tvrdnju o smjeru referenci."
+h1,ALG_02,phi4:14b,C_highly_simplified,1,1,1.0,2,"Dijkstra dopušta nulte težine; negativni brid nije sinonim za prečac, a ograničenje nije nemogućnost kretanja unatrag."
+h1,DB_03,gemma4:31b,B_simplified,0,0,0.0,4,"Podudaranja i očuvanje redaka ispravno su opisani; prazno mjesto tumačim kao slikovni prikaz NULL-a, ne praznog stringa."
+h1,PLP_06,phi4:14b,B_simplified,0,0,0.0,4,Označavanje zadržanih objekata i brojanje referenci do nule ispravni su; izostanak korijena i ciklusa sam po sebi nije pogreška.
+h1,DB_04,deepseek-r1:32b,C_highly_simplified,1,1,1.0,3,Fizičko držanje svih knjiga na istoj polici nije selektivnost upita i samo po sebi ne čini indeks beskorisnim.
+h1,PLP_06,gpt-oss:20b,C_highly_simplified,0,0,0.0,4,"Brojanje do nule i uklanjanje neoznačenog dobro su razdvojeni; tranzitivna dohvatljivost izostavljena je, ali nije poricana."
+h1,ALG_01,gpt-oss:20b,A_standard,1,0,,3,"Vjerojatnost najgoreg slijeda nije općenito 1/n!, median-of-three ne isključuje patološke ulaze, a rekurzijski prostor nije uvijek O(log n)."
+h1,DB_07,mistral:7b,C_highly_simplified,1,1,1.0,2,"Preslagivanje po autoru ilustrira organizaciju ili indeksiranje, bez namjerne redundancije koja definira denormalizaciju."
+h1,DB_07,mistral:7b,B_simplified,0,0,0.0,4,"Grupiranje je povezano s izričito navedenim dupliciranjem, dodatnim prostorom i sporijim drugim operacijama."
+h1,NET_05,mistral:7b,B_simplified,1,1,1.0,2,"DELETE jest idempotentan, ponovljeni identični PUT ne stvara novo stanje svaki put, a POST može mijenjati postojeće podatke."
+h1,ALG_01,ministral-3:14b,A_standard,1,0,,3,Repna optimizacija općenito ne daje O(1) stoga; izbor slučajnog pivota i median-of-three nisu jamstvo protiv kvadratnog vremena.
+h1,DB_07,ministral-3:14b,A_standard,0,0,,4,Uvjet read-heavy i upozorenje o pažljivoj primjeni ograničavaju preporuku; izraze trenutačno i mnogo brže ocjenjujem kao pretjerivanje u inače točnom prikazu.
+h1,NET_06,deepseek-r1:8b,A_standard,1,0,,3,"Distance-vector ne sadrži samo izravne susjede; OSPF ima periodična osvježenja, a link-state ne isključuje prolazne petlje."
+h1,DB_04,deepseek-r1:32b,A_standard,1,0,,3,Mala tablica i ponavljanje vrijednosti nisu univerzalni razlozi beskorisnosti indeksa; ključni su selektivnost upita i trošak plana.
+h1,PLP_06,gpt-oss:20b,B_simplified,1,1,1.0,2,Brojanje referenci nije jedan prolaz; stalno ažuriranje i moguća kaskada ne dopuštaju usporedbu brzine samo brojem prolaza.
+h1,DB_07,ministral-3:14b,C_highly_simplified,0,0,0.0,4,"Kasniji izričiti opis dupliciranja razjašnjava početno lijepljenje kartica, pa ne zaključujem da se denormalizacija svodi na reorganizaciju."
+h1,OS_04,ministral-3:14b,A_standard,1,0,,3,"Bankarov algoritam izbjegava nesigurna stanja, a nije postupak zahtijevanja svih resursa odjednom radi ukidanja hold-and-wait uvjeta."
+h1,NET_04,phi4:14b,A_standard,0,0,,4,CIDR bitovi i /24 primjer točni su; identifikacija uređaja početničko je skraćivanje adrese sučelja.
+h1,DB_02,phi4:14b,B_simplified,1,1,1.0,1,Kategorije igračaka i bilježaka pogrešno zamjenjuju atomarnost i pune odnosno tranzitivne funkcionalne ovisnosti.
+h1,OS_01,gemma4:31b,A_standard,0,0,,4,Dijeljeni resursi i privatni kontekst dretvi razlikuju se ispravno; izjave o trošku i izolaciji uzimam kao tipične osobine.
+h1,ALG_01,ministral-3:14b,B_simplified,1,1,1.0,2,"Najviši učenik ne daje jednake skupine; najniži šalje gotovo sve u višu skupinu, a razine rekurzije nisu ukupni broj podjela."
+h1,NET_03,deepseek-r1:32b,A_standard,0,0,,4,Odgovornost za slijed upita pravilno je razdvojena; sigurnosne i izvedbene usporedbe općenite su.
+h1,OS_07,gpt-oss:20b,B_simplified,1,1,1.0,2,"Semafor nije samo broj, a odvojeno gledanje i smanjivanje bez atomarne operacije ne osiguravaju sinkronizaciju."
+h1,OS_01,gemma4:31b,C_highly_simplified,0,0,0.0,5,Odvojene trgovine i radnici sa zajedničkim resursima unutar trgovine dobro prikazuju osnovni odnos.
+h1,DB_02,phi4:14b,C_highly_simplified,1,1,1.0,2,"Kutije za igračke, dijelove i upute nisu uvjeti normalnih formi; pogrešno zamjenjuju ovisnosti i atomarnost."
+h1,DB_07,ministral-3:14b,B_simplified,0,0,0.0,4,"Dupliciranje i dodatno održavanje točni su; kviz bez opterećenja ne omogućuje jednoznačan izbor, ali obje mogućnosti mogu biti opravdane u različitim okolnostima."
+h1,OS_07,gpt-oss:20b,A_standard,1,0,,3,POSIX sem_wait ne zahtijeva negativan brojač; empty/full bez dodatnog isključivanja ne štite proizvoljan višestruki producer-consumer pristup spremniku.
+h1,OS_01,gemma4:31b,B_simplified,1,1,1.0,3,"Dretve ne dijele baš sve: svaka zadržava vlastiti stog, registre i programsko brojilo."
+h1,DB_07,mistral:7b,A_standard,1,0,,3,Spajanje Products i Prices u Items bez uvođenja redundancije ne mora biti denormalizacija.
+h1,NET_06,gpt-oss:20b,B_simplified,1,1,1.0,3,"Svi ne saznaju odmah za kvar; potrebni su detekcija, propagacija oglasa i konvergencija."
+h1,NET_06,gpt-oss:20b,C_highly_simplified,1,1,1.0,2,"OSPF gradi kartu iz oglasa lokalnih veza, a ne cijelih karata svakog usmjerivača; RIP nije nagađanje."
+h1,NET_06,deepseek-r1:8b,B_simplified,1,1,1.0,3,Trenutačni ispravan put nakon promjene veza zanemaruje vrijeme otkrivanja i razmjene informacija.
+h1,PLP_06,gemma4:31b,B_simplified,1,0,0.0,3,"Izravna tvrdnja o sporijem mark-and-sweep postupku previše generalizira: trošak ovisi o opterećenju, kolektoru i mjeri izvedbe."
+h1,NET_04,gemma4:31b,B_simplified,0,0,0.0,4,Mrežni i host dio te odnos duljine prefiksa i veličine podmreže prikazani su ispravno; prometna korist pojednostavnjena je.
+h1,ALG_02,phi4:14b,A_standard,0,0,,4,Nenegativne težine i konačnost udaljenosti pravilno su opisani; redoslijed izlaganja primjera nespretan je.
+h1,ALG_07,mistral:7b,A_standard,1,0,,2,Brka vrijeme i memoriju brute-force TSP-a te O(n log n) s logaritamskim rastom; broj ukupnih poziva nije vršna memorija.
+h1,NET_04,gemma4:31b,A_standard,1,0,,3,"Uvijek oduzmi dvije adrese ne vrijedi univerzalno, primjerice za /31 point-to-point i /32; /24 izračun jest točan."
+h1,DB_03,gemma4:31b,A_standard,1,1,,3,JOIN nije doslovni presjek ili unija skupova: povezuje stupce prema uvjetu i dopušta više podudaranja za isti redak.
+h1,NET_03,deepseek-r1:32b,C_highly_simplified,1,0,1.0,3,"Rekurzija ne jamči bržu DNS rezoluciju; razlika je odgovornost za upite, a brzina ovisi o predmemoriji i mreži."
+h1,ALG_01,ministral-3:14b,C_highly_simplified,1,1,1.0,3,Jedan loš pivot nije dovoljan za kvadratni slučaj; prosječno vrijeme ne zahtijeva svaku podjelu na savršene polovice.
+h1,NET_04,gemma4:31b,C_highly_simplified,0,0,0.0,5,Maska kao razdjelnica i odnos duljine prefiksa prema veličini bloka vjerno prenose osnovu CIDR-a.
+h1,DB_04,gpt-oss:20b,B_simplified,1,1,1.0,3,Zastarjele statistike nisu zastario indeks; redovno održavanje indeksa i statistike optimizatora različite su stvari.
+h1,NET_04,phi4:14b,C_highly_simplified,1,1,1.0,3,Podmreže unutar jedne IP adrese obrću odnos adresnog bloka i pojedinačne adrese.
+h1,NET_05,mistral:7b,A_standard,1,0,,3,Idempotentnost ne zahtijeva identične odgovore; POST nije obvezan stvoriti novi resurs svakim ponavljanjem.
+h1,OS_01,mistral:7b,A_standard,1,0,,3,"Procesima upravlja OS, a postoje i korisničke dretve; kontrast jezgre za dretve i korisničkih biblioteka za procese pogrešan je."
+h1,DB_04,deepseek-r1:32b,B_simplified,0,0,0.0,4,Mala tablica i dohvat većine podataka valjani su slučajevi; pravilno korištenje indeksa ostaje nedovoljno određeno.
+h1,PLP_01,deepseek-r1:8b,B_simplified,1,1,1.0,3,"Analogija ključa obrće smjer LSP-a: kod za podtip ne mora prihvatiti nadtip, nego podtip mora zadovoljiti ugovor nadtipa."
+h1,DB_02,phi4:14b,A_standard,0,0,,4,"Pravila slijede početničku referencu, uz pojednostavljivanje formalne uloge svih kandidatskih ključeva na primarni ključ."
+h1,ALG_01,gpt-oss:20b,C_highly_simplified,0,0,0.0,5,Podjele i dubina rekurzije pravilno objašnjavaju prosječno O(n log n) i najgore O(n²) vrijeme.
+h1,ALG_05,deepseek-r1:8b,B_simplified,1,1,1.0,2,AVL dopušta razliku visina do jedan; izričito jednake visine i savršeno ravna klackalica pogrešno definiraju uvjet.
+h1,PLP_01,deepseek-r1:8b,A_standard,1,0,,3,"Square u kodu nasljeđuje Shape, a ne Rectangle kako tvrdi tekst; demonstrirana povreda ugovora ne odgovara navedenoj hijerarhiji."
+h1,PLP_06,deepseek-r1:32b,A_standard,0,0,,4,"Dohvatljivost, ciklusi i nulti broj referenci točni su; malu latenciju tumačim kao tipično ponašanje, ne strogo jamstvo."
+h1,PLP_06,deepseek-r1:32b,C_highly_simplified,1,1,1.0,2,"Označavanje smeća i uklanjanje označenog obrće mark-and-sweep: označuju se dohvatljivi, a uklanjaju neoznačeni objekti."
+h2,ALG_05,deepseek-r1:8b,A_standard,1,0,,3,"The example reverses the cost of search: 1 is at the root, and to reach 10 you have to go through the entire chain; I do not treat incorrect author names as SM."
+h2,ALG_05,gemma4:31b,C_highly_simplified,1,1,1.0,3,"A librarian who perfectly rearranges every shelf on every insertion suggests a complete rearrangement, instead of local maintenance of invariants."
+h2,PLP_04,ministral-3:14b,B_simplified,1,1,0.0,2,Analogies equate dynamic typing with allowing invalid operations and static typing with complete safety; the time of checking is not the same as type safety.
+h2,OS_04,ministral-3:14b,B_simplified,1,1,1.0,2,The mutual exclusion example and the quiz confuse ordinary competition for a single resource with deadlock; merely waiting for an occupied resource is not enough.
+h2,NET_03,deepseek-r1:32b,B_simplified,0,0,0.0,5,The analogy correctly distinguishes fetching a search from following instructions to the next server.
+h2,OS_04,ministral-3:14b,C_highly_simplified,1,0,1.0,3,"Circular wait is well illustrated, but the claim that the entire system freezes unjustifiably extends a blockage of a set of processes to the entire system."
+h2,DB_04,gpt-oss:20b,C_highly_simplified,1,1,1.0,3,An index does not speed up only queries with few results: covering indexes and expression indexes are counterexamples to the claim that everything is always scanned.
+h2,OS_07,gpt-oss:20b,C_highly_simplified,0,0,0.0,5,"The tickets faithfully represent a limited number of permits, waiting, and returning the permit; the omitted details do not change the described mechanism."
+h2,ALG_01,gpt-oss:20b,B_simplified,0,0,0.0,4,"The middle position is a valid choice of pivot, but it is not the same as the mean; the explanation nevertheless recognizes the possibility of bad partitions."
+h2,ALG_07,mistral:7b,B_simplified,1,1,1.0,3,Program size growth and the choice of richer output replace memory growth with input size and the time-space trade-off for the same task.
+h2,PLP_06,phi4:14b,C_highly_simplified,1,0,0.0,3,The claim that reference counting does not create large pauses ignores the cascading freeing of a large object graph.
+h2,NET_06,deepseek-r1:8b,C_highly_simplified,1,1,1.0,3,The lack of a complete map does not mean that distance-vector cannot find shortest paths; link-state computation is performed by each router separately.
+h2,OS_02,deepseek-r1:8b,B_simplified,1,1,1.0,3,The teacher's and the task's immediate return conceals the actual time cost of saving and restoring the context.
+h2,OS_04,deepseek-r1:32b,B_simplified,0,0,0.0,5,The example with individual books shows all four conditions and a real circular wait; releasing resources breaks the blockage.
+h2,OS_04,deepseek-r1:32b,C_highly_simplified,0,0,0.0,5,The example of keeping one's own toy with a permanent mutual wait faithfully illustrates deadlock; an incomplete list of conditions is not an error in itself.
+h2,PLP_06,deepseek-r1:32b,B_simplified,1,1,1.0,2,"Mark-and-sweep marks reachable objects, not garbage; the claim that reference counting leaves no unused objects ignores cycles."
+h2,ALG_07,mistral:7b,C_highly_simplified,1,1,1.0,1,"The size of the box and the capacity of the container replace space complexity as a function of input size, without a correct representation of the time-space trade-off."
+h2,ALG_05,gemma4:31b,A_standard,0,0,,4,The precise rule allows a height difference of one; I take the expression perfectly balanced in the summary and absolute speed comparisons as imprecise shorthand.
+h2,OS_01,mistral:7b,B_simplified,0,0,0.0,4,Separate processes and execution units within a process are correctly distinguished; speedup using threads is not guaranteed for every task.
+h2,OS_01,mistral:7b,C_highly_simplified,0,0,0.0,4,"The musician and the additional activity represent execution within a process; details about shared memory are missing, but the analogy does not deny them."
+h2,ALG_02,phi4:14b,B_simplified,1,1,1.0,2,The procedure suggests choosing only the neighbor of the current node instead of the globally smallest tentative distance and incorrectly excludes edges of weight zero.
+h2,ALG_05,gemma4:31b,B_simplified,1,1,1.0,2,An AVL may have a height difference of one; a perfectionist who corrects even the smallest difference creates a wrong invariant.
+h2,PLP_04,ministral-3:14b,A_standard,1,1,,2,"It equates static typing with safety, incorrectly allows assigning a string to an explicit number type in TypeScript, and incorrectly describes Java adding a number and a string."
+h2,PLP_01,deepseek-r1:8b,C_highly_simplified,1,1,1.0,3,"Inheriting a property by itself does not guarantee LSP; substitutability is a requirement of preserving the contract, not an automatic consequence of an is-a relationship."
+h2,DB_03,gemma4:31b,C_highly_simplified,0,0,0.0,5,"The dance analogy correctly distinguishes retaining matches and unmatched rows from the left, right, or both sides."
+h2,PLP_06,gpt-oss:20b,A_standard,1,0,,3,"Reference counting does not guarantee the absence of pauses; the assignment pseudocode frees the old target before incrementing the new count, which is unsafe in self-assignment."
+h2,NET_05,mistral:7b,C_highly_simplified,0,0,0.0,4,The analogies distinguish an unchanged final state from repeated addition; PUT should be read as repeating the same content on the same resource.
+h2,OS_02,deepseek-r1:8b,A_standard,1,0,,3,The unlimited claim that the CPU can execute only one program ignores multiple cores; the description of saving and restoring context is otherwise correct.
+h2,DB_04,gpt-oss:20b,A_standard,1,0,,2,It incorrectly claims that the optimizer cannot combine OR searches and that a descending index is necessary for descending ORDER BY; several prohibitions on index use are overly general.
+h2,PLP_06,phi4:14b,A_standard,1,0,,3,"In the introduction, it presents Java/Python memory as occupied until explicit freeing, although automatic freeing is precisely the foundation of their GC."
+h2,OS_02,deepseek-r1:8b,C_highly_simplified,0,0,0.0,5,Changing tasks while remembering the continuation point conveys the essence of context switching without claiming that the operation is free.
+h2,ALG_05,deepseek-r1:8b,C_highly_simplified,0,0,0.0,4,"The gardener conveys the difference between stricter and looser balance maintenance; the fastest possible search is an exaggerated formulation, not a guaranteed property."
+h2,OS_04,deepseek-r1:32b,A_standard,0,0,,4,The conditions and their breaking are correctly stated; I read the formulation about not sharing resources in the context of at least one exclusive resource.
+h2,NET_04,phi4:14b,B_simplified,1,1,1.0,2,"The number after the slash indicates the number of network bits, not the number of computers; Maple Street/20 directly suggests an incorrect meaning of the prefix."
+h2,NET_06,gpt-oss:20b,A_standard,1,0,,3,"OSPF is not without possible transient loops, and convergence is not guaranteed to be instantaneous or always shorter than a second."
+h2,PLP_06,gemma4:31b,A_standard,1,0,,3,The description of a constant small cost and real-time freeing in reference counting ignores cascades of freeing and their unbounded latency.
+h2,PLP_04,ministral-3:14b,C_highly_simplified,1,1,1.0,2,"Static types do not remove all errors, and a dynamic system does not guess intent; the order-and-crust analogy mixes type checking with arbitrary choice."
+h2,PLP_06,gemma4:31b,C_highly_simplified,1,1,1.0,3,"The claim that mark-and-sweep is necessarily slower is not a general rule, and holding hands suggests undirected connection instead of directed reachability from roots."
+h2,ALG_02,phi4:14b,C_highly_simplified,1,1,1.0,2,"Dijkstra allows zero weights; negative weights are not a synonym for shortcuts, and the restriction is not an inability to move backward."
+h2,DB_03,gemma4:31b,B_simplified,0,0,0.0,4,"Matches and the retention of unmatched rows are accurately shown; I interpret the empty place as a simplified representation of NULL, not as an empty string."
+h2,PLP_06,phi4:14b,B_simplified,0,0,0.0,4,Counting pointers to zero and removing unmarked objects are correctly stated; details of roots and cycles are omitted without explicit denial.
+h2,DB_04,deepseek-r1:32b,C_highly_simplified,1,1,1.0,3,"All books on one shelf is not the same as low query selectivity; even within such a group, an index can efficiently find a rare value."
+h2,PLP_06,gpt-oss:20b,C_highly_simplified,0,0,0.0,4,Marking retained objects and freeing at zero are correctly distinguished; I treat the lack of explicit transitive reachability as an omitted detail.
+h2,ALG_01,gpt-oss:20b,A_standard,1,0,,3,"The probability of the worst sequence is not generally 1/n!, median-of-three does not exclude pathological inputs, and recursion space is not always O(log n)."
+h2,DB_07,mistral:7b,C_highly_simplified,1,1,1.0,2,"Rearranging books by author describes a change of organization/indexing, not the deliberate introduction of redundant data that defines denormalization."
+h2,DB_07,mistral:7b,B_simplified,0,0,0.0,4,"Grouping data is connected with explicitly mentioned duplication, additional space, and slower other operations; the analogy is rough, but does not deny redundancy."
+h2,NET_05,mistral:7b,B_simplified,1,1,1.0,2,"DELETE is idempotent, a repeated identical PUT does not produce a new state each time, and POST may also process or modify existing data."
+h2,ALG_01,ministral-3:14b,A_standard,1,0,,3,Tail recursion optimization generally does not reduce Quicksort to O(1) because of that; randomization and median-of-three do not guarantee avoiding the quadratic worst case.
+h2,DB_07,ministral-3:14b,A_standard,1,0,,3,It presents the removal of joins as automatically faster and instantaneous reading; the advantage of denormalization depends on the specific query and measured cost.
+h2,NET_06,deepseek-r1:8b,A_standard,1,0,,3,"Distance-vector is not just a list of direct neighbors, OSPF also sends periodic refreshes, and link-state does not exclude all transient loops."
+h2,DB_04,deepseek-r1:32b,A_standard,1,0,,3,A small table or repeated values are not sufficient for an index to always be useless; the selectivity of the specific query and the cost of the plan matter.
+h2,PLP_06,gpt-oss:20b,B_simplified,1,1,1.0,2,"Reference counting is not a single-pass algorithm; it updates counters during execution and can cascade-free objects, so comparing speed by number of passes is not valid."
+h2,DB_07,ministral-3:14b,C_highly_simplified,0,0,0.0,4,"The second paragraph explicitly states duplication for faster reading and additional work with copies, which clarifies the initial gluing of cards."
+h2,OS_04,ministral-3:14b,A_standard,1,0,,3,"The banker's algorithm serves to avoid unsafe states, and is not an example of requesting all resources at once in order to break the hold-and-wait condition."
+h2,NET_04,phi4:14b,A_standard,0,0,,4,The CIDR number of bits and the /24 example are correct; I read the device address as beginner shorthand for the address of a network interface.
+h2,DB_02,phi4:14b,B_simplified,1,1,1.0,1,"Sorting toys and notebooks does not represent atomicity, full functional dependencies, and removal of transitive dependencies; the rules of normal forms are incorrectly replaced."
+h2,OS_01,gemma4:31b,A_standard,0,0,,4,"It correctly distinguishes the isolated address space of a process from shared resources and the separate context of threads; cost and isolation estimates are typical, not absolute."
+h2,ALG_01,ministral-3:14b,B_simplified,1,1,1.0,2,"The tallest student does not give a balanced split, and when choosing the shortest, almost all the others go into the higher group; it also confuses the number of levels with the total number of splits."
+h2,NET_03,deepseek-r1:32b,A_standard,0,0,,4,"The difference in responsibility for finding the answer is correct; the description of efficiency and safety is general, but does not change the resolution mechanism."
+h2,OS_07,gpt-oss:20b,B_simplified,1,1,1.0,2,"A semaphore is not just a number, nor is synchronization just obedience to a number; viewing the number and decrementing separately without an atomic acquire is not safe synchronization."
+h2,OS_01,gemma4:31b,C_highly_simplified,0,0,0.0,5,Separate stores and workers sharing common resources correctly convey the basic difference between processes and threads.
+h2,DB_02,phi4:14b,C_highly_simplified,1,1,1.0,2,"Toy boxes, parts, and instructions are arbitrarily identified with 1NF, 2NF, and 3NF, instead of representing their different conditions about values and dependencies."
+h2,DB_07,ministral-3:14b,B_simplified,0,0,0.0,4,Copying for fewer joins and additional work on changes are correctly described; the quiz does not provide enough workload for an unambiguous choice.
+h2,OS_07,gpt-oss:20b,A_standard,1,0,,3,"POSIX sem_wait does not require a negative counter, and two empty/full semaphores do not guarantee mutual exclusion with multiple producers or consumers."
+h2,OS_01,gemma4:31b,B_simplified,1,1,1.0,3,"The claim that threads share absolutely everything erases their separate stack, registers, and program counter; a shared kitchen alone does not show that boundary."
+h2,DB_07,mistral:7b,A_standard,1,0,,3,"Merging the Products and Prices tables into Items is not necessarily denormalization: without introduced redundancy, the result can remain normalized."
+h2,NET_06,gpt-oss:20b,B_simplified,1,1,1.0,3,"The claim that all routers immediately learn about a closed road removes change detection, LSA message transmission, and convergence time."
+h2,NET_06,gpt-oss:20b,C_highly_simplified,1,1,1.0,2,OSPF does not receive the whole map from every router but advertisements of local links; RIP is not guessing but a distributed distance computation.
+h2,NET_06,deepseek-r1:8b,B_simplified,1,1,1.0,3,"The analogy promises an immediately correct path even when links change, without time for detecting the change and exchanging information."
+h2,PLP_06,gemma4:31b,B_simplified,1,0,0.0,3,The general claim that mark-and-sweep is slower replaces the cost-latency trade-off with a universal speed ordering; the mechanisms are otherwise faithfully presented.
+h2,NET_04,gemma4:31b,B_simplified,0,0,0.0,4,The mask as a divider and the relationship of prefix length to subnet size are accurately shown; claims about traffic are simplified.
+h2,ALG_02,phi4:14b,A_standard,0,0,,4,Zero weights and the reason for the finiteness of distance are correctly stated; the awkward order of presenting the example does not change the presented counterexample.
+h2,ALG_07,mistral:7b,A_standard,1,0,,2,It confuses the time and memory of brute-force TSP and describes O(n log n) as logarithmic memory growth; the number of total recursive calls is not peak occupied memory.
+h2,NET_04,gemma4:31b,A_standard,1,0,,3,"The rule always subtract two addresses is not universal: /31 point-to-point and /32 have special semantics, although the /24 example is correct."
+h2,DB_03,gemma4:31b,A_standard,1,1,,3,"Identifying INNER/FULL JOIN with set intersection/union ignores column joining, the match condition, and multiple matches in SQL."
+h2,NET_03,deepseek-r1:32b,C_highly_simplified,1,0,1.0,3,"Recursive resolution is not necessarily faster; the difference is who follows queries and recommendations, and speed depends on cache and network."
+h2,ALG_01,ministral-3:14b,C_highly_simplified,1,1,1.0,3,One bad pivot choice does not by itself create a quadratic case; the analogy of the average case with constant perfect halving is also too narrow.
+h2,NET_04,gemma4:31b,C_highly_simplified,0,0,0.0,5,The network-host divider and the relationship of short and long prefixes to block size are accurately shown.
+h2,DB_04,gpt-oss:20b,B_simplified,1,1,1.0,3,"Outdated statistics are not an outdated or unmaintained index; indexes are maintained on writes, and statistics affect plan choice, not index validity."
+h2,NET_04,phi4:14b,C_highly_simplified,1,1,1.0,3,"Floors as subnets within a single IP address suggest the opposite relationship: a subnet is a block of addresses, and an individual address is not a container of subnets."
+h2,NET_05,mistral:7b,A_standard,1,0,,3,"Idempotency means the same intended effect on state, not necessarily the same response; POST is not obliged to create a new resource on every repetition."
+h2,OS_01,mistral:7b,A_standard,1,0,,3,"It incorrectly contrasts thread management in the kernel with process management in user libraries; user threads also exist, and processes are managed by the OS."
+h2,DB_04,deepseek-r1:32b,B_simplified,0,0,0.0,4,"A small table and retrieving most of the data are valid reasons for scanning; the expression proper use of an index is imprecise, but is not a new algorithmic requirement."
+h2,PLP_01,deepseek-r1:8b,B_simplified,1,1,1.0,3,"The key analogy reverses the direction of LSP: code that requests a subtype does not have to accept a supertype, rather the subtype must fulfill the contract that the client expects from the supertype."
+h2,DB_02,phi4:14b,A_standard,0,0,,4,The introductory rules of normal forms and the trade-offs correspond to the reference description; formulations about only the primary key simplify the formal role of candidate keys.
+h2,ALG_01,gpt-oss:20b,C_highly_simplified,0,0,0.0,5,"It correctly connects the levels of recursion and partition sizes with average O(n log n) and worst O(n²), without a guarantee of perfect balance."
+h2,ALG_05,deepseek-r1:8b,B_simplified,1,1,1.0,2,"AVL requires a height difference of at most one, not exactly equal heights; the analogy of a perfectly level seesaw directly confirms the wrong rule."
+h2,PLP_01,deepseek-r1:8b,A_standard,1,0,,3,"The text claims that Square inherits Rectangle, but the code inherits Shape; the example therefore does not implement the stated hierarchy, although it illustrates the violation of the setter contract well."
+h2,PLP_06,deepseek-r1:32b,A_standard,0,0,,4,"Reachability, cycles, and zero reference count are correctly separated; I read the claims about low latency as typical behavior, not a strict guarantee."
+h2,PLP_06,deepseek-r1:32b,C_highly_simplified,1,1,1.0,2,"The janitor marks garbage and removes what is marked, which reverses mark-and-sweep: reachable objects are marked, and unmarked ones are removed."

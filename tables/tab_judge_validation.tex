@@ -1,0 +1,15 @@
+\begin{table}[H]
+\caption{Agreement between the LLM judge and the reviewer consensus. Precision is the proportion of judge-flagged responses also flagged by reviewers; recall is the proportion of reviewer-flagged responses also flagged by the judge. For accuracy, quadratic-weighted $\kappa$ is shown and prevalence is the mean score.}
+\label{tab:judge:validation}
+\centering
+\begin{tabular}{lrrrrr}
+\toprule
+Indicator & $\kappa$ & Precision & Recall & Reviewer prev. & Judge prev. \\
+\midrule
+SM & -0.008 & 0.600 & 0.052 & 0.644 & 0.056 \\
+DA & 0.180 & 0.778 & 0.194 & 0.400 & 0.100 \\
+OER & 0.018 & 0.667 & 0.059 & 0.567 & 0.050 \\
+Accuracy & 0.122 & -- & -- & 3.20 & 4.58 \\
+\bottomrule
+\end{tabular}
+\end{table}
