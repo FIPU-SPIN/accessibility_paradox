@@ -1,0 +1,42 @@
+[2026-10-19 11:33:15] INFO: AccessTrap-CS statistics pipeline
+[2026-10-19 11:33:15] INFO: Data directory:  C:\Users\milic\Documents\GitHub\accessibility_paradox
+[2026-10-19 11:33:15] INFO: Output directory: C:\Users\milic\Documents\GitHub\accessibility_paradox\results
+[2026-10-19 11:33:15] INFO: Loaded corpus: 735 rows from data\corpus.csv
+[2026-10-19 11:33:15] INFO: Loaded evaluations: 720 rows from data\evaluations.csv
+[2026-10-19 11:33:15] INFO: Loaded annotations_final: 270 rows (raters: {'h1': 90, 'h2': 90, 'consensus': 90}) from annotation\annotations_final.csv
+[2026-10-19 11:33:15] INFO: Loaded validation_map: 150 rows from annotation\validation_map.csv
+[2026-10-19 11:33:15] INFO: --- Tables ---
+[2026-10-19 11:33:15] INFO: Wrote tables/tab_sample.tex
+[2026-10-19 11:33:17] INFO: Wrote tables/tab_readability.tex
+[2026-10-19 11:33:17] INFO: Wrote tables/tab_readability_tukey.tex
+[2026-10-19 11:33:17] INFO: Wrote tables/tab_sm_by_condition.tex
+[2026-10-19 11:33:17] INFO: Wrote tables/tab_sm_omnibus.tex
+[2026-10-19 11:33:17] INFO: Wrote tables/tab_sm_pairwise.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_sm_regression.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_da_by_condition.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_da_omnibus.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_da_pairwise.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_da_regression.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_oer_by_condition.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_oer_derived.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_oer_by_model.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_accuracy_by_condition.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_accuracy_tests.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_accuracy_pairwise.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_accuracy_spearman.tex
+[2026-10-19 11:33:19] INFO: Wrote tables/tab_subfield.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_subfield_tests.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_concepts_top10.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_concepts_all.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_models.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_twoway_anova.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_position_bias.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_position_by_condition.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_sens_first_shown.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_sens_A_before.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_position_adjusted.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_reviewer_agreement.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_judge_validation.tex
+[2026-10-19 11:33:20] INFO: Wrote tables/tab_reviewer_rates.tex
+[2026-10-19 11:33:20] INFO: --- Figures ---
+[2026-10-19 11:33:27] INFO: Done.

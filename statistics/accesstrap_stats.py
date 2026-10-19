@@ -3,11 +3,11 @@
 # Statistical analysis pipeline for the AccessTrap-CS benchmark.
 #
 # Usage:
-#   python accesstrap_stats.py --datadir . --outdir . --only all
-#   python accesstrap_stats.py --datadir . --outdir . --only tables
-#   python accesstrap_stats.py --datadir . --outdir . --only figures
+#   python accesstrap_stats.py --datadir . --outdir results --only all
+#   python accesstrap_stats.py --datadir . --outdir results --only tables
+#   python accesstrap_stats.py --datadir . --outdir results --only figures
 #
-# Inputs (expected in --datadir):
+# Inputs (expected in --datadir or its data/ and annotation/ subdirs):
 #   corpus.csv              -- 735 rows
 #   evaluations.csv         -- 720 rows
 #   annotations_final.csv   -- 270 rows (h1, h2, consensus)
@@ -15,9 +15,9 @@
 #   ground_truth.csv        -- optional
 #
 # Outputs:
-#   tables/*.tex
-#   figures/*.pdf
-#   accesstrap_stats.log
+#   results/tables/*.tex
+#   results/figures/*.pdf
+#   results/accesstrap_stats.log
 
 from __future__ import annotations
 
@@ -103,39 +103,55 @@ def _read_csv_robust(path: Path) -> pd.DataFrame:
     return pd.read_csv(path, sep=sep)
 
 
+def _find_file(datadir: Path, filename: str) -> Path:
+    """Pronađi datoteku u datadir, data/ ili annotation/."""
+    candidates = [
+        datadir / filename,
+        datadir / "data" / filename,
+        datadir / "annotation" / filename,
+    ]
+    for c in candidates:
+        if c.exists():
+            return c
+    raise FileNotFoundError(
+        f"Ne mogu pronaći {filename}. Tražio sam u: "
+        + ", ".join(str(c) for c in candidates)
+    )
+
+
 def load_corpus(datadir: Path) -> pd.DataFrame:
-    p = datadir / "corpus.csv"
+    p = _find_file(datadir, "corpus.csv")
     df = _read_csv_robust(p)
     for col in ["truncated"]:
         if col in df.columns:
             df[col] = df[col].astype(str).str.upper().isin(["TRUE", "1", "YES"])
-    LOG.info("Loaded corpus: %d rows", len(df))
+    LOG.info("Loaded corpus: %d rows from %s", len(df), p)
     return df
 
 
 def load_evaluations(datadir: Path) -> pd.DataFrame:
-    p = datadir / "evaluations.csv"
+    p = _find_file(datadir, "evaluations.csv")
     df = _read_csv_robust(p)
     for col in ["strategic_misconception", "dangerous_analogy",
                 "oversimplification_error", "truncated"]:
         if col in df.columns:
             df[col] = df[col].astype(str).str.upper().isin(["TRUE", "1", "YES"])
-    LOG.info("Loaded evaluations: %d rows", len(df))
+    LOG.info("Loaded evaluations: %d rows from %s", len(df), p)
     return df
 
 
 def load_annotations(datadir: Path) -> pd.DataFrame:
-    p = datadir / "annotations_final.csv"
+    p = _find_file(datadir, "annotations_final.csv")
     df = _read_csv_robust(p)
-    LOG.info("Loaded annotations_final: %d rows (raters: %s)",
-             len(df), df["rater"].value_counts().to_dict())
+    LOG.info("Loaded annotations_final: %d rows (raters: %s) from %s",
+             len(df), df["rater"].value_counts().to_dict(), p)
     return df
 
 
 def load_validation_map(datadir: Path) -> pd.DataFrame:
-    p = datadir / "validation_map.csv"
+    p = _find_file(datadir, "validation_map.csv")
     df = _read_csv_robust(p)
-    LOG.info("Loaded validation_map: %d rows", len(df))
+    LOG.info("Loaded validation_map: %d rows from %s", len(df), p)
     return df
 
 
@@ -984,8 +1000,14 @@ def judge_validation(eval_df: pd.DataFrame, annotations_final: pd.DataFrame,
     """Validate the LLM judge against the two human reviewers."""
     keys = ["concept_id", "model", "condition"]
 
+    # Filtriraj samo na 150 validacijskih uzoraka (ispravak propusta)
+    val_keys = validation_map[keys].drop_duplicates()
+    
+    eval_df_val = eval_df.merge(val_keys, on=keys, how="inner")
     raters = annotations_final[annotations_final["rater"].isin(["h1", "h2"])].copy()
+    raters = raters.merge(val_keys, on=keys, how="inner")
     consensus = annotations_final[annotations_final["rater"] == "consensus"].copy()
+    consensus = consensus.merge(val_keys, on=keys, how="inner")
 
     # ----- Reviewer agreement (h1 vs h2) -----
     long = raters.melt(id_vars=["rater"] + keys,
@@ -1021,7 +1043,7 @@ def judge_validation(eval_df: pd.DataFrame, annotations_final: pd.DataFrame,
     # ----- Judge vs consensus (with h1 fallback for accuracy and missing) -----
     judge_cols = keys + ["strategic_misconception", "dangerous_analogy",
                          "oversimplification_error", "accuracy_score"]
-    judge = eval_df[judge_cols].copy()
+    judge = eval_df_val[judge_cols].copy()
     for c in ["strategic_misconception", "dangerous_analogy", "oversimplification_error"]:
         judge[c] = as_float(judge[c])
     judge = judge.rename(columns={
@@ -1113,15 +1135,8 @@ def judge_validation(eval_df: pd.DataFrame, annotations_final: pd.DataFrame,
 
 
 # ---------------------------------------------------------------------------
-# Figures (verzija 2)
+# Figures
 # ---------------------------------------------------------------------------
-
-# ---------------------------------------------------------------------------
-# Figures (verzija 4)
-# Pretpostavlja da već postoje: pd, np, math, Path, as_float, wilson_ci,
-# CONDITION_ORDER, CONDITION_LABEL, MODEL_ORDER, SUBFIELD_ORDER, SUBFIELD_SHORT
-# ---------------------------------------------------------------------------
-
 
 def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
     import matplotlib
@@ -1207,7 +1222,7 @@ def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
     models = [m for m in MODEL_ORDER if m in eval_df["model"].unique()]
 
     # Wilson statistika po (model, uvjet) — koristi se u više grafova
-    stats = {}
+    stats_dict = {}
     for m in models:
         for cond in CONDITION_ORDER:
             sub = eval_df[(eval_df["model"] == m) & (eval_df["condition"] == cond)]
@@ -1216,7 +1231,7 @@ def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
                 continue
             k = int(as_float(sub["strategic_misconception"]).sum())
             lo, hi = wilson_ci(k, nn)
-            stats[(m, cond)] = (100 * k / nn, 100 * lo, 100 * hi)
+            stats_dict[(m, cond)] = (100 * k / nn, 100 * lo, 100 * hi)
 
     def _rates(df, outcome):
         out = []
@@ -1264,7 +1279,7 @@ def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
     # Figure 2: SMR po modelu, A vs C — grupirani barovi
     # Δ (C − A) piše se ispod imena modela.
     # =====================================================================
-    order = sorted(models, key=lambda m: stats[(m, "C_highly_simplified")][0],
+    order = sorted(models, key=lambda m: stats_dict[(m, "C_highly_simplified")][0],
                    reverse=True)
     w = 0.34
     fig, ax = plt.subplots(figsize=(8.0, 3.9), layout="constrained")
@@ -1272,10 +1287,10 @@ def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
     xt = []
     for i, m in enumerate(order):
         for off, cond in ((-w / 2, "A_standard"), (w / 2, "C_highly_simplified")):
-            p, lo, hi = stats[(m, cond)]
+            p, lo, hi = stats_dict[(m, cond)]
             _bar(ax, i + off, p, w, COND_COL[cond], lo, hi)
             top = max(top, hi)
-        d = stats[(m, "C_highly_simplified")][0] - stats[(m, "A_standard")][0]
+        d = stats_dict[(m, "C_highly_simplified")][0] - stats_dict[(m, "A_standard")][0]
         xt.append(f"{_wrap(m)}\n$\\Delta$ = {_fmt(d)}")
     ax.set_ylim(0, top * 1.18)
     ax.set_xticks(range(len(order)))
@@ -1320,18 +1335,18 @@ def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
     # Modeli sortirani po prosječnom SMR-u, vrijednosti iznad barova.
     # =====================================================================
     order4 = sorted(models, reverse=True,
-                    key=lambda m: np.mean([stats[(m, c)][0]
+                    key=lambda m: np.mean([stats_dict[(m, c)][0]
                                            for c in CONDITION_ORDER
-                                           if (m, c) in stats]))
+                                           if (m, c) in stats_dict]))
     w4 = 0.26
     offs4 = [-w4, 0.0, w4]
     fig, ax = plt.subplots(figsize=(9.0, 4.0), layout="constrained")
     top = 0
     for i, m in enumerate(order4):
         for off, cond in zip(offs4, CONDITION_ORDER):
-            if (m, cond) not in stats:
+            if (m, cond) not in stats_dict:
                 continue
-            p, lo, hi = stats[(m, cond)]
+            p, lo, hi = stats_dict[(m, cond)]
             _bar(ax, i + off, p, w4, COND_COL[cond], lo, hi, label_fs=7.5)
             top = max(top, hi)
     ax.set_ylim(0, top * 1.18)
@@ -1384,23 +1399,43 @@ def figures(eval_df: pd.DataFrame, corpus: pd.DataFrame, outdir: Path) -> None:
     cbar.outline.set_visible(False)
     cbar.ax.tick_params(labelsize=8, length=0)
     _save(fig, "fig_subfield_heatmap")
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--datadir", default=".", type=str)
-    ap.add_argument("--outdir", default=".", type=str)
+    ap.add_argument("--datadir", default=".", type=str,
+                    help="Root repozitorija (sadrži data/ i annotation/).")
+    ap.add_argument("--outdir", default="results", type=str,
+                    help="Gdje pisati tables/ i figures/ (default: results).")
     ap.add_argument("--only", default="all", choices=["all", "tables", "figures"])
     args = ap.parse_args()
 
     datadir = Path(args.datadir)
     outdir = Path(args.outdir)
+    outdir.mkdir(parents=True, exist_ok=True)
     setup_logging(outdir / "accesstrap_stats.log")
+
     LOG.info("AccessTrap-CS statistics pipeline")
-    LOG.info("Data directory: %s", datadir.resolve())
+    LOG.info("Data directory:  %s", datadir.resolve())
     LOG.info("Output directory: %s", outdir.resolve())
+
+    # Provjeri da su svi ulazi dostupni prije početka
+    required = {
+        "corpus.csv": ["", "data"],
+        "evaluations.csv": ["", "data"],
+        "annotations_final.csv": ["", "annotation"],
+        "validation_map.csv": ["", "annotation"],
+    }
+    missing = []
+    for fname, subs in required.items():
+        if not any((datadir / s / fname).exists() for s in subs):
+            missing.append(fname)
+    if missing:
+        LOG.error("Nedostaju ulazne datoteke: %s", missing)
+        sys.exit(1)
 
     tw = TableWriter(outdir=outdir)
     corpus = load_corpus(datadir)

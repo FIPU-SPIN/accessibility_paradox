@@ -1,0 +1,1968 @@
+indicator,concept_id,model,condition,h1,h2,consensus,reference definition,response under review,baseline response A (for OER only),note (optional)
+SM,ALG_02,phi4:14b,C_highly_simplified,1.0,0.0,1,"Dijkstra's algorithm solves the single-source shortest-path problem on a weighted directed graph with nonnegative edge weights. It maintains a set of vertices whose shortest-path distances from the source have been finalized and repeatedly selects the vertex with the minimum tentative distance using a priority queue, then relaxes its outgoing edges. Correctness relies on the property that once a vertex is extracted, its shortest-path distance is final, which holds only when all edge weights are nonnegative.","Imagine you're playing a board game where your goal is to find the shortest path from start to finish on a map filled with roads. Each road segment has a number that tells you how long it takes to travel that part, but some numbers are negative, like shortcuts! Dijkstra's algorithm is like having a magical guide who helps you find the quickest route by always choosing paths that seem the fastest so far. However, if there's a shortcut (a negative edge), this magic guide gets confused because it can't handle backward steps or trickier routes—it only works when all roads have positive numbers, meaning no shortcuts! So, to use Dijkstra’s algorithm effectively, you need a map where every road segment takes some time to travel—no tricks allowed!",,
+SM,ALG_05,deepseek-r1:8b,B_simplified,0.0,1.0,0,"An AVL tree is a height-balanced binary search tree in which, for every node, the heights of the left and right subtrees differ by at most one. This strict balance ensures O(log n) worst-case time for search, insertion, and deletion, but may require more rotations during updates. A red-black tree is a self-balancing binary search tree that maintains balance using color-based properties (red and black nodes), guaranteeing O(log n) worst-case time for search, insertion, and deletion, typically with fewer rotations than AVL trees at the cost of a potentially higher tree height.","Okay, imagine you have a big pile of names written on little slips of paper. You want to keep them organized so you can find anyone quickly.
+
+**1. The Messy Stack (Binary Search Tree Idea):**
+You decide to organize them into a ""tree"". You start with one person on top. Then you put people below them, but you have a rule: everyone younger than the top person goes to the left, and everyone older goes to the right.
+
+At first, it might look like this:
+```
+  Alice
+  /    \
+Bob      Charlie
+```
+
+This is great! Finding someone is quick. You just follow the ""left"" or ""right"" rules.
+
+But what if the names are added in a weird order?
+```
+  Alice
+  /
+Bob
+/
+Carol
+```
+Now, finding Carol means looking way down the left side. It takes longer, like searching through a long list instead of a tree! This is the problem we're fixing.
+
+**2. Why We Need Balancing (The Problem):**
+When the tree gets too tall on one side (unbalanced), finding things takes longer (like searching a list, not a tree). We want to keep the tree ""balanced"" so finding things stays fast.
+
+**3. Keeping the Tree Balanced (Balancing):**
+Think of the tree needing to stay roughly the same height on both sides. We need rules to fix it when it gets lopsided.
+
+**4. Two Ways to Keep the Tree Balanced (AVL vs. Red-Black):**
+Imagine two different referees trying to keep the tree balanced, but using slightly different rules:
+
+**a. The Strict Referee (AVL Tree):**
+*   **Rule:** The tree must be perfectly balanced. This means the left and right sides must be the *exact same height* for the tallest parts (the ""critical branches"").
+*   **How:** After adding a name, the referee checks if the tree is unbalanced. If it is, they immediately *fix* it by making specific changes (called rotations). They are very strict – they want the absolute best balance possible, even if it takes a few steps to fix.
+*   **Analogy:** Like keeping a playground seesaw perfectly level, no matter what happens. It might take a bit of effort, but it ends up being super stable and balanced.
+
+**b. The Flexible Referee (Red-Black Tree):**
+*   **Rule:** The tree doesn't need to be perfectly balanced *right away*, but it mustn't get *too* unbalanced. They use a system of ""color tags"" (usually red or black, just pretend) on the names to help enforce balance, but the rules allow for *some* unevenness. They check if the balance is getting too bad.
+*   **How:** The referee checks the color tags after adding a name. If the rules are broken (making it too unbalanced), they fix it by changing some colors *and* maybe doing some rotations. They are less strict about *perfect* balance but still prevent the tree from becoming extremely lopsided.
+*   **Analogy:** Like a referee in a game. They don't constantly demand perfect form, but they make sure the players aren't too far apart or unfairly advantaged. They allow some flexibility but keep the game (the tree) running smoothly and reasonably fast.
+
+**The Big Idea:**
+Both referees (AVL and Red-Black trees) are ways to keep our big pile of names (the data) organized in a tree structure. They both make sure you can find the names quickly. The main difference is:
+*   **AVL** is stricter, aiming for the absolute best balance, which can make lookups very fast but sometimes requires more work when adding/removing names.
+*   **Red-Black** is more flexible, allowing a bit more unevenness, which makes adding/removing names faster (less work) and guarantees good (but maybe slightly slower than AVL) speed for lookups.
+
+Think of it like having two different types of level meters for your tree. One wants it perfectly level, the other just wants it within a certain range!",,
+SM,ALG_07,mistral:7b,B_simplified,1.0,0.0,0,"Space complexity measures the amount of memory required by an algorithm as a function of input size, including both input storage and auxiliary space used during execution. Algorithm design often involves trade-offs between time and space, where additional memory can be used to improve running time (e.g., storing intermediate results), while reducing memory usage may increase running time.","Alright, buddy! Let's talk about something called ""Space Complexity"" in a way that's easy to understand. Imagine you have a box where you keep things, like toys or candies. This box represents the memory of your computer. Now, when we play with our toys (or run programs), some of them take up more space than others.
+
+1. **Small Toys:** These are simple games that don't need much space to play. Just like a small toy car takes up less space in your box, these programs use less memory.
+
+2. **Big Toys:** Some toys are bigger and take up more space, like a doll or a teddy bear. Similarly, some programs store more information and take up more memory.
+
+Now, when we play with our toys (run programs), we want to make sure we have enough space for them all. If we run out of space (our box is full), we might not be able to play anymore. This is where Space Complexity comes in. It tells us how much space a program will need as it gets bigger.
+
+Sometimes, we can choose between playing with small toys and big toys. For example, if we want to count the number of candies, we could use a small toy that only needs a little space (this is an efficient solution). But if we want to remember everything about our candies (their colors, shapes, flavors), we might need a bigger toy and more space (this uses more resources but gives us more information).
+
+This is a trade-off: using more space (like the big toy) can give us more benefits, but it also takes up more room in our box. So, programmers have to find the right balance between using enough space to get the job done and not using too much that our computer gets overwhelmed. That's what Space Complexity is all about!",,
+SM,ALG_07,mistral:7b,C_highly_simplified,1.0,0.0,1,"Space complexity measures the amount of memory required by an algorithm as a function of input size, including both input storage and auxiliary space used during execution. Algorithm design often involves trade-offs between time and space, where additional memory can be used to improve running time (e.g., storing intermediate results), while reducing memory usage may increase running time.","Think of space complexity as the size of a room needed to store all the boxes you've packed while decluttering your house. Each box represents a data item in a computer program. The smaller boxes are easy to handle (efficient), but if they're too small, some items might not fit (space-inefficient). On the other hand, larger boxes can hold more items (high space complexity) but are harder to move around (less efficient). Finding the right box size is like finding a balance between efficiency and storage capacity – it's all about trade-offs!",,
+SM,DB_07,mistral:7b,B_simplified,0.0,1.0,0,"Denormalization is the process of intentionally introducing redundancy into a normalized relational schema to improve read performance by reducing the need for join operations. It is a deliberate trade-off, commonly used in read-heavy workloads (e.g., reporting or data warehousing), where the cost of joins outweighs the overhead of maintaining redundant data. While denormalization can significantly accelerate SELECT queries, it increases storage requirements, complicates write operations (INSERT, UPDATE, DELETE), and introduces the risk of data inconsistency due to redundant representations.","Hey there! Let's talk about a cool thing called denormalization. Imagine you have a big box full of different colored marbles - each marble represents a piece of information like someone's name, phone number, or address. Now, if you want to find someone's entire info, you need to dig through the whole box and look for the right marble. This can take some time, right?
+
+In computers, we also have boxes (databases) with information. Sometimes, organizing data like this can make it faster to read and write certain pieces of information (like looking up a phone number). But when we want to find someone's entire info (or do other complex tasks), it can be slower because the computer has to look through multiple places in the box.
+
+Denormalization is like reorganizing your marbles so that all the info about one person is grouped together, making it faster to get their whole info. However, this comes with a trade-off: it takes up more space in the box (database) and may make other tasks slower because there's now duplicate information.
+
+So when should we use denormalization? When it's important to quickly find complete records (like searching for a specific customer in an online store), but we don't mind using more storage space or dealing with slower performance for some operations. Hope this helps!",,
+SM,NET_04,gemma4:31b,C_highly_simplified,1.0,0.0,0,"Classless Inter-Domain Routing (CIDR) represents IP addresses using a prefix of arbitrary length, written as a.b.c.d/x, where x indicates the number of bits in the network portion. CIDR enables flexible subnetting and efficient allocation of IP address space by eliminating fixed class boundaries. Routers use the longest prefix match rule to determine the forwarding path for a packet.","Think of an IP address as a full mailing address for your computer. The CIDR mask is a ""magic divider"" that splits that address into a Zip Code (the network) and a House Number (the specific device). Subnetting is simply the act of carving one giant city into these smaller, organized neighborhoods. A short mask creates a sprawling metropolis, while a long mask creates a tiny, exclusive gated community. This keeps the internet from becoming one giant, chaotic traffic jam!",,
+SM,NET_04,phi4:14b,B_simplified,1.0,0.0,1,"Classless Inter-Domain Routing (CIDR) represents IP addresses using a prefix of arbitrary length, written as a.b.c.d/x, where x indicates the number of bits in the network portion. CIDR enables flexible subnetting and efficient allocation of IP address space by eliminating fixed class boundaries. Routers use the longest prefix match rule to determine the forwarding path for a packet.","Imagine you have a big city with lots of houses, and each house has its own address so people can find it easily. In the computer world, computers also need addresses to send and receive information correctly. These addresses are called IP addresses.
+
+An IP address is like a special code that helps identify where a computer lives on the internet. Just as your street address tells people exactly which building you're in, an IP address tells other computers how to find yours.
+
+Now, think of a neighborhood within this big city. Instead of each house having its own separate name, they all share a common part of their address because they belong to the same area. This is similar to what we call ""subnets"" in computer networks.
+
+A subnet helps group together lots of computers into smaller sections or neighborhoods. It’s like saying, “These houses are on Maple Street,” so you don’t have to list every single house number separately. 
+
+CIDR mask is a special way of writing down these addresses and subnets more efficiently. Imagine if instead of listing each house address individually, you could just say something like ""Maple Street has 20 houses."" The CIDR helps us do this by using numbers and slashes (like Maple Street/20). This tells people how many computers or houses are grouped together.
+
+In short:
+- An IP address is a computer’s unique code on the internet.
+- A subnet is like grouping computers into neighborhoods.
+- A CIDR mask is a way to write down these groups easily, just like saying “Maple Street has 20 houses.” 
+
+This helps keep everything organized and makes sure information finds its way to the right place quickly!",,
+SM,NET_04,phi4:14b,C_highly_simplified,1.0,0.0,0,"Classless Inter-Domain Routing (CIDR) represents IP addresses using a prefix of arbitrary length, written as a.b.c.d/x, where x indicates the number of bits in the network portion. CIDR enables flexible subnetting and efficient allocation of IP address space by eliminating fixed class boundaries. Routers use the longest prefix match rule to determine the forwarding path for a packet.","Imagine your home is like an internet address, called an IP address, and each floor of your house represents a subnet within that big address. Now, picture a massive apartment building where your house is just one unit among thousands; the entire building is like the whole network. A CIDR mask is like the guide that tells you which floor (subnet) you are on and how many rooms (devices) can fit there. Just as a mail carrier needs to know the correct floor and room number to deliver a package, computers need IP addresses and subnets to send data to the right place. So, the CIDR mask helps ensure your digital ""mail"" finds its way efficiently!",,
+SM,NET_05,mistral:7b,C_highly_simplified,1.0,0.0,0,"HTTP methods differ in semantics and idempotency. A method is idempotent if multiple identical requests have the same effect as a single request. GET, PUT, and DELETE are idempotent: repeated requests do not change the result beyond the initial application. POST is not idempotent, as repeated requests can create multiple resources or cause repeated side effects. Idempotency is important for reliability and retry mechanisms in distributed systems.","Think of HTTP methods as different tools for building a digital Lego castle. Each tool does something specific and important.
+
+* **GET** is like peeking at the castle to see what it looks like without touching it (idempotent). No matter how many times you look, the castle remains the same.
+* **PUT** is like rebuilding the entire castle from scratch with new blocks (idempotent). Regardless of how many times you put a new castle, you always get the same result - a brand-new castle.
+* **DELETE** is like tearing down the castle completely (idempotent). No matter how many times you demolish the castle, it disappears entirely each time.
+* **POST**, however, is like adding a new wing to your castle. Each time you add a new wing, the castle grows bigger and becomes more complex (not idempotent). If you add a new wing twice, you get a different castle than if you just added it once.",,
+SM,NET_06,deepseek-r1:8b,C_highly_simplified,0.0,1.0,1,"Distance-vector routing algorithms (e.g., RIP) compute shortest paths based on information from neighboring routers, iteratively updating distance estimates using distributed Bellman-Ford equations. Link-state routing algorithms (e.g., OSPF) require each router to have a complete view of the network topology and compute shortest paths using Dijkstra’s algorithm. Distance-vector approaches are simpler but slower to converge and susceptible to routing loops, while link-state approaches converge faster and provide more accurate routing at the cost of higher complexity.","Okay, imagine your town's highway system.
+
+Routing is like figuring out the *best way* to get from one place to another using highways.
+
+**Distance Vector (like RIP)** is like asking a local driver for directions to a destination. They tell you the *direct* path, but they might not know about other roads or the *best* path because their info isn't connected to a map.
+
+**Link State (like OSPF)** is like having a detailed **GPS map** of the entire highway system. Each part knows its own roads (link) and shares this map, allowing everyone to calculate the *shortest, most efficient route* together.
+
+The big difference is that **Distance Vector** asks for simple directions directly, while **Link State** uses a shared, detailed map to find the best path.",,
+SM,OS_01,mistral:7b,C_highly_simplified,0.0,1.0,0,"A process is a program in execution with its own memory space, resources, and execution context. A thread is a lightweight execution unit within a process that shares the same address space and resources but has its own program counter, registers, and stack. Threads within the same process can communicate more efficiently than separate processes due to shared memory.","Imagine you're a conductor leading an orchestra! Each musician (process) plays their own unique instrument – violin, trumpet, drum, etc. When they play together, they create beautiful music (a task). Now, let's say the violinist gets inspired and starts humming another melody while still playing her original piece. This is like a thread - another job she takes on within her original process.
+
+In computer science, processes are like musicians each doing their own thing, while threads are when one musician (process) does multiple jobs at once. Just as the orchestra can perform multiple pieces simultaneously with different musicians handling various parts, computers can run several tasks efficiently using processes and threads.",,
+SM,OS_04,deepseek-r1:32b,C_highly_simplified,0.0,1.0,1,"A deadlock occurs when a set of processes are permanently blocked. It can arise only if all four Coffman conditions hold simultaneously: mutual exclusion, hold and wait, no preemption, and circular wait. Breaking any one of these conditions prevents deadlock.","Imagine two kids trying to swap toys. Child A holds onto their toy while waiting for Child B’s toy, and Child B does the same. Neither lets go first, so they both just stand there, stuck forever. This is like a deadlock in computers—when programs wait endlessly for each other to finish, causing nothing to happen. Just like the kids, no progress is made because everyone is waiting for someone else.",,
+SM,OS_04,ministral-3:14b,C_highly_simplified,0.0,1.0,1,"A deadlock occurs when a set of processes are permanently blocked. It can arise only if all four Coffman conditions hold simultaneously: mutual exclusion, hold and wait, no preemption, and circular wait. Breaking any one of these conditions prevents deadlock.","Imagine four friends trying to use **two swings in a park**—one high and one low.
+
+Friend A takes the **high swing** and won’t let go until they finish their turn, but they *also* want the **low swing** next. Meanwhile, Friend B has the low swing and won’t move until they get the high one. Now both are stuck waiting forever—**no one can swing, and no one can leave!**
+
+A *deadlock* is like this: **two (or more) things are waiting for each other in a circle, none can move, and the system freezes.** In computers, it happens when programs hold resources (like files or memory) and keep waiting for others—**all stuck like the swings.**
+
+**Key rule to fix it:** *Break the circle!* (Like making one friend let go first.)",,
+SM,PLP_01,deepseek-r1:8b,B_simplified,1.0,0.0,0,"Inheritance is a mechanism in object-oriented programming that allows a class (subtype) to inherit properties and behavior from another class (base type), enabling code reuse and hierarchical relationships. The Liskov Substitution Principle (LSP) states that subtypes must be substitutable for their base types without altering the correctness of the program. This requires that inherited behavior is preserved, including method contracts, invariants, and preconditions/postconditions.","Okay, let's break down these two computer science ideas in a really simple way.
+
+**1. Inheritance:**
+
+*   Think about a family tree, but for computer ideas.
+*   Imagine you have a general idea, like ""Animal"".
+*   Then you can create more specific ideas, like ""Dog"" or ""Cat"".
+*   In coding, we say ""Dog"" *inherits* from ""Animal"".
+*   This means:
+    *   ""Dog"" knows it is also an ""Animal"".
+    *   ""Dog"" gets some basic rules from ""Animal"" (like maybe how to eat or sleep).
+    *   ""Dog"" can also have its own special rules (like how to bark).
+*   **Analogy:** It's like a blue print. ""Animal"" is a basic blue print. ""Dog"" and ""Cat"" are more detailed blue prints that *start* from the basic one and add extra features.
+
+**2. Liskov Substitution Principle (LSP):**
+
+*   This is a rule about using these ""Dog"" and ""Cat"" ideas.
+*   The basic rule is: You should be able to treat a ""Dog"" just like a general ""Animal"".
+*   For example, you can write instructions that work for any ""Animal"".
+*   Since ""Dog"" is a type of ""Animal"", your instructions should work perfectly for a ""Dog"".
+*   **What breaks the rule?** If ""Dog"" does something completely different from what ""Animal"" does, then you can't always substitute a ""Dog"" for a general ""Animal"".
+*   **Analogy:** Think about a door lock.
+    *   The main lock (""Animal"") is opened by a key.
+    *   A simple key (""Animal"") works.
+    *   A fancy key (""Dog"") also works because it can use the basic key slot, maybe it just has a button on top.
+    *   BUT, if the lock was specifically designed only for fancy keys (""Dog"") and didn't work with any simple key (""Animal""), that breaks the rule.
+*   **Analogy Explained:** The lock (""Animal"") should have a specific job: accept a key (""Dog"") and unlock. The key (""Dog"") can be fancy, but it MUST still unlock the lock (""Animal""). If the fancy key (""Dog"") breaks the lock or does something else, then you can't just use *any* key (""Animal"") anymore. That's breaking the rule (LSP).
+
+**In simple terms:**
+
+Think of Inheritance like building with **building blocks**. You have a basic block (""Animal""), and you can make specific blocks (""Dog"", ""Cat"") that are built on top of the basic one.
+
+Think of Liskov Substitution Principle (LSP) like **playing a game with rules**. You have a general rule (""Animal""). Anything that follows the rule (like ""Dog"") should work within that game. If a new thing (""Dog"") breaks the core rule of the game, then you can't use it in all the places where the old rule (""Animal"") was allowed.
+
+The main idea is: When you create a new type (like ""Dog""), it should be able to work in the same ways as the type it came from (like ""Animal""). Don't change the basic agreement!",,
+SM,PLP_01,deepseek-r1:8b,C_highly_simplified,0.0,1.0,1,"Inheritance is a mechanism in object-oriented programming that allows a class (subtype) to inherit properties and behavior from another class (base type), enabling code reuse and hierarchical relationships. The Liskov Substitution Principle (LSP) states that subtypes must be substitutable for their base types without altering the correctness of the program. This requires that inherited behavior is preserved, including method contracts, invariants, and preconditions/postconditions.","Okay, imagine **inheritance** like passing down a special trait, like ""having fur"". A base class, say ""Animal"", gets this trait. A subclass, like ""Cat"", *inherits* the fur trait from Animal and adds its own, like ""meowing"". Now, the **Liskov Substitution Principle (LSP)** says that because a Cat *is-a* kind of Animal (it has fur), you can always treat a Cat exactly like you would treat a regular Animal, maybe feeding it or playing with it, without anything going wrong. So, Cat builds on Animal but stays interchangeable with it, just like a kitten can be treated as a baby cat, but you know it's a special kind of cat!",,
+SM,PLP_04,ministral-3:14b,B_simplified,1.0,0.0,0,"Static typing performs type checking at compile time, using static analysis of the program to approximate runtime behavior and detect type errors before execution. Dynamic typing performs type checking at runtime, where variables are not bound to fixed types and type errors are detected during program execution. Type safety is the property that well-typed programs do not produce undefined or invalid behavior, such as applying operations to incompatible types.","Got it! Let’s break down **static vs. dynamic typing** using simple examples and fun analogies. Imagine you’re playing with building blocks or organizing a toy box—it’ll make more sense!
+
+---
+
+### **1. Static Typing: Like a Strict Toy Box**
+**What it is:**
+Static typing is like having a **labeled toy box** where every toy has its own special spot. Before you even play, you *must* decide where each toy goes and *stick to the rules*.
+
+- **Example:**
+  - You have a **red Lego box** (only for red bricks).
+  - You have a **blue car box** (only for cars).
+  - If you try to put a **car in the Lego box**, the box won’t let you. **""ERROR!""** it says. You *must* fix it first.
+
+**How it works in computers:**
+- The computer checks your code *before* it runs (like a teacher grading homework).
+- It says: *""You said this is a ‘number’—are you sure? If you later try to use it as a ‘word,’ I’ll stop you!""*
+- **Safe but slow to write:** You have to plan ahead (like labeling every toy box).
+
+**Real-world analogy:**
+- Like a **recipe card** where you write down *all* ingredients and measurements *before* cooking. If you forget to list ""butter,"" the recipe won’t work!
+
+---
+
+### **2. Dynamic Typing: Like a Flexible Toy Bag**
+**What it is:**
+Dynamic typing is like a **big, unorganized bag** where you can mix toys as you play. The bag doesn’t care if you put Legos, cars, or stuffed animals together—it’ll let you until something breaks.
+
+- **Example:**
+  - You grab a toy from the bag and *pretend* it’s a phone.
+  - Later, you realize it’s actually a banana. **""Oops!""** Now your ""phone call"" turns into a snack.
+  - The bag doesn’t stop you until something *actually* goes wrong.
+
+**How it works in computers:**
+- The computer checks types *while* your program is running (like a friend watching you play).
+- It says: *""Oh, you called this a ‘number’ before, but now you’re using it as a ‘word’? Okay… let’s see what happens!""*
+- **Fast to write but risky:** You can change your mind later (like switching a toy’s purpose mid-game).
+
+**Real-world analogy:**
+- Like **improvising a story**: You start with a hero, but halfway through, you decide the hero is now a pizza. The story might still work… or it might get confusing!
+
+---
+
+### **3. Type Safety: The ""Don’t Break the Game"" Rule**
+**What it means:**
+Type safety is like **rules to keep toys (or code) from breaking**.
+- **Static typing (strict rules):** If you try to put a square peg in a round hole, the game stops *immediately*.
+- **Dynamic typing (loose rules):** The game lets you try, but if the square peg breaks the round hole later, **crash!** (like a program error).
+
+**Why it matters:**
+- **Static typing** catches mistakes early (like a parent checking your homework).
+- **Dynamic typing** lets you experiment but might cause problems later (like building a tower without checking if the blocks fit).
+
+**Fun example:**
+- **Static:** *""You said this was a ‘pizza,’ but now you’re calling it a ‘car’? No way!""* → Fix it now.
+- **Dynamic:** *""Okay, now your pizza is a car. Let’s drive it… **BANG!** (The code exploded.)""*
+
+---
+
+### **Which One Should You Use?**
+| **Static Typing** | **Dynamic Typing** |
+|-------------------|-------------------|
+| Like a **puzzle**—pieces only fit one way. | Like **play-doh**—you can squish it into anything. |
+| **Slower to write** but fewer surprises. | **Faster to write** but might need fixes later. |
+| Good for **big projects** (like a Lego castle). | Good for **quick experiments** (like doodling). |
+
+**Think of it like driving:**
+- **Static typing** = A car with a strict speed limit (safe but frustrating if you want to go fast).
+- **Dynamic typing** = A motorcycle (fun and fast, but one wrong turn = **big crash**).
+
+---
+### **Quick Quiz to Test Understanding!**
+1. If your code says *""x = 5""* (a number) but later you do *""print(x + ‘hello’)""*, what happens?
+   - **Static typing:** ❌ **""Error! Can’t add a number to a word!""**
+   - **Dynamic typing:** ⚠️ *""Hmm… now it’s a ‘TypeError’ crash!""*
+
+2. Which is like a **recipe**? (Static or dynamic?)
+
+3. Which lets you **change your mind** more easily? (Static or dynamic?)
+
+---
+### **Key Takeaway:**
+- **Static = Plan ahead, fewer mistakes.**
+- **Dynamic = Go with the flow, but watch out for crashes!**
+- **Type safety = Rules to keep your ""toy game"" from breaking.**
+
+Would you like me to explain any part with another analogy (like sports or cooking)? 😊",,
+SM,PLP_04,ministral-3:14b,C_highly_simplified,1.0,0.0,0,"Static typing performs type checking at compile time, using static analysis of the program to approximate runtime behavior and detect type errors before execution. Dynamic typing performs type checking at runtime, where variables are not bound to fixed types and type errors are detected during program execution. Type safety is the property that well-typed programs do not produce undefined or invalid behavior, such as applying operations to incompatible types.","Imagine a **pizza order system** where:
+
+- **Static typing** is like a menu with *fixed choices*: *""You can only pick pepperoni, veggie, or margherita—nothing else, ever.""* The chef knows exactly what to make ahead of time, so no surprises (or mistakes).
+- **Dynamic typing** is like shouting your order to the chef: *""Just… make something tasty!""* They figure it out on the spot (maybe sushi? pie?), but if they guess wrong, you get a mess.
+
+**Core idea:** Static typing checks types *before* the code runs (like pre-approving your pizza), while dynamic typing checks *as you go* (trusting the chef to adapt—but risking errors). The pizza’s crust is your **type safety**—static types bake it *perfectly rigid*; dynamic types let it flex (and sometimes crack).",,
+SM,PLP_06,phi4:14b,B_simplified,1.0,0.0,0,"Reference counting associates a count of references with each object and reclaims memory when the count reaches zero, but it cannot collect cyclic garbage. The mark-and-sweep algorithm identifies reachable objects by tracing from root references, marks all reachable objects, and reclaims memory occupied by unmarked objects. Unlike reference counting, mark-and-sweep can collect cyclic garbage because it determines reachability through graph traversal rather than reference counts.","Imagine you have a toy box at home filled with different toys. Over time, some toys get broken or become old and are no longer fun to play with. You might want to clean up this toy box so that it only has the toys you still like.
+
+In computer science, when we talk about ""garbage collection,"" think of it as cleaning up unused stuff in a computer's memory. Memory is like our toy box but for information and instructions on the computer.
+
+There are two main ways computers do this cleanup: Mark-and-Sweep and Reference Counting.
+
+### Mark-and-Sweep
+
+Think of your favorite toys that you still play with. You might mark them so you remember not to throw them away. In ""Mark-and-Sweep,"" the computer first goes through all its memory (the toy box) and marks everything it is currently using or needs (like your favorite toys). 
+
+After marking, it looks at everything else that wasn't marked. These are like the broken or old toys you don’t play with anymore. The computer then ""sweeps"" them away—meaning it throws them out so they can make room for new things.
+
+### Reference Counting
+
+Now imagine if every time you took a toy out to play, you had a little counter on the box that counted how many people are playing with that toy. When everyone is done and puts their toys back, you check these counters to see if any toys aren't being used anymore.
+
+In ""Reference Counting,"" each piece of memory (each toy) has a number counting how many things in the computer point to it or use it. If this number goes down to zero—meaning no one is using it—the computer knows it can clean up that space, just like putting away an unused toy.
+
+Both methods aim to keep your computer’s memory tidy and efficient, so it can handle new tasks smoothly without getting cluttered with stuff you don't need anymore!",,
+DA,ALG_01,gpt-oss:20b,B_simplified,1.0,0.0,0,"Quicksort is a divide-and-conquer sorting algorithm whose running time depends on the balance of partitioning. In the worst case, it runs in Θ(n²), when the partition produces subproblems of sizes n−1 and 0. Under the assumption that all elements are distinct and all permutations are equally likely, its expected running time is Θ(n log n). The algorithm sorts in place and uses additional space proportional to the recursion depth.","**QuickSort – a fast way to put things in order**
+
+QuickSort is a method that helps you line up a list of numbers or words from smallest to biggest (or A to Z).  
+It works like this:
+
+1. **Pick a middle item.**  
+   Think of a book that is halfway through the shelf. That book is the *pivot*.
+
+2. **Split the list.**  
+   All items that are smaller than the pivot go to the left side.  
+   All items that are bigger go to the right side.
+
+3. **Do the same again.**  
+   Take the left part, pick its middle book, split it again.  
+   Do the same with the right part.
+
+4. **Put everything together.**  
+   When every part has only one item, the whole list is sorted.
+
+Because each step cuts the list into two smaller lists, QuickSort usually finishes quickly.
+
+---
+
+### How fast is it?
+
+| Situation | How fast? | Why? |
+|-----------|-----------|------|
+| **Average case** | Fast | Most of the time, the pivot cuts the list roughly in half. Each cut takes only a little time, so the whole job is quick. |
+| **Worst case** | Slow | If the pivot is always the very smallest or the very largest item, the list is cut into a tiny piece and a huge piece. That means we keep doing almost the whole job again and again. It becomes much slower. |
+
+**What it means in everyday terms**
+
+- **Average case** – Imagine you sort a mixed stack of cards. If you always pick a card near the middle, you can split the stack into two almost equal piles. You keep doing that, and it takes only a few steps.
+
+- **Worst case** – Imagine you always pick the smallest or largest card. One pile has only one card, the other pile has almost all the cards. You keep doing the same work over and over, so it takes many more steps.
+
+---
+
+### Bottom line
+
+QuickSort is usually very quick because it splits the work nicely. But if you pick bad pivot items every time, it can become slow. That is why many QuickSort versions choose the pivot randomly or use a smart rule to avoid the worst case.",,
+DA,ALG_02,phi4:14b,C_highly_simplified,1.0,0.0,0,"Dijkstra's algorithm solves the single-source shortest-path problem on a weighted directed graph with nonnegative edge weights. It maintains a set of vertices whose shortest-path distances from the source have been finalized and repeatedly selects the vertex with the minimum tentative distance using a priority queue, then relaxes its outgoing edges. Correctness relies on the property that once a vertex is extracted, its shortest-path distance is final, which holds only when all edge weights are nonnegative.","Imagine you're playing a board game where your goal is to find the shortest path from start to finish on a map filled with roads. Each road segment has a number that tells you how long it takes to travel that part, but some numbers are negative, like shortcuts! Dijkstra's algorithm is like having a magical guide who helps you find the quickest route by always choosing paths that seem the fastest so far. However, if there's a shortcut (a negative edge), this magic guide gets confused because it can't handle backward steps or trickier routes—it only works when all roads have positive numbers, meaning no shortcuts! So, to use Dijkstra’s algorithm effectively, you need a map where every road segment takes some time to travel—no tricks allowed!",,
+DA,ALG_05,deepseek-r1:8b,B_simplified,1.0,0.0,1,"An AVL tree is a height-balanced binary search tree in which, for every node, the heights of the left and right subtrees differ by at most one. This strict balance ensures O(log n) worst-case time for search, insertion, and deletion, but may require more rotations during updates. A red-black tree is a self-balancing binary search tree that maintains balance using color-based properties (red and black nodes), guaranteeing O(log n) worst-case time for search, insertion, and deletion, typically with fewer rotations than AVL trees at the cost of a potentially higher tree height.","Okay, imagine you have a big pile of names written on little slips of paper. You want to keep them organized so you can find anyone quickly.
+
+**1. The Messy Stack (Binary Search Tree Idea):**
+You decide to organize them into a ""tree"". You start with one person on top. Then you put people below them, but you have a rule: everyone younger than the top person goes to the left, and everyone older goes to the right.
+
+At first, it might look like this:
+```
+  Alice
+  /    \
+Bob      Charlie
+```
+
+This is great! Finding someone is quick. You just follow the ""left"" or ""right"" rules.
+
+But what if the names are added in a weird order?
+```
+  Alice
+  /
+Bob
+/
+Carol
+```
+Now, finding Carol means looking way down the left side. It takes longer, like searching through a long list instead of a tree! This is the problem we're fixing.
+
+**2. Why We Need Balancing (The Problem):**
+When the tree gets too tall on one side (unbalanced), finding things takes longer (like searching a list, not a tree). We want to keep the tree ""balanced"" so finding things stays fast.
+
+**3. Keeping the Tree Balanced (Balancing):**
+Think of the tree needing to stay roughly the same height on both sides. We need rules to fix it when it gets lopsided.
+
+**4. Two Ways to Keep the Tree Balanced (AVL vs. Red-Black):**
+Imagine two different referees trying to keep the tree balanced, but using slightly different rules:
+
+**a. The Strict Referee (AVL Tree):**
+*   **Rule:** The tree must be perfectly balanced. This means the left and right sides must be the *exact same height* for the tallest parts (the ""critical branches"").
+*   **How:** After adding a name, the referee checks if the tree is unbalanced. If it is, they immediately *fix* it by making specific changes (called rotations). They are very strict – they want the absolute best balance possible, even if it takes a few steps to fix.
+*   **Analogy:** Like keeping a playground seesaw perfectly level, no matter what happens. It might take a bit of effort, but it ends up being super stable and balanced.
+
+**b. The Flexible Referee (Red-Black Tree):**
+*   **Rule:** The tree doesn't need to be perfectly balanced *right away*, but it mustn't get *too* unbalanced. They use a system of ""color tags"" (usually red or black, just pretend) on the names to help enforce balance, but the rules allow for *some* unevenness. They check if the balance is getting too bad.
+*   **How:** The referee checks the color tags after adding a name. If the rules are broken (making it too unbalanced), they fix it by changing some colors *and* maybe doing some rotations. They are less strict about *perfect* balance but still prevent the tree from becoming extremely lopsided.
+*   **Analogy:** Like a referee in a game. They don't constantly demand perfect form, but they make sure the players aren't too far apart or unfairly advantaged. They allow some flexibility but keep the game (the tree) running smoothly and reasonably fast.
+
+**The Big Idea:**
+Both referees (AVL and Red-Black trees) are ways to keep our big pile of names (the data) organized in a tree structure. They both make sure you can find the names quickly. The main difference is:
+*   **AVL** is stricter, aiming for the absolute best balance, which can make lookups very fast but sometimes requires more work when adding/removing names.
+*   **Red-Black** is more flexible, allowing a bit more unevenness, which makes adding/removing names faster (less work) and guarantees good (but maybe slightly slower than AVL) speed for lookups.
+
+Think of it like having two different types of level meters for your tree. One wants it perfectly level, the other just wants it within a certain range!",,
+DA,ALG_05,deepseek-r1:8b,C_highly_simplified,1.0,0.0,1,"An AVL tree is a height-balanced binary search tree in which, for every node, the heights of the left and right subtrees differ by at most one. This strict balance ensures O(log n) worst-case time for search, insertion, and deletion, but may require more rotations during updates. A red-black tree is a self-balancing binary search tree that maintains balance using color-based properties (red and black nodes), guaranteeing O(log n) worst-case time for search, insertion, and deletion, typically with fewer rotations than AVL trees at the cost of a potentially higher tree height.","Okay, imagine a forest full of trees for searching information. Sometimes, these trees grow unevenly, making the search *slow* because you might have to go much deeper into the forest. To keep searching fast, we need to keep the *forest* (the tree) roughly balanced. **AVL trees are like a very strict, precise gardener who constantly trims branches to keep every tree perfectly upright and balanced, ensuring the fastest possible search, but it takes more effort. Red-Black trees are like a faster, more flexible gardener who allows some trees to lean slightly, accepting a bit more unevenness for quicker adjustments, but still guarantees searches won't be too slow.** Both methods keep the search paths short for efficiency!",,
+DA,ALG_05,gemma4:31b,B_simplified,1.0,0.0,1,"An AVL tree is a height-balanced binary search tree in which, for every node, the heights of the left and right subtrees differ by at most one. This strict balance ensures O(log n) worst-case time for search, insertion, and deletion, but may require more rotations during updates. A red-black tree is a self-balancing binary search tree that maintains balance using color-based properties (red and black nodes), guaranteeing O(log n) worst-case time for search, insertion, and deletion, typically with fewer rotations than AVL trees at the cost of a potentially higher tree height.","### The Number Tree
+
+Imagine you have a collection of numbers. You want to store them in a ""tree"" so you can find them quickly. 
+
+In this tree, you follow a simple rule:
+*   Smaller numbers go to the **left**.
+*   Bigger numbers go to the **right**.
+
+If the tree is shaped well, it looks like a bushy plant. You can find any number very quickly.
+
+***
+
+### The Problem: The ""Skinny Tree""
+
+Sometimes, the tree grows the wrong way. 
+
+If you add numbers in a row (like 1, 2, 3, 4), the tree doesn't look like a bush. It looks like a long, skinny line. It looks more like a ladder than a tree.
+
+When the tree is a skinny line, it is slow. You have to walk down the whole line to find the number at the bottom.
+
+**Balancing** is how we fix this. Balancing pushes the numbers around to make the tree bushy again.
+
+***
+
+### Two Ways to Balance
+
+There are two main ways to keep a tree balanced: **AVL** and **Red-Black**.
+
+#### 1. AVL Trees (The Perfectionist)
+Think of an AVL tree as a **perfectionist**. 
+
+The perfectionist wants the tree to be perfectly balanced at all times. If one side becomes even a little bit longer than the other, the perfectionist stops everything to fix it immediately.
+
+*   **The Good Part:** Because the tree is always perfect, finding a number is super fast.
+*   **The Bad Part:** Adding new numbers takes longer. The perfectionist spends a lot of time tidying up and moving things around.
+
+#### 2. Red-Black Trees (The ""Good Enough"" Person)
+Think of a Red-Black tree as someone who is **""good enough.""**
+
+This person doesn't mind if the tree is a little bit uneven. They only fix the balance when it gets *really* messy. They don't worry about every tiny detail.
+
+*   **The Good Part:** Adding new numbers is very fast. They don't waste time tidying up constantly.
+*   **The Bad Part:** Finding a number is fast, but not *quite* as fast as the perfectionist's tree.
+
+***
+
+### Summary
+
+*   **AVL Tree:** Like a perfectly organized closet. It takes a long time to put things away, but it is very fast to find your favorite shirt.
+*   **Red-Black Tree:** Like a tidy-ish closet. It is fast to throw your clothes inside, and it is still pretty easy to find your shirt.",,
+DA,ALG_05,gemma4:31b,C_highly_simplified,1.0,0.0,0,"An AVL tree is a height-balanced binary search tree in which, for every node, the heights of the left and right subtrees differ by at most one. This strict balance ensures O(log n) worst-case time for search, insertion, and deletion, but may require more rotations during updates. A red-black tree is a self-balancing binary search tree that maintains balance using color-based properties (red and black nodes), guaranteeing O(log n) worst-case time for search, insertion, and deletion, typically with fewer rotations than AVL trees at the cost of a potentially higher tree height.","Imagine your data is a library of books. An AVL tree is a perfectionist librarian who rearranges every shelf perfectly every time a new book arrives. A Red-Black tree is a ""chill"" librarian who only tidies up when the mess gets out of hand. AVL makes finding a book lightning-fast but takes more work to add new ones. Red-Black is faster at adding books but slightly slower at searching through them.",,
+DA,ALG_07,mistral:7b,B_simplified,1.0,0.0,0,"Space complexity measures the amount of memory required by an algorithm as a function of input size, including both input storage and auxiliary space used during execution. Algorithm design often involves trade-offs between time and space, where additional memory can be used to improve running time (e.g., storing intermediate results), while reducing memory usage may increase running time.","Alright, buddy! Let's talk about something called ""Space Complexity"" in a way that's easy to understand. Imagine you have a box where you keep things, like toys or candies. This box represents the memory of your computer. Now, when we play with our toys (or run programs), some of them take up more space than others.
+
+1. **Small Toys:** These are simple games that don't need much space to play. Just like a small toy car takes up less space in your box, these programs use less memory.
+
+2. **Big Toys:** Some toys are bigger and take up more space, like a doll or a teddy bear. Similarly, some programs store more information and take up more memory.
+
+Now, when we play with our toys (run programs), we want to make sure we have enough space for them all. If we run out of space (our box is full), we might not be able to play anymore. This is where Space Complexity comes in. It tells us how much space a program will need as it gets bigger.
+
+Sometimes, we can choose between playing with small toys and big toys. For example, if we want to count the number of candies, we could use a small toy that only needs a little space (this is an efficient solution). But if we want to remember everything about our candies (their colors, shapes, flavors), we might need a bigger toy and more space (this uses more resources but gives us more information).
+
+This is a trade-off: using more space (like the big toy) can give us more benefits, but it also takes up more room in our box. So, programmers have to find the right balance between using enough space to get the job done and not using too much that our computer gets overwhelmed. That's what Space Complexity is all about!",,
+DA,DB_02,phi4:14b,B_simplified,1.0,0.0,0,"Normalization organizes data to reduce redundancy and improve integrity. First Normal Form (1NF): All attributes contain atomic (indivisible) values, and there are no repeating groups. Second Normal Form (2NF): The relation is in 1NF and every non-key attribute is fully functionally dependent on the entire primary key (no partial dependencies). Third Normal Form (3NF): The relation is in 2NF and has no transitive dependencies; non-key attributes depend only on candidate keys. Normalization to 3NF eliminates common insertion, update, and deletion anomalies and is widely considered a practical design goal, although higher normal forms (e.g., BCNF) may be required in some cases.","Sure! Let's talk about normalization using a simple analogy with organizing toys.
+
+Imagine you have lots of toy boxes at home. Each box is supposed to hold certain kinds of toys, but sometimes they end up mixed or cluttered. Normalization helps us organize these toy boxes better so we can find things easily and avoid messes.
+
+### First Step: 1NF (First Normal Form)
+Think of this like separating your toys into different groups. For example, if you have a box with cars, action figures, and puzzles all mixed up, 1NF tells you to separate them into individual boxes—one for cars, one for action figures, and one for puzzles. 
+
+- **Rule:** Each toy should be in its own group or category.
+- **Analogy:** It's like saying each toy box can only have one kind of toy.
+
+### Second Step: 2NF (Second Normal Form)
+Now that your toys are grouped by type, let’s make sure they’re organized even better. Suppose you have a box for cars and it also has little notes inside about where each car came from or its color. If some cars don't need all these extra notes, then those notes should be in their own separate boxes.
+
+- **Rule:** Make sure that if you're grouping toys (like cars), they only have things directly related to them.
+- **Analogy:** Imagine a box of cars; each car only has stickers about its own color and origin. If some cars share the same sticker info, move those shared notes to another place.
+
+### Third Step: 3NF (Third Normal Form)
+Now let’s focus on making everything even clearer. Say your toy cars have notes about both their colors and which other cars they often play with together. If knowing a car's color doesn't tell us who it plays with, then those friendship notes should be in another box.
+
+- **Rule:** Make sure that each piece of information is only related to the main thing.
+- **Analogy:** It’s like saying if you know a car's color, you shouldn’t need extra info about which other cars it hangs out with. Keep that hanging-out info separate.
+
+### Limits
+Even though normalization helps us organize well, sometimes we might decide not to follow these steps strictly:
+
+- **Performance:** Sometimes having all related information in one place (even if mixed) can be faster for finding things quickly.
+- **Simplicity:** If the toys don't get too messy or confusing, you might keep some groups together just because it’s easier.
+
+So, normalization is like organizing your toy boxes so everything is neat and easy to find. Each step makes sure that only related information stays together, making it less cluttered and more organized!",,
+DA,DB_02,phi4:14b,C_highly_simplified,1.0,0.0,1,"Normalization organizes data to reduce redundancy and improve integrity. First Normal Form (1NF): All attributes contain atomic (indivisible) values, and there are no repeating groups. Second Normal Form (2NF): The relation is in 1NF and every non-key attribute is fully functionally dependent on the entire primary key (no partial dependencies). Third Normal Form (3NF): The relation is in 2NF and has no transitive dependencies; non-key attributes depend only on candidate keys. Normalization to 3NF eliminates common insertion, update, and deletion anomalies and is widely considered a practical design goal, although higher normal forms (e.g., BCNF) may be required in some cases.","Imagine you have a messy toy box where all your toys are jumbled together with their pieces, batteries, and instruction manuals. Normalizing this toy box is like sorting everything into smaller boxes so that each one only contains related items: one for the toys themselves (1NF), another for the toy parts attached to specific types of toys (2NF), and a third for any details that explain how they connect or work together (3NF). This way, finding what you need becomes much easier and less chaotic. However, if you keep splitting them into too many tiny boxes, it could be just as hard to find your favorite toy because you'll have to open several boxes at once. Normalization helps make data organized and efficient but remember, sometimes a little messiness can be quicker for certain tasks!",,
+DA,DB_03,gemma4:31b,C_highly_simplified,1.0,0.0,0,"The SQL JOIN clause combines rows from two or more tables based on a specified join condition. INNER JOIN returns only rows for which the join condition evaluates to true in both tables. LEFT OUTER JOIN returns all rows from the left table and matching rows from the right table; for non-matching rows, attributes from the right table are set to NULL. RIGHT OUTER JOIN returns all rows from the right table and matching rows from the left table; for non-matching rows, attributes from the left table are set to NULL. FULL OUTER JOIN returns all rows from both tables; rows are matched where the join condition holds, and non-matching rows from either side are padded with NULL values.","Imagine a dance party where two groups of people are trying to find partners. An **INNER JOIN** only lets pairs onto the dance floor if they both have a match. A **LEFT JOIN** keeps everyone from the left group, even if they are dancing solo, while a **RIGHT JOIN** does the same for the right group. A **FULL JOIN** is a giant party where everyone is invited, regardless of whether they found a partner. It’s all about who is allowed to stay in the room!",,
+DA,DB_04,deepseek-r1:32b,B_simplified,1.0,0.0,0,"A B-tree index may not be used or may not improve query performance when the query has low selectivity (i.e., it returns a large fraction of the table), in which case a full table scan can be more efficient than index-based access due to the cost of random disk I/O. The index may also be ineffective if the query applies functions, expressions, or negation to the indexed column, preventing efficient index lookup, or if the table is very small. Database query optimizers use cost-based analysis and table statistics to determine whether to use an index.","Sure! Let’s break this down using simple ideas.
+
+Imagine you have a big book, like a phonebook, with lots of names and numbers. A **B-tree index** is like the index at the back of the book that helps you quickly find specific names without reading every page. It organizes the information in a way that makes searching faster.
+
+But sometimes, even with this index, looking something up might not be any faster. Here’s why:
+
+1. **The index isn’t used properly**: If you don’t use the index to look for something, you end up flipping through pages one by one, just like reading without an index. The same happens in databases—if the query doesn’t use the B-tree index correctly, it won’t help.
+
+2. **Not enough data to search**: If there are only a few names in the book, using the index might feel slower than just scanning all the pages directly. This is similar to when the database has very little data; sometimes, looking through everything is faster than using an index.
+
+3. **The query needs almost everything anyway**: Imagine you need to find everyone’s phone number in a city. You’d have to look at almost every page anyway, so the index doesn’t save time. In databases, if a query needs most of the data, using an index might not help because it still has to check many records.
+
+In short, a B-tree index is like a helpful guide, but it’s only useful when you actually need that guidance. If the data isn’t big enough or the query doesn’t need specific information, the index won’t make things faster.",,
+DA,DB_04,gpt-oss:20b,C_highly_simplified,1.0,0.0,1,"A B-tree index may not be used or may not improve query performance when the query has low selectivity (i.e., it returns a large fraction of the table), in which case a full table scan can be more efficient than index-based access due to the cost of random disk I/O. The index may also be ineffective if the query applies functions, expressions, or negation to the indexed column, preventing efficient index lookup, or if the table is very small. Database query optimizers use cost-based analysis and table statistics to determine whether to use an index.","A B‑tree index is like a grocery‑store sign that tells you exactly which aisle holds a particular brand of cereal.  
+If you only need that one brand, you can skip the aisles and go straight to it, saving a lot of time.  
+But if you want to see every cereal in the store, or the sign points to an aisle that has thousands of identical boxes, you still have to walk through all of them.  
+Similarly, an index only speeds up queries that look for a few specific rows; if a query pulls most of the table or uses a function on the indexed column, the database still scans everything.  
+So, just as a sign is useless when you need a lot of items, a B‑tree index can be useless when the query is broad or the data is too repetitive.",,
+DA,DB_07,ministral-3:14b,C_highly_simplified,1.0,0.0,0,"Denormalization is the process of intentionally introducing redundancy into a normalized relational schema to improve read performance by reducing the need for join operations. It is a deliberate trade-off, commonly used in read-heavy workloads (e.g., reporting or data warehousing), where the cost of joins outweighs the overhead of maintaining redundant data. While denormalization can significantly accelerate SELECT queries, it increases storage requirements, complicates write operations (INSERT, UPDATE, DELETE), and introduces the risk of data inconsistency due to redundant representations.","Imagine your brain is a **library with bookshelves**—some books are split into tiny parts (like index cards) to save space (normalization), but sometimes you *glue the index cards back together* to make a full book again (denormalization).
+
+**Why?** Normalization keeps data *super organized* (like separate cards), but if you’re reading the *same book over and over* (querying the same data), flipping between shelves slows you down. Denormalization *duplicates a little data* (like keeping a backup copy of the book on your desk) to make things *faster*—but now you’ve got to clean up extra copies later.
+
+**When to use it?** When speed matters more than perfection—like in games, dashboards, or reports where you’d get bored waiting for the library to fetch every card. Just don’t overdo it, or your ""desk"" gets messy!",,
+DA,DB_07,mistral:7b,C_highly_simplified,1.0,0.0,1,"Denormalization is the process of intentionally introducing redundancy into a normalized relational schema to improve read performance by reducing the need for join operations. It is a deliberate trade-off, commonly used in read-heavy workloads (e.g., reporting or data warehousing), where the cost of joins outweighs the overhead of maintaining redundant data. While denormalization can significantly accelerate SELECT queries, it increases storage requirements, complicates write operations (INSERT, UPDATE, DELETE), and introduces the risk of data inconsistency due to redundant representations.","Think of a well-organized library where books are categorized by subject for easy access. In this library, if you want to find all books written by a particular author, you'd have to check every single section. This can be time-consuming, but the organization is efficient for finding books on specific subjects.
+
+Now, imagine reorganizing the library so that every shelf has books from the same author together. This makes finding an author's entire collection quicker, but it might make finding books by subject a bit messier. Denormalization in computer science is like this library reorganization - it helps speed up certain operations at the cost of making others slightly less efficient. You use denormalization when you want to optimize frequently accessed data, even if it makes other operations slightly slower or more complex.",,
+DA,NET_03,deepseek-r1:32b,C_highly_simplified,1.0,0.0,0,"DNS resolution can be recursive or iterative. In recursive resolution, a DNS server resolves the query on behalf of the client, contacting other servers as needed and returning the final answer. In iterative resolution, each DNS server returns the best information it has (often a referral), and the client (or resolver) continues querying other servers. Recursive queries shift the resolution burden to the server, while iterative queries distribute it across multiple queries.","DNS resolution is like looking up a friend’s phone number in a directory. In **recursive mode**, you ask a helpful assistant who does all the work for you and gives you the number directly. In **iterative mode**, you start with one clue, find another clue, and keep going until you finally reach the right person. The recursive method is faster but relies on someone else doing the hard work, while the iterative method takes more steps but gets you to the answer yourself!",,
+DA,NET_04,gemma4:31b,B_simplified,1.0,0.0,0,"Classless Inter-Domain Routing (CIDR) represents IP addresses using a prefix of arbitrary length, written as a.b.c.d/x, where x indicates the number of bits in the network portion. CIDR enables flexible subnetting and efficient allocation of IP address space by eliminating fixed class boundaries. Routers use the longest prefix match rule to determine the forwarding path for a packet.","### The IP Address: Your Computer's Home Address
+
+Imagine every computer, phone, and tablet is a house. 
+
+To send a letter to a friend, you need their home address. If you don't have an address, the mailman doesn't know where to go.
+
+An **IP address** is just a home address for your computer. It is a string of numbers. It tells the internet exactly where your device is so it can send information to the right place.
+
+***
+
+### Subnets: Computer Neighborhoods
+
+Imagine a giant city with millions of houses. If the mailman had to look through one giant list of every single house, it would take forever.
+
+To make it faster, the city is split into **neighborhoods**. 
+
+A **subnet** is like a neighborhood for computers. Instead of one giant group, computers are put into smaller groups. This keeps things organized and stops the ""traffic"" from getting too crowded.
+
+***
+
+### The CIDR Mask: The Divider
+
+Now, look at a home address. It usually has two parts:
+1. The **Zip Code** (This tells you the general area or neighborhood).
+2. The **House Number** (This tells you the exact door).
+
+The **CIDR mask** is like a divider. It tells the computer where the ""Zip Code"" ends and where the ""House Number"" begins.
+
+Think of the mask like a **highlighter pen**:
+
+*   The mask **highlights** the neighborhood part of the address.
+*   The part that is **not highlighted** is the specific device.
+
+**Why does the size of the mask matter?**
+*   If the highlight is **short**, the neighborhood is **huge** (lots of houses).
+*   If the highlight is **long**, the neighborhood is **tiny** (only a few houses).",,
+DA,NET_04,gemma4:31b,C_highly_simplified,1.0,0.0,1,"Classless Inter-Domain Routing (CIDR) represents IP addresses using a prefix of arbitrary length, written as a.b.c.d/x, where x indicates the number of bits in the network portion. CIDR enables flexible subnetting and efficient allocation of IP address space by eliminating fixed class boundaries. Routers use the longest prefix match rule to determine the forwarding path for a packet.","Think of an IP address as a full mailing address for your computer. The CIDR mask is a ""magic divider"" that splits that address into a Zip Code (the network) and a House Number (the specific device). Subnetting is simply the act of carving one giant city into these smaller, organized neighborhoods. A short mask creates a sprawling metropolis, while a long mask creates a tiny, exclusive gated community. This keeps the internet from becoming one giant, chaotic traffic jam!",,
+DA,NET_04,phi4:14b,C_highly_simplified,1.0,0.0,1,"Classless Inter-Domain Routing (CIDR) represents IP addresses using a prefix of arbitrary length, written as a.b.c.d/x, where x indicates the number of bits in the network portion. CIDR enables flexible subnetting and efficient allocation of IP address space by eliminating fixed class boundaries. Routers use the longest prefix match rule to determine the forwarding path for a packet.","Imagine your home is like an internet address, called an IP address, and each floor of your house represents a subnet within that big address. Now, picture a massive apartment building where your house is just one unit among thousands; the entire building is like the whole network. A CIDR mask is like the guide that tells you which floor (subnet) you are on and how many rooms (devices) can fit there. Just as a mail carrier needs to know the correct floor and room number to deliver a package, computers need IP addresses and subnets to send data to the right place. So, the CIDR mask helps ensure your digital ""mail"" finds its way efficiently!",,
+DA,NET_05,mistral:7b,B_simplified,1.0,0.0,0,"HTTP methods differ in semantics and idempotency. A method is idempotent if multiple identical requests have the same effect as a single request. GET, PUT, and DELETE are idempotent: repeated requests do not change the result beyond the initial application. POST is not idempotent, as repeated requests can create multiple resources or cause repeated side effects. Idempotency is important for reliability and retry mechanisms in distributed systems.","Hey there! Let's talk about something fun called ""HTTP methods."" These are like the different ways a computer can send instructions to another computer on the internet. Here are four important ones:
+
+1. **GET:** Imagine you're asking for directions to the library. No matter how many times you ask, the answer stays the same as long as nothing changes at the library. That's what GET does - it asks a server for some information, and the response is always the same unless the data on the server changes.
+
+2. **PUT:** Picture this: You have a toy box at home, and you want to put your favorite teddy bear into it. Each time you do this, the state of your toy box changes because you're adding something new. PUT works in a similar way - it sends data to a server and updates the existing information. No matter how many times you do it, the end result is different each time because you're changing something on the server.
+
+3. **DELETE:** Let's say your toy box is full of toys, but you want to get rid of your old teddy bear. Once you remove it, the state of your toy box changes and there will be one less toy in it. DELETE does exactly that - it removes data from a server. Just like when you throw out the teddy bear, once the data is deleted from the server, it's gone forever.
+
+4. **POST:** Now imagine you have a magic mailbox at school where you can write a letter and send it to different friends without their names or addresses being on the outside of the envelope. This way, anyone can use this mailbox to send letters, and the recipient will know who sent it because there's an envelope inside. POST works in a similar way - it sends new data to a server but doesn't change any existing data like GET or DELETE do. Instead, it adds new information, just like when you put a letter into the magic mailbox.
+
+Now, some of these methods are called ""idempotent,"" which means that no matter how many times they're used, the end result will be the same as long as nothing changes on the server in between. GET and PUT are idempotent because if you keep asking for the same information or updating the same data, the response will always be consistent as long as the server doesn't change anything. DELETE and POST aren't idempotent because using them multiple times will have different effects each time - either it deletes the same data again (DELETE) or adds new data multiple times (POST). Hope that helps!",,
+DA,NET_05,mistral:7b,C_highly_simplified,1.0,0.0,0,"HTTP methods differ in semantics and idempotency. A method is idempotent if multiple identical requests have the same effect as a single request. GET, PUT, and DELETE are idempotent: repeated requests do not change the result beyond the initial application. POST is not idempotent, as repeated requests can create multiple resources or cause repeated side effects. Idempotency is important for reliability and retry mechanisms in distributed systems.","Think of HTTP methods as different tools for building a digital Lego castle. Each tool does something specific and important.
+
+* **GET** is like peeking at the castle to see what it looks like without touching it (idempotent). No matter how many times you look, the castle remains the same.
+* **PUT** is like rebuilding the entire castle from scratch with new blocks (idempotent). Regardless of how many times you put a new castle, you always get the same result - a brand-new castle.
+* **DELETE** is like tearing down the castle completely (idempotent). No matter how many times you demolish the castle, it disappears entirely each time.
+* **POST**, however, is like adding a new wing to your castle. Each time you add a new wing, the castle grows bigger and becomes more complex (not idempotent). If you add a new wing twice, you get a different castle than if you just added it once.",,
+DA,NET_06,deepseek-r1:8b,B_simplified,1.0,0.0,1,"Distance-vector routing algorithms (e.g., RIP) compute shortest paths based on information from neighboring routers, iteratively updating distance estimates using distributed Bellman-Ford equations. Link-state routing algorithms (e.g., OSPF) require each router to have a complete view of the network topology and compute shortest paths using Dijkstra’s algorithm. Distance-vector approaches are simpler but slower to converge and susceptible to routing loops, while link-state approaches converge faster and provide more accurate routing at the cost of higher complexity.","Okay, let's imagine your network like a town map.
+
+## Concept 1: Distance Vector (Like RIP)
+
+*   **Think of it like a small group of friends.**
+*   **Each computer (router) knows only a little bit.**
+*   **They just tell their *next door* friends:* ""Hey, I know how to get to X place, Y place, and maybe Z.""*
+*   **When you ask ""How do I get to Grandma's house?"", they just tell you the *first step* and maybe the *total cost* (like how many blocks or how long it takes).**
+*   **They don't necessarily know the *whole map*.**
+*   **They just share what they know with their immediate neighbors.**
+*   **The neighbors then tell their neighbors, and so on.**
+*   **It's simple, but it can be a bit slow to figure out the *best* way, especially in a big town.**
+*   **Analogy:** Like asking a friend in your neighborhood how to get somewhere, and they just tell you the first street and maybe the total walking time, but they don't necessarily show you the whole city map.
+
+## Concept 2: Link State (Like OSPF)
+
+*   **Think of it like creating a detailed *map* of the *entire town*.**
+*   **Every computer (router) learns about *all* the roads (links) and *all* the important places (other routers).**
+*   **Each router figures out *its own* part of the map (its own connections).**
+*   **Then, they all share *details* about these parts – like ""This road is good here,"" ""That road is broken there.""**
+*   **Using all these pieces of information (the map details), every computer calculates the *best fastest way* to get anywhere.**
+*   **It's more work up front, but everyone knows the *whole situation* much faster.**
+*   **Analogy:** Like everyone in the town drawing their own section of the map, then sharing those sections with everyone else. Then, *everyone* has a complete map and can figure out the best route instantly, even if the roads change.
+
+## In Simple Terms
+
+*   **Distance Vector (RIP):** Simple friends system. Just tells neighbors the basic cost to get to places. Slow updates. Good for very small, simple networks.
+*   **Link State (OSPF):** Creates a detailed map. Everyone calculates the best path using the whole map. Faster updates and better for large, complex networks.",,
+DA,NET_06,deepseek-r1:8b,C_highly_simplified,1.0,0.0,1,"Distance-vector routing algorithms (e.g., RIP) compute shortest paths based on information from neighboring routers, iteratively updating distance estimates using distributed Bellman-Ford equations. Link-state routing algorithms (e.g., OSPF) require each router to have a complete view of the network topology and compute shortest paths using Dijkstra’s algorithm. Distance-vector approaches are simpler but slower to converge and susceptible to routing loops, while link-state approaches converge faster and provide more accurate routing at the cost of higher complexity.","Okay, imagine your town's highway system.
+
+Routing is like figuring out the *best way* to get from one place to another using highways.
+
+**Distance Vector (like RIP)** is like asking a local driver for directions to a destination. They tell you the *direct* path, but they might not know about other roads or the *best* path because their info isn't connected to a map.
+
+**Link State (like OSPF)** is like having a detailed **GPS map** of the entire highway system. Each part knows its own roads (link) and shares this map, allowing everyone to calculate the *shortest, most efficient route* together.
+
+The big difference is that **Distance Vector** asks for simple directions directly, while **Link State** uses a shared, detailed map to find the best path.",,
+DA,NET_06,gpt-oss:20b,C_highly_simplified,1.0,0.0,1,"Distance-vector routing algorithms (e.g., RIP) compute shortest paths based on information from neighboring routers, iteratively updating distance estimates using distributed Bellman-Ford equations. Link-state routing algorithms (e.g., OSPF) require each router to have a complete view of the network topology and compute shortest paths using Dijkstra’s algorithm. Distance-vector approaches are simpler but slower to converge and susceptible to routing loops, while link-state approaches converge faster and provide more accurate routing at the cost of higher complexity.","Think of routing like planning a road trip.  
+With **Distance Vector (RIP)** you ask each friend how far the next town is, and you only know the total distance, not the whole map.  
+With **Link State (OSPF)** you receive a full city map from every router, so you can pick the shortest route yourself.  
+Thus RIP is slow and can mislead because it never updates the whole picture, while OSPF is fast and accurate because every router sees the whole network.  
+In short, RIP is “guess‑and‑share” and OSPF is “map‑and‑calculate.”",,
+DA,OS_01,gemma4:31b,C_highly_simplified,1.0,0.0,0,"A process is a program in execution with its own memory space, resources, and execution context. A thread is a lightweight execution unit within a process that shares the same address space and resources but has its own program counter, registers, and stack. Threads within the same process can communicate more efficiently than separate processes due to shared memory.","Imagine a **Process** is an entire pizza shop. A **Thread** is a worker inside that shop. If you open two different shops (Processes), they have their own separate ovens and ingredients. However, workers in the same shop (Threads) all share the same oven and dough to get the job done faster. Basically, processes are separate businesses, while threads are teammates sharing one kitchen!",,
+DA,OS_01,mistral:7b,B_simplified,1.0,0.0,0,"A process is a program in execution with its own memory space, resources, and execution context. A thread is a lightweight execution unit within a process that shares the same address space and resources but has its own program counter, registers, and stack. Threads within the same process can communicate more efficiently than separate processes due to shared memory.","Hey there! Let's talk about something cool called ""Processes"" and ""Threads."" Think of them as different superheroes working together in a team.
+
+1. **Process**: Imagine each superhero has their own headquarters (like Batman, Iron Man, etc.). Each headquarters is a separate process on the computer. They can communicate with each other, but they have their own space and resources. When one superhero finishes a task, they go back to their own headquarters until it's time for the next job.
+
+2. **Thread**: Now, inside each superhero's headquarters, there might be several assistants helping out (like Batman's butler Alfred, or Iron Man's AI, Jarvis). These assistants are like threads in a computer process. They can do small tasks at the same time, making the superhero more efficient. For example, while one assistant is getting coffee, another could be organizing files.
+
+So, processes are big jobs that run separately, and threads are little helpers inside those processes that make them faster by doing multiple things at once. Hope this helps!",,
+DA,OS_01,mistral:7b,C_highly_simplified,1.0,0.0,0,"A process is a program in execution with its own memory space, resources, and execution context. A thread is a lightweight execution unit within a process that shares the same address space and resources but has its own program counter, registers, and stack. Threads within the same process can communicate more efficiently than separate processes due to shared memory.","Imagine you're a conductor leading an orchestra! Each musician (process) plays their own unique instrument – violin, trumpet, drum, etc. When they play together, they create beautiful music (a task). Now, let's say the violinist gets inspired and starts humming another melody while still playing her original piece. This is like a thread - another job she takes on within her original process.
+
+In computer science, processes are like musicians each doing their own thing, while threads are when one musician (process) does multiple jobs at once. Just as the orchestra can perform multiple pieces simultaneously with different musicians handling various parts, computers can run several tasks efficiently using processes and threads.",,
+DA,OS_02,deepseek-r1:8b,B_simplified,1.0,0.0,1,"Context switching is the process of saving the state of a currently running process or thread and restoring the state of another, enabling multitasking. The operating system saves CPU registers, program counter, and memory mapping information of the current process and loads the corresponding state of the next scheduled process.","Okay, imagine you're a teacher in a classroom.
+
+You have several students needing help at the same time. You can't help all of them perfectly at once.
+
+So, you pick one student to help right now. You listen to their problem, remember what they were doing before, and maybe write something down. But then, the principal calls, or the bell rings, or another student raises their hand urgently. You have to switch your attention to them.
+
+Now you stop helping the first student, remember where they left off, and start helping the new one. You listen, think, maybe write something else. But you never forget what the first student was working on. If they call out or raise their hand again, you can jump back to them instantly.
+
+That's kind of what **context switching** is for computers.
+
+The computer has many tasks (like the students) it needs to do at once.
+
+It picks one task to work on right now (like focusing on one student). It saves a tiny ""checkpoint"" – remembering exactly where that task left off and what it needs to do next.
+
+Then it switches to another task (like helping the next student). It loads the checkpoint for that new task.
+
+And if it needs to switch back, it can do it instantly, picking up exactly where it left off.",,
+DA,OS_04,deepseek-r1:32b,C_highly_simplified,1.0,0.0,0,"A deadlock occurs when a set of processes are permanently blocked. It can arise only if all four Coffman conditions hold simultaneously: mutual exclusion, hold and wait, no preemption, and circular wait. Breaking any one of these conditions prevents deadlock.","Imagine two kids trying to swap toys. Child A holds onto their toy while waiting for Child B’s toy, and Child B does the same. Neither lets go first, so they both just stand there, stuck forever. This is like a deadlock in computers—when programs wait endlessly for each other to finish, causing nothing to happen. Just like the kids, no progress is made because everyone is waiting for someone else.",,
+DA,OS_04,ministral-3:14b,C_highly_simplified,1.0,0.0,1,"A deadlock occurs when a set of processes are permanently blocked. It can arise only if all four Coffman conditions hold simultaneously: mutual exclusion, hold and wait, no preemption, and circular wait. Breaking any one of these conditions prevents deadlock.","Imagine four friends trying to use **two swings in a park**—one high and one low.
+
+Friend A takes the **high swing** and won’t let go until they finish their turn, but they *also* want the **low swing** next. Meanwhile, Friend B has the low swing and won’t move until they get the high one. Now both are stuck waiting forever—**no one can swing, and no one can leave!**
+
+A *deadlock* is like this: **two (or more) things are waiting for each other in a circle, none can move, and the system freezes.** In computers, it happens when programs hold resources (like files or memory) and keep waiting for others—**all stuck like the swings.**
+
+**Key rule to fix it:** *Break the circle!* (Like making one friend let go first.)",,
+DA,OS_07,gpt-oss:20b,C_highly_simplified,1.0,0.0,0,"A semaphore is a synchronization primitive used to control access to shared resources. A counting semaphore allows multiple concurrent accesses up to a defined limit, while a binary semaphore (mutex) allows only one. Semaphores prevent race conditions by enforcing mutual exclusion and coordination between concurrent processes.","Semaphores are like a single ticket booth at a concert that limits how many people can enter the hall at once.  
+When a process wants to use a shared resource, it must first “buy” a ticket (acquire the semaphore).  
+If the hall is full, the next process must wait until someone leaves and the booth releases a ticket (signal).  
+This guarantees that no more than the allowed number of processes use the resource simultaneously, preventing chaos.  
+In this way, semaphores keep multiple programs from stepping on each other’s toes, just as the ticket booth keeps the crowd orderly.",,
+DA,PLP_01,deepseek-r1:8b,B_simplified,1.0,0.0,1,"Inheritance is a mechanism in object-oriented programming that allows a class (subtype) to inherit properties and behavior from another class (base type), enabling code reuse and hierarchical relationships. The Liskov Substitution Principle (LSP) states that subtypes must be substitutable for their base types without altering the correctness of the program. This requires that inherited behavior is preserved, including method contracts, invariants, and preconditions/postconditions.","Okay, let's break down these two computer science ideas in a really simple way.
+
+**1. Inheritance:**
+
+*   Think about a family tree, but for computer ideas.
+*   Imagine you have a general idea, like ""Animal"".
+*   Then you can create more specific ideas, like ""Dog"" or ""Cat"".
+*   In coding, we say ""Dog"" *inherits* from ""Animal"".
+*   This means:
+    *   ""Dog"" knows it is also an ""Animal"".
+    *   ""Dog"" gets some basic rules from ""Animal"" (like maybe how to eat or sleep).
+    *   ""Dog"" can also have its own special rules (like how to bark).
+*   **Analogy:** It's like a blue print. ""Animal"" is a basic blue print. ""Dog"" and ""Cat"" are more detailed blue prints that *start* from the basic one and add extra features.
+
+**2. Liskov Substitution Principle (LSP):**
+
+*   This is a rule about using these ""Dog"" and ""Cat"" ideas.
+*   The basic rule is: You should be able to treat a ""Dog"" just like a general ""Animal"".
+*   For example, you can write instructions that work for any ""Animal"".
+*   Since ""Dog"" is a type of ""Animal"", your instructions should work perfectly for a ""Dog"".
+*   **What breaks the rule?** If ""Dog"" does something completely different from what ""Animal"" does, then you can't always substitute a ""Dog"" for a general ""Animal"".
+*   **Analogy:** Think about a door lock.
+    *   The main lock (""Animal"") is opened by a key.
+    *   A simple key (""Animal"") works.
+    *   A fancy key (""Dog"") also works because it can use the basic key slot, maybe it just has a button on top.
+    *   BUT, if the lock was specifically designed only for fancy keys (""Dog"") and didn't work with any simple key (""Animal""), that breaks the rule.
+*   **Analogy Explained:** The lock (""Animal"") should have a specific job: accept a key (""Dog"") and unlock. The key (""Dog"") can be fancy, but it MUST still unlock the lock (""Animal""). If the fancy key (""Dog"") breaks the lock or does something else, then you can't just use *any* key (""Animal"") anymore. That's breaking the rule (LSP).
+
+**In simple terms:**
+
+Think of Inheritance like building with **building blocks**. You have a basic block (""Animal""), and you can make specific blocks (""Dog"", ""Cat"") that are built on top of the basic one.
+
+Think of Liskov Substitution Principle (LSP) like **playing a game with rules**. You have a general rule (""Animal""). Anything that follows the rule (like ""Dog"") should work within that game. If a new thing (""Dog"") breaks the core rule of the game, then you can't use it in all the places where the old rule (""Animal"") was allowed.
+
+The main idea is: When you create a new type (like ""Dog""), it should be able to work in the same ways as the type it came from (like ""Animal""). Don't change the basic agreement!",,
+DA,PLP_01,deepseek-r1:8b,C_highly_simplified,1.0,0.0,0,"Inheritance is a mechanism in object-oriented programming that allows a class (subtype) to inherit properties and behavior from another class (base type), enabling code reuse and hierarchical relationships. The Liskov Substitution Principle (LSP) states that subtypes must be substitutable for their base types without altering the correctness of the program. This requires that inherited behavior is preserved, including method contracts, invariants, and preconditions/postconditions.","Okay, imagine **inheritance** like passing down a special trait, like ""having fur"". A base class, say ""Animal"", gets this trait. A subclass, like ""Cat"", *inherits* the fur trait from Animal and adds its own, like ""meowing"". Now, the **Liskov Substitution Principle (LSP)** says that because a Cat *is-a* kind of Animal (it has fur), you can always treat a Cat exactly like you would treat a regular Animal, maybe feeding it or playing with it, without anything going wrong. So, Cat builds on Animal but stays interchangeable with it, just like a kitten can be treated as a baby cat, but you know it's a special kind of cat!",,
+DA,PLP_06,deepseek-r1:32b,B_simplified,1.0,0.0,1,"Reference counting associates a count of references with each object and reclaims memory when the count reaches zero, but it cannot collect cyclic garbage. The mark-and-sweep algorithm identifies reachable objects by tracing from root references, marks all reachable objects, and reclaims memory occupied by unmarked objects. Unlike reference counting, mark-and-sweep can collect cyclic garbage because it determines reachability through graph traversal rather than reference counts.","Garbage collection is how computers clean up unused stuff to keep things running smoothly. Let's use a room analogy to explain the two methods: mark-and-sweep and reference counting.
+
+**Mark-and-Sweep:** Imagine your room is cluttered with toys. First, you go through each toy and label (mark) the ones you don't need. Then, after marking everything, you throw away all the labeled items (sweep). This method cleans up in two steps: identifying trash first and then removing it. It's efficient but can take time since it checks everything before cleaning.
+
+**Reference Counting:** Think of each toy as having a counter showing how many people are using it. If no one is using a toy (count is zero), it gets thrown away right away. This method cleans up instantly when something is no longer needed, without waiting for a big cleanup.
+
+Both methods help keep your room tidy but do it differently. Mark-and-sweep does a thorough clean-up less often, while reference counting cleans as you go, ensuring nothing stays unused for long.",,
+DA,PLP_06,deepseek-r1:32b,C_highly_simplified,1.0,0.0,0,"Reference counting associates a count of references with each object and reclaims memory when the count reaches zero, but it cannot collect cyclic garbage. The mark-and-sweep algorithm identifies reachable objects by tracing from root references, marks all reachable objects, and reclaims memory occupied by unmarked objects. Unlike reference counting, mark-and-sweep can collect cyclic garbage because it determines reachability through graph traversal rather than reference counts.","Garbage Collection is like a janitor cleaning up an untidy room. In Mark-and-Sweep, the janitor first sprays paint on all the trash to mark it, then sweeps it all away at once—efficient but can cause a temporary mess. In Reference Counting, each item asks itself, ""Does anyone still need me?"" and disappears if no one does—a quieter cleanup, but it might miss some hidden clutter. Both keep your room tidy, just in different ways!",,
+DA,PLP_06,gemma4:31b,B_simplified,1.0,0.0,0,"Reference counting associates a count of references with each object and reclaims memory when the count reaches zero, but it cannot collect cyclic garbage. The mark-and-sweep algorithm identifies reachable objects by tracing from root references, marks all reachable objects, and reclaims memory occupied by unmarked objects. Unlike reference counting, mark-and-sweep can collect cyclic garbage because it determines reachability through graph traversal rather than reference counts.","### The Big Idea: Cleaning Up Space
+
+Imagine your computer has a big toy box. When a program needs to do something, it puts a ""toy"" (a piece of information) into the box. 
+
+But the toy box can only hold so many things. If it gets too full, the computer slows down or stops working. 
+
+**Garbage Collection** is like a cleaning crew. Its job is to find the toys that are no longer being used and throw them away to make more room.
+
+There are two main ways the cleaning crew does this:
+
+***
+
+### 1. Reference Counting (The ""Holding On"" Way)
+
+Imagine every toy in the box has a little counter on it. This counter shows how many people are holding onto that toy.
+
+*   **Adding:** If you start using a toy, you hold onto it. The counter goes up by one.
+*   **Letting Go:** When you are done with the toy, you let go. The counter goes down by one.
+*   **Cleaning:** The cleaning crew watches the counters. As soon as a counter hits **zero**, it means no one is using that toy. The crew throws it away immediately.
+
+**The Problem:** Sometimes, two toys hold onto each other, but no people are holding onto them. Because they are holding each other, their counters never hit zero. They stay in the box forever, even though they are useless.
+
+***
+
+### 2. Mark-and-Sweep (The ""Sticker"" Way)
+
+This way is different. The cleaning crew doesn't watch the toys all the time. Instead, they come in once in a while for a ""Big Clean.""
+
+*   **The Mark:** The crew starts with the toys you are currently using. They put a bright **green sticker** on those toys. Then, they look at any other toys that those ""green"" toys are connected to and put stickers on those, too.
+*   **The Sweep:** Once they are done marking, they look at the whole toy box. Any toy that **does not** have a green sticker is considered trash. They sweep all those toys away at once.
+
+**The Difference:** This way is slower because the crew has to stop and check everything. However, it is better at finding those ""stuck"" toys that the first method misses.",,
+DA,PLP_06,phi4:14b,B_simplified,1.0,0.0,1,"Reference counting associates a count of references with each object and reclaims memory when the count reaches zero, but it cannot collect cyclic garbage. The mark-and-sweep algorithm identifies reachable objects by tracing from root references, marks all reachable objects, and reclaims memory occupied by unmarked objects. Unlike reference counting, mark-and-sweep can collect cyclic garbage because it determines reachability through graph traversal rather than reference counts.","Imagine you have a toy box at home filled with different toys. Over time, some toys get broken or become old and are no longer fun to play with. You might want to clean up this toy box so that it only has the toys you still like.
+
+In computer science, when we talk about ""garbage collection,"" think of it as cleaning up unused stuff in a computer's memory. Memory is like our toy box but for information and instructions on the computer.
+
+There are two main ways computers do this cleanup: Mark-and-Sweep and Reference Counting.
+
+### Mark-and-Sweep
+
+Think of your favorite toys that you still play with. You might mark them so you remember not to throw them away. In ""Mark-and-Sweep,"" the computer first goes through all its memory (the toy box) and marks everything it is currently using or needs (like your favorite toys). 
+
+After marking, it looks at everything else that wasn't marked. These are like the broken or old toys you don’t play with anymore. The computer then ""sweeps"" them away—meaning it throws them out so they can make room for new things.
+
+### Reference Counting
+
+Now imagine if every time you took a toy out to play, you had a little counter on the box that counted how many people are playing with that toy. When everyone is done and puts their toys back, you check these counters to see if any toys aren't being used anymore.
+
+In ""Reference Counting,"" each piece of memory (each toy) has a number counting how many things in the computer point to it or use it. If this number goes down to zero—meaning no one is using it—the computer knows it can clean up that space, just like putting away an unused toy.
+
+Both methods aim to keep your computer’s memory tidy and efficient, so it can handle new tasks smoothly without getting cluttered with stuff you don't need anymore!",,
+OER,ALG_01,gpt-oss:20b,B_simplified,0.0,1.0,0,"Quicksort is a divide-and-conquer sorting algorithm whose running time depends on the balance of partitioning. In the worst case, it runs in Θ(n²), when the partition produces subproblems of sizes n−1 and 0. Under the assumption that all elements are distinct and all permutations are equally likely, its expected running time is Θ(n log n). The algorithm sorts in place and uses additional space proportional to the recursion depth.","**QuickSort – a fast way to put things in order**
+
+QuickSort is a method that helps you line up a list of numbers or words from smallest to biggest (or A to Z).  
+It works like this:
+
+1. **Pick a middle item.**  
+   Think of a book that is halfway through the shelf. That book is the *pivot*.
+
+2. **Split the list.**  
+   All items that are smaller than the pivot go to the left side.  
+   All items that are bigger go to the right side.
+
+3. **Do the same again.**  
+   Take the left part, pick its middle book, split it again.  
+   Do the same with the right part.
+
+4. **Put everything together.**  
+   When every part has only one item, the whole list is sorted.
+
+Because each step cuts the list into two smaller lists, QuickSort usually finishes quickly.
+
+---
+
+### How fast is it?
+
+| Situation | How fast? | Why? |
+|-----------|-----------|------|
+| **Average case** | Fast | Most of the time, the pivot cuts the list roughly in half. Each cut takes only a little time, so the whole job is quick. |
+| **Worst case** | Slow | If the pivot is always the very smallest or the very largest item, the list is cut into a tiny piece and a huge piece. That means we keep doing almost the whole job again and again. It becomes much slower. |
+
+**What it means in everyday terms**
+
+- **Average case** – Imagine you sort a mixed stack of cards. If you always pick a card near the middle, you can split the stack into two almost equal piles. You keep doing that, and it takes only a few steps.
+
+- **Worst case** – Imagine you always pick the smallest or largest card. One pile has only one card, the other pile has almost all the cards. You keep doing the same work over and over, so it takes many more steps.
+
+---
+
+### Bottom line
+
+QuickSort is usually very quick because it splits the work nicely. But if you pick bad pivot items every time, it can become slow. That is why many QuickSort versions choose the pivot randomly or use a smart rule to avoid the worst case.","**QuickSort – a quick look at its average‑ and worst‑case performance**
+
+---
+
+### 1. What is QuickSort?
+
+QuickSort is a *divide‑and‑conquer* sorting algorithm.  
+Given an array `A[0 … n‑1]` it works in three steps:
+
+1. **Choose a pivot** element `p` from the array.  
+2. **Partition** the array into two parts:
+   * elements ≤ p go to the left side,
+   * elements > p go to the right side.  
+   After partitioning, the pivot is in its final sorted position.
+3. **Recursively QuickSort** the left and right parts.
+
+Because the algorithm only swaps elements inside the same array, it is called an *in‑place* sort.  
+
+---
+
+### 2. Why does the choice of pivot matter?
+
+The efficiency of QuickSort depends on how balanced the two partitions are.
+
+| Pivot choice | Typical partition sizes | Effect on performance |
+|--------------|------------------------|-----------------------|
+| First element (or last) | **Bad** if the array is already sorted or reverse‑sorted. | One side gets `n‑1` elements → many unbalanced recursions. |
+| Random element | **Good** on average. | The chance of a very unbalanced split is tiny. |
+| Median of three (first, middle, last) | Often close to the true median. | Reduces the chance of pathological splits. |
+
+---
+
+### 3. Average‑case complexity: **O(n log n)**
+
+Assume that on average the pivot splits the array roughly in half:  
+`k ≈ n/2` elements on the left, `n‑k‑1 ≈ n/2` on the right.
+
+The recurrence for the running time `T(n)` is
+
+```
+T(n) = T(k) + T(n-k-1) + O(n)      (O(n) for the partition step)
+```
+
+With `k ≈ n/2` this becomes
+
+```
+T(n) ≈ 2·T(n/2) + O(n)
+```
+
+Solving this recurrence (by the Master Theorem or by repeated substitution) gives
+
+```
+T(n) = O(n log n)
+```
+
+**Intuition:**  
+- The `O(n)` cost of partitioning is incurred at each level of recursion.  
+- There are about `log₂ n` levels because the array size roughly halves each time.  
+- Multiplying gives `n × log₂ n` comparisons on average.
+
+---
+
+### 4. Worst‑case complexity: **O(n²)**
+
+The worst case occurs when the pivot is always the smallest or largest element, producing partitions of size `0` and `n‑1`.  
+The recurrence becomes
+
+```
+T(n) = T(0) + T(n-1) + O(n)  →  T(n) = T(n-1) + O(n)
+```
+
+Unfolding this:
+
+```
+T(n) = O(n) + O(n-1) + … + O(1) = O(n²)
+```
+
+**Typical scenario:**  
+- An already sorted array with the first‑element pivot strategy.  
+- A reverse‑sorted array with the last‑element pivot strategy.
+
+---
+
+### 5. Practical implications
+
+| Feature | QuickSort | MergeSort |
+|---------|-----------|-----------|
+| Average time | O(n log n) | O(n log n) |
+| Worst time | O(n²) | O(n log n) |
+| Extra space | O(log n) (stack) | O(n) (auxiliary array) |
+| Stability | Not stable (by default) | Stable |
+| In‑place | Yes | No |
+
+- **Why QuickSort is still popular:**  
+  * In practice, the average case is what matters.  
+  * The constants are small and it has excellent cache locality.  
+  * With a good pivot strategy (random or median‑of‑three) the probability of hitting the worst case is astronomically low.
+
+---
+
+### 6. Quick recap
+
+- **QuickSort** recursively partitions an array around a pivot.
+- **Average‑case**: balanced partitions → `O(n log n)` time.
+- **Worst‑case**: highly unbalanced partitions → `O(n²)` time.
+- The *pivot selection* strategy is the key to keeping QuickSort fast in practice.
+
+---
+
+#### Quick example
+
+```python
+def quicksort(a, lo, hi):
+    if lo < hi:
+        p = partition(a, lo, hi)          # pivot index
+        quicksort(a, lo, p-1)            # left side
+        quicksort(a, p+1, hi)            # right side
+```
+
+If `partition` always chooses the smallest element as pivot on a sorted array, the recursion depth becomes `n`, leading to `n²` comparisons.  
+If `partition` chooses a random element, the chance of such a bad split is `1/n!`, effectively zero for all practical inputs.
+
+---
+
+**Bottom line:**  
+QuickSort is a fast, in‑place sorting algorithm whose average performance is `O(n log n)`. Its worst case `O(n²)` is rare when you pick pivots wisely (randomly or by median‑of‑three). This combination of speed, low memory use, and simplicity is why QuickSort remains a staple in computer science curricula and real‑world libraries.",
+OER,ALG_01,ministral-3:14b,B_simplified,0.0,1.0,0,"Quicksort is a divide-and-conquer sorting algorithm whose running time depends on the balance of partitioning. In the worst case, it runs in Θ(n²), when the partition produces subproblems of sizes n−1 and 0. Under the assumption that all elements are distinct and all permutations are equally likely, its expected running time is Θ(n log n). The algorithm sorts in place and uses additional space proportional to the recursion depth.","### **QuickSort Explained Simply**
+Imagine you have a big pile of shuffled playing cards. You want to sort them from **lowest (Ace) to highest (King)** as fast as possible. QuickSort is like a super-smart card-sorting trick that does this in **a few quick steps**, but sometimes it can get a little slow if the cards are in a *very* tricky order.
+
+---
+
+### **How QuickSort Works (Like Sorting Cards)**
+1. **Pick a ""Pivot"" Card**
+   - You grab **one card from the pile** (like picking the middle card).
+   - This card is your ""guide""—you’ll use it to split the rest.
+
+2. **Split the Pile into Two Smaller Piles**
+   - You look at **all the other cards** and put them into **two groups**:
+     - **Left pile**: Cards **lower** than the pivot.
+     - **Right pile**: Cards **higher** than the pivot.
+   - The pivot card now sits **right where it should** in the final sorted pile.
+
+3. **Repeat!**
+   - You do the **same thing** to the **left pile** and the **right pile** (if they’re big enough).
+   - Eventually, the piles get so small that they’re already sorted!
+
+---
+### **Average Case (Most of the Time – Super Fast!)**
+- **Like flipping a coin**: Half the cards go left, half go right.
+- **Each split cuts the pile in half** → Quick!
+- **Example**:
+  - Start with **100 cards** → Split → **50 cards** → Split → **25 cards** → And so on…
+  - It takes about **7 splits** to sort 100 cards. That’s **super fast**!
+
+👉 **Time taken**: ~ **N log N** (if N = 100, it’s like 100 × 7 steps).
+*(Log N = how many times you can split N in half before it’s tiny.)*
+
+---
+### **Worst Case (Rare – Slow Like Walking!)**
+- **Like picking the *worst* pivot every time**:
+  - Suppose your pile is **already sorted** (Ace → King).
+  - You **always pick the first card (Ace)** as the pivot.
+  - **What happens?**
+    - Left pile: **0 cards** (nothing is lower than Ace).
+    - Right pile: **99 cards** (all the rest).
+    - Next split: You pick the **first card of the right pile (2)** → 0 left, 98 right.
+    - **You keep doing this 99 times**—one split at a time!
+
+👉 **Time taken**: ~ **N²** (for 100 cards, that’s **10,000 steps**—like counting to 100 *twice* for each card!).
+
+---
+### **Real-Life Analogy: Sorting a Class by Height**
+- **Average case**: You pick the **tallest kid first**, then split the class into ""shorter than them"" and ""taller than them."" It balances nicely.
+- **Worst case**: You **always pick the shortest kid**—so every time, only **one person** moves to the ""taller"" group, and you have to do this **30 times** for 30 kids. *Painfully slow!*
+
+---
+### **Why Does This Matter?**
+- **QuickSort is usually the fastest** for big piles (like sorting millions of files).
+- **But if the data is *already sorted* or *reverse-sorted*, it can slow down.**
+- **Smart programmers** pick pivots carefully (like picking the *middle* card instead of always the first) to avoid the worst case.
+
+---
+### **Summary**
+| Scenario       | Speed          | What Happens?                                  |
+|----------------|----------------|-----------------------------------------------|
+| **Average**    | ⚡ **Super Fast** | Piles split evenly (like cutting a pizza in half). |
+| **Worst**      | 🐢 **Slow**     | Piles split *super* uneven (like peeling an onion one layer at a time). |
+
+**QuickSort is like a magician’s trick—most of the time it’s lightning fast, but if you pick the *worst* trick every time, it takes forever!**
+
+---
+### **Fun Question to Think About**
+If you had **1,000 unsorted cards**, how many splits would QuickSort need on *average*? (Hint: It’s like asking, ""How many times can you cut a pizza in half before the pieces are tiny?"")","### **QuickSort: A Clear Explanation (Average vs. Worst-Case Complexity)**
+
+QuickSort is a **divide-and-conquer** sorting algorithm invented by **Tony Hoare** in 1959. It is widely used in practice due to its **efficiency** and **in-place sorting** capabilities (though modern implementations often use some extra memory for optimization).
+
+---
+
+## **How QuickSort Works**
+1. **Choose a ""pivot"" element** from the array (common choices: first, last, middle, or random element).
+2. **Partition the array** into two subarrays:
+   - Elements **less than** the pivot.
+   - Elements **greater than** the pivot.
+3. **Recursively sort** the two subarrays.
+4. **Combine** the sorted subarrays with the pivot in the middle.
+
+### **Example (Pivot = Last Element)**
+Consider the array: `[10, 80, 30, 90, 40, 50, 70]`
+- **Pivot = 70**
+- After partitioning: `[10, 30, 40, 50] | 70 | [80, 90]`
+- Recursively sort the left and right subarrays.
+
+---
+
+## **Time Complexity Analysis**
+QuickSort’s performance depends heavily on **pivot choice** and **how the array splits**.
+
+### **1. Best & Average Case (Good Pivot Choices)**
+- **If the pivot divides the array into two nearly equal parts** (e.g., median pivot), the recursion depth is **log₂(n)**.
+- **Recurrence relation**:
+  \( T(n) = 2T(n/2) + O(n) \)
+  (Each recursive call processes **n/2** elements, and partitioning takes **O(n)** time.)
+- **Solution (Master Theorem)** → **O(n log n)** average time.
+- **Best case** (already sorted with a good pivot strategy) is also **O(n log n)**.
+
+### **2. Worst Case (Bad Pivot Choices)**
+- **If the pivot is always the smallest or largest element** (e.g., always picking the first element in a sorted array), the array splits **unevenly** (e.g., `[n-1, 1]`).
+- **Recurrence relation**:
+  \( T(n) = T(n-1) + T(0) + O(n) = T(n-1) + O(n) \)
+  → Unfolds to: \( T(n) = O(n) + O(n-1) + O(n-2) + ... + O(1) = O(n²) \)
+- **Worst-case time complexity = O(n²)** (e.g., sorting `[1, 2, 3, ..., n]` with pivot=first element).
+
+### **3. Mitigating the Worst Case**
+To avoid **O(n²)**, QuickSort uses:
+- **Randomized pivot selection** (random element as pivot).
+- **Median-of-three pivot selection** (pick median of first, middle, last elements).
+- **Hybrid approach** (switch to Insertion Sort for small subarrays).
+
+---
+
+## **Space Complexity**
+- **In-place partitioning** → **O(log n)** stack space (due to recursion).
+- (Some implementations use **tail recursion optimization** to reduce this to **O(1)**.)
+
+---
+
+## **Comparison with Other Sorting Algorithms**
+| Algorithm  | Best Case | Average Case | Worst Case | Space | Stable? | Notes |
+|------------|----------|--------------|------------|-------|---------|-------|
+| **QuickSort** | O(n log n) | **O(n log n)** | O(n²) | O(log n) | ❌ No | Fastest in practice, but worst case exists |
+| MergeSort   | O(n log n) | O(n log n) | O(n log n) | O(n) | ✅ Yes | Stable, but uses extra memory |
+| HeapSort    | O(n log n) | O(n log n) | O(n log n) | O(1) | ❌ No | No worst case, but slower in practice |
+
+---
+
+## **Why QuickSort is Preferred in Practice**
+✅ **Fastest average case** (O(n log n)) due to cache efficiency.
+✅ **In-place** (low memory usage compared to MergeSort).
+✅ **Simple to implement** (compared to MergeSort or HeapSort).
+❌ **Worst case is O(n²)**, but rare with good pivot strategies.
+
+### **When to Avoid QuickSort?**
+- When **worst-case O(n²) is unacceptable** (e.g., real-time systems).
+- When **stability is required** (use MergeSort instead).
+- When **memory is extremely constrained** (Insertion Sort may be better for tiny arrays).
+
+---
+
+## **Summary**
+| Case | Pivot Choice | Time Complexity | Recursion Depth |
+|------|--------------|-----------------|-----------------|
+| **Best** | Balanced splits | **O(n log n)** | log₂(n) |
+| **Average** | Random/median-of-three | **O(n log n)** | log₂(n) |
+| **Worst** | Always min/max pivot | **O(n²)** | n |
+
+### **Key Takeaways**
+1. QuickSort is **fast on average** but can degrade to **O(n²)** if pivot selection is poor.
+2. **Randomized or median-of-three pivots** help avoid worst-case scenarios.
+3. Despite the worst case, it remains one of the **most used sorting algorithms** in practice (e.g., in `std::sort` in C++, Java’s `Arrays.sort()` for primitives).
+
+Would you like a code implementation (e.g., in Python or C++) to see it in action?",
+OER,ALG_02,phi4:14b,B_simplified,0.0,1.0,1,"Dijkstra's algorithm solves the single-source shortest-path problem on a weighted directed graph with nonnegative edge weights. It maintains a set of vertices whose shortest-path distances from the source have been finalized and repeatedly selects the vertex with the minimum tentative distance using a priority queue, then relaxes its outgoing edges. Correctness relies on the property that once a vertex is extracted, its shortest-path distance is final, which holds only when all edge weights are nonnegative.","Alright! Let's talk about Dijkstra's algorithm like it's a game on a map filled with roads between cities.
+
+Imagine you have a big road map, and each city is connected by different roads. Each road has a sign that shows how long it takes to travel from one city to another. Some roads might take longer than others.
+
+Now, suppose you want to find the quickest way to get from City A (where you start) to City B (where you want to go). Dijkstra's algorithm is like having a magic tool that helps you figure out this fastest route.
+
+Here’s how it works:
+
+1. **Start at City A:** Think of starting your journey with a map showing all the roads and times. You begin in City A, and you know nothing yet about other cities' travel times.
+
+2. **Explore Neighbors First:** From City A, look at all the nearby cities (neighbors) and note how long it takes to get there from City A. This is like checking out your immediate options.
+
+3. **Choose the Shortest Path:** Pick the city you can reach in the shortest amount of time and make a note of that time. Then, treat this city as if you’re now ""standing"" there.
+
+4. **Repeat Until You Reach City B:** Now look at all roads from this new city, find out how long it takes to get to neighboring cities, and pick again the shortest path. Keep doing this until you reach your destination, City B.
+
+The key thing to remember about Dijkstra's algorithm is that it works best when the road signs (or ""edge weights"") show positive times only—meaning, all roads take some time, never negative time or no time at all. Imagine if a sign showed “-5 minutes” for traveling; it would be like going back in time, which doesn’t make sense in our real-world journey.
+
+If there are roads with negative travel times (like shortcuts that somehow save more than you'd expect), Dijkstra's magic tool won't work right because it assumes all roads add up in a positive way. For those tricky maps, we need different tools or tricks to find the fastest route. 
+
+So, think of Dijkstra’s algorithm as a reliable guide for finding quick paths on a map with only normal, real-world travel times!","Dijkstra's algorithm is a popular method used to find the shortest path from a starting node to all other nodes in a weighted graph. This algorithm works effectively when dealing with graphs that have non-negative edge weights, meaning each connection between nodes has an associated cost of zero or more.
+
+### Key Characteristics:
+1. **Graph Type**: Dijkstra's algorithm is designed for directed and undirected graphs where all edges have non-negative weights.
+2. **Objective**: The goal is to determine the shortest path from a given source node to every other node in the graph.
+3. **Approach**:
+   - It initializes the distance to the starting node as 0 and all other nodes as infinity, indicating they are initially unreachable.
+   - A priority queue (often implemented with a min-heap) is used to efficiently select the next node with the smallest tentative distance.
+   - The algorithm iteratively selects the node with the smallest known distance, updates the distances of its neighbors if a shorter path is found through this node, and repeats until all nodes have been processed.
+
+### Limitation: Negative Edge Weights
+Dijkstra's algorithm assumes that all edge weights are non-negative. This assumption is crucial because the algorithm relies on the fact that once a node has been ""finalized"" (i.e., its shortest path from the source is known), this distance will not change. If negative edge weights were allowed, it could lead to situations where a shorter path is discovered after a node's shortest path has already been finalized, causing incorrect results.
+
+### Why Negative Weights Cause Issues:
+- **Revisiting Nodes**: With negative weights, a newly discovered path through a previously visited node might offer a shorter route than what was initially calculated. Dijkstra’s algorithm does not revisit nodes once their shortest paths are set, so it would miss these potentially shorter paths.
+- **Example Scenario**: Consider a simple graph where you can travel from node A to B with a weight of 1, and from B to C with a weight of -2. Initially, the shortest path from A to C might be calculated as going through B (total cost = 1 + (-2) = -1), but if there's a direct edge from A to C with a weight of 0, Dijkstra’s would incorrectly finalize this path before discovering the shorter one via B.
+
+### Alternative for Negative Weights:
+When graphs contain negative weights, algorithms like the Bellman-Ford algorithm are used instead. The Bellman-Ford algorithm can handle negative weights and even detect negative cycles (wherein a cycle's total weight is negative, allowing for infinitely decreasing paths).
+
+In summary, Dijkstra’s algorithm is efficient and effective for shortest path problems in graphs with non-negative edge weights but must be avoided or adapted when dealing with negative weights to ensure accurate results.",
+OER,ALG_05,deepseek-r1:8b,B_simplified,0.0,1.0,0,"An AVL tree is a height-balanced binary search tree in which, for every node, the heights of the left and right subtrees differ by at most one. This strict balance ensures O(log n) worst-case time for search, insertion, and deletion, but may require more rotations during updates. A red-black tree is a self-balancing binary search tree that maintains balance using color-based properties (red and black nodes), guaranteeing O(log n) worst-case time for search, insertion, and deletion, typically with fewer rotations than AVL trees at the cost of a potentially higher tree height.","Okay, imagine you have a big pile of names written on little slips of paper. You want to keep them organized so you can find anyone quickly.
+
+**1. The Messy Stack (Binary Search Tree Idea):**
+You decide to organize them into a ""tree"". You start with one person on top. Then you put people below them, but you have a rule: everyone younger than the top person goes to the left, and everyone older goes to the right.
+
+At first, it might look like this:
+```
+  Alice
+  /    \
+Bob      Charlie
+```
+
+This is great! Finding someone is quick. You just follow the ""left"" or ""right"" rules.
+
+But what if the names are added in a weird order?
+```
+  Alice
+  /
+Bob
+/
+Carol
+```
+Now, finding Carol means looking way down the left side. It takes longer, like searching through a long list instead of a tree! This is the problem we're fixing.
+
+**2. Why We Need Balancing (The Problem):**
+When the tree gets too tall on one side (unbalanced), finding things takes longer (like searching a list, not a tree). We want to keep the tree ""balanced"" so finding things stays fast.
+
+**3. Keeping the Tree Balanced (Balancing):**
+Think of the tree needing to stay roughly the same height on both sides. We need rules to fix it when it gets lopsided.
+
+**4. Two Ways to Keep the Tree Balanced (AVL vs. Red-Black):**
+Imagine two different referees trying to keep the tree balanced, but using slightly different rules:
+
+**a. The Strict Referee (AVL Tree):**
+*   **Rule:** The tree must be perfectly balanced. This means the left and right sides must be the *exact same height* for the tallest parts (the ""critical branches"").
+*   **How:** After adding a name, the referee checks if the tree is unbalanced. If it is, they immediately *fix* it by making specific changes (called rotations). They are very strict – they want the absolute best balance possible, even if it takes a few steps to fix.
+*   **Analogy:** Like keeping a playground seesaw perfectly level, no matter what happens. It might take a bit of effort, but it ends up being super stable and balanced.
+
+**b. The Flexible Referee (Red-Black Tree):**
+*   **Rule:** The tree doesn't need to be perfectly balanced *right away*, but it mustn't get *too* unbalanced. They use a system of ""color tags"" (usually red or black, just pretend) on the names to help enforce balance, but the rules allow for *some* unevenness. They check if the balance is getting too bad.
+*   **How:** The referee checks the color tags after adding a name. If the rules are broken (making it too unbalanced), they fix it by changing some colors *and* maybe doing some rotations. They are less strict about *perfect* balance but still prevent the tree from becoming extremely lopsided.
+*   **Analogy:** Like a referee in a game. They don't constantly demand perfect form, but they make sure the players aren't too far apart or unfairly advantaged. They allow some flexibility but keep the game (the tree) running smoothly and reasonably fast.
+
+**The Big Idea:**
+Both referees (AVL and Red-Black trees) are ways to keep our big pile of names (the data) organized in a tree structure. They both make sure you can find the names quickly. The main difference is:
+*   **AVL** is stricter, aiming for the absolute best balance, which can make lookups very fast but sometimes requires more work when adding/removing names.
+*   **Red-Black** is more flexible, allowing a bit more unevenness, which makes adding/removing names faster (less work) and guarantees good (but maybe slightly slower than AVL) speed for lookups.
+
+Think of it like having two different types of level meters for your tree. One wants it perfectly level, the other just wants it within a certain range!","Okay, let's break down Binary Search Tree Balancing, focusing on AVL and Red-Black Trees.
+
+Imagine you have a regular Binary Search Tree (BST). You insert data like numbers, say, 1 through 10, in some order. A BST is great: for any node, all left descendants are smaller, and all right descendants are larger.
+
+**The Problem: Unbalanced Trees**
+
+Here's the problem: what order you insert the data in matters a lot! If you insert data in a perfectly sorted order (e.g., 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), your BST doesn't look anything like a balanced tree. Instead, it becomes a *degenerate tree*, looking more like a linked list:
+
+```
+    1
+     \
+      2
+       \
+        3
+         \
+          4
+           \
+            5
+             \
+              6
+               \
+                7
+                 \
+                  8
+                   \
+                    9
+                     \
+                      10
+```
+
+Now, searching for the number 10 is easy (just go right). But searching for the number 1 requires going down the entire chain, one step for each number! This makes searches, insertions, and deletions very slow (O(n) in the worst case, like searching a list).
+
+**The Solution: Self-Balancing Binary Search Trees**
+
+To solve this, computer scientists invented **self-balancing BSTs**. These trees automatically adjust their structure (themselves) whenever an insertion or deletion operation might cause them to become too unbalanced. The goal is to maintain the tree's shape close to balanced, ensuring that operations like search, insertion, and deletion are efficient (usually O(log n) in the worst case).
+
+There are several types of self-balancing trees. We'll focus on two popular ones: AVL Trees and Red-Black Trees.
+
+**1. AVL Trees (Nikola Pasičnikov's Balance Tree)**
+
+*   **Concept:** AVL Trees are **strictly balanced**. The key idea is to ensure the tree is as balanced as possible at every step.
+*   **How it works:**
+    *   Every node stores its **height** (the longest path from that node to a leaf).
+    *   The **balance factor** of a node is calculated as: `(height of left subtree) - (height of right subtree)`.
+    *   In an AVL Tree, the balance factor of *any* node must be -1, 0, or 1 (it can't be 2 or less, or -2 or more).
+    *   Whenever you insert or delete a node, you check if this balance factor condition is violated anywhere *above* the insertion/deletion point (closer to the root).
+    *   If a violation is found, the tree performs specific **rotations** (left rotations, right rotations, left-right rotation, right-left rotation) to fix the imbalance and restore the balance factor condition (all nodes must be -1, 0, or 1).
+*   **Analogy:** Think of a balanced seesaw. AVL wants all parts (subtrees) to be roughly equal in ""weight"" (height). If one side gets heavier (longer path), it immediately performs a rotation to restore balance.
+*   **Pros:**
+    *   **Very** tightly balanced, leading to the most *efficient* search operations (closest to O(log n) worst-case).
+*   **Cons:**
+    *   Rotations can be more frequent during insertions and deletions because the balance condition is stricter, potentially making these operations *slower*.
+
+**2. Red-Black Trees (Adams, 1972)**
+
+*   **Concept:** Red-Black Trees use a different, slightly more lenient approach. They allow for more imbalance than AVL trees but guarantee that the tree's height doesn't grow too much.
+*   **How it works:**
+    *   Each node is assigned a color (either Red or Black).
+    *   The tree must satisfy several **properties** (or invariants) concerning the colors of nodes and the paths from a node to its descendant leaves.
+        *   Every node is either Red or Black.
+        *   The root is Black.
+        *   All leaves (null/Nil pointers) are Black.
+        *   If a node is Red, both its children must be Black.
+        *   For every node, all paths from that node to descendant leaves must contain the *same number* of Black nodes.
+    *   When inserting or deleting a node, you first do the standard BST operation. Then, you may need to perform a series of operations (color flips and rotations) to fix any violations of the Red-Black Tree properties. The goal is to restore the properties.
+*   **Analogy:** Think of the Black nodes as the ""solid"" structure and Red nodes as temporary or ""less stable"" elements. The rules ensure the overall structure doesn't become too skewed too quickly.
+*   **Pros:**
+    *   More flexible than AVL, often requiring fewer rotations or color changes during insertions and deletions. This can make frequent insertions and deletions faster.
+    *   Guaranteed O(log n) worst-case time for search, insertion, and deletion.
+*   **Cons:**
+    *   The tree can be slightly less balanced than an AVL tree of the same size, potentially leading to *slightly slower* search times compared to perfectly balanced AVL trees in the worst-case scenario, but often very close.
+
+**Key Differences Summarized:**
+
+| Feature         | AVL Tree                                  | Red-Black Tree                            |
+| :-------------- | :---------------------------------------- | :---------------------------------------- |
+| **Balance Goal** | **Strictly balanced** (near perfect)      | **Loosely balanced** (guaranteed height) |
+| **Balance Check**| Balance factor (-1,0,1)                   | Color properties                          |
+| **Height Focus** | Minimizes height (tightest)               | Bounds height (less tight)                |
+| **Operations**   | Fewer searches, more inserts/deletes?    | More inserts/deletes?                    |
+| **Strictness**   | Very strict                               | Less strict                               |
+
+**Which One to Use?**
+
+*   Both guarantee efficient operations.
+*   AVL trees are often faster for *searches* because the tree is kept closer to perfect balance.
+*   Red-Black trees often have faster *insertion and deletion* operations because their rules are less strict, requiring fewer adjustments.
+
+**In Conclusion:**
+
+Self-balancing BSTs (like AVL and Red-Black Trees) are essential tools for computer science. They solve the critical problem of BST degeneration, ensuring that fundamental operations remain efficient even as data grows. AVL Trees strive for maximum balance through strict checks and rotations, while Red-Black Trees achieve efficient performance through a system of color-coded rules and less strict balancing. The choice between them depends often on the specific application and the relative frequency of different operations.",
+OER,ALG_07,mistral:7b,B_simplified,0.0,1.0,0,"Space complexity measures the amount of memory required by an algorithm as a function of input size, including both input storage and auxiliary space used during execution. Algorithm design often involves trade-offs between time and space, where additional memory can be used to improve running time (e.g., storing intermediate results), while reducing memory usage may increase running time.","Alright, buddy! Let's talk about something called ""Space Complexity"" in a way that's easy to understand. Imagine you have a box where you keep things, like toys or candies. This box represents the memory of your computer. Now, when we play with our toys (or run programs), some of them take up more space than others.
+
+1. **Small Toys:** These are simple games that don't need much space to play. Just like a small toy car takes up less space in your box, these programs use less memory.
+
+2. **Big Toys:** Some toys are bigger and take up more space, like a doll or a teddy bear. Similarly, some programs store more information and take up more memory.
+
+Now, when we play with our toys (run programs), we want to make sure we have enough space for them all. If we run out of space (our box is full), we might not be able to play anymore. This is where Space Complexity comes in. It tells us how much space a program will need as it gets bigger.
+
+Sometimes, we can choose between playing with small toys and big toys. For example, if we want to count the number of candies, we could use a small toy that only needs a little space (this is an efficient solution). But if we want to remember everything about our candies (their colors, shapes, flavors), we might need a bigger toy and more space (this uses more resources but gives us more information).
+
+This is a trade-off: using more space (like the big toy) can give us more benefits, but it also takes up more room in our box. So, programmers have to find the right balance between using enough space to get the job done and not using too much that our computer gets overwhelmed. That's what Space Complexity is all about!","Space complexity in computer science refers to the amount of memory that an algorithm uses during its execution. It's often expressed using Big O notation, which provides an upper bound on the space usage as a function of the size of the input.
+
+For example, if we say an algorithm has a space complexity of O(n), it means that the amount of memory required increases linearly with the size of the input data (n).
+
+Here are some common space complexities:
+
+1. O(1): Constant Space Complexity - The amount of space used remains constant, no matter how large the input is.
+
+2. O(n): Linear Space Complexity - The amount of space used grows linearly with the size of the input. For example, storing an array or list in memory.
+
+3. O(n^2): Quadratic Space Complexity - The amount of space used grows quadratically with the size of the input. This can happen when an algorithm creates multiple lists or arrays to solve a problem.
+
+4. O(log n) and O(n log n): Logarithmic and Linear-Logarithmic Space Complexity - These complexities are common in divide-and-conquer algorithms like QuickSort and MergeSort, where the space usage grows logarithmically with the size of the input.
+
+5. O(n!) and exponential growth: These complexities occur in some recursive algorithms that create a large number of subproblems, each requiring additional memory. An example is the Traveling Salesman Problem solved by brute force.
+
+Trade-offs in space complexity often involve balancing between using more memory for efficiency (like using extra memory to avoid repeated calculations) and using less memory for better performance on limited systems (like fitting into system RAM). It's important for algorithm designers to make informed decisions about space complexity based on the specific problem they are solving.",
+OER,NET_04,phi4:14b,C_highly_simplified,1.0,0.0,0,"Classless Inter-Domain Routing (CIDR) represents IP addresses using a prefix of arbitrary length, written as a.b.c.d/x, where x indicates the number of bits in the network portion. CIDR enables flexible subnetting and efficient allocation of IP address space by eliminating fixed class boundaries. Routers use the longest prefix match rule to determine the forwarding path for a packet.","Imagine your home is like an internet address, called an IP address, and each floor of your house represents a subnet within that big address. Now, picture a massive apartment building where your house is just one unit among thousands; the entire building is like the whole network. A CIDR mask is like the guide that tells you which floor (subnet) you are on and how many rooms (devices) can fit there. Just as a mail carrier needs to know the correct floor and room number to deliver a package, computers need IP addresses and subnets to send data to the right place. So, the CIDR mask helps ensure your digital ""mail"" finds its way efficiently!","### IP Addressing
+
+**IP Address Basics**
+
+An **Internet Protocol (IP) address** is a unique numerical label assigned to each device connected to a network that uses the Internet Protocol for communication. Think of it like your home's street address, but for computers on the internet or local networks.
+
+1. **IPv4**: The most common version you'll encounter is IPv4, which stands for Internet Protocol version 4. An IPv4 address consists of four sets of numbers separated by periods (e.g., `192.168.1.1`). Each set can range from 0 to 255. This gives us approximately 4.3 billion possible unique addresses.
+
+2. **IPv6**: Due to the limited number of addresses available with IPv4, a new version called IPv6 was developed. An IPv6 address is much longer and uses hexadecimal numbers separated by colons (e.g., `2001:0db8:85a3:0000:0000:8a2e:0370:7334`), allowing for an almost unimaginably large number of unique addresses.
+
+### Subnets and CIDR Mask
+
+**Subnetting**
+
+A subnet, or subnetwork, is a smaller network within a larger network. It allows organizations to divide their IP address space into manageable sections. This helps in organizing devices efficiently and enhancing security by isolating different parts of the network.
+
+- **Subnet Mask**: In IPv4, a subnet mask is used alongside an IP address to determine which part of the address refers to the network and which part refers to the host (the specific device). A typical subnet mask might look like `255.255.255.0`, where the number 255 represents binary `11111111`. This tells you how many bits are used for the network portion.
+
+**CIDR Notation**
+
+Classless Inter-Domain Routing (CIDR) is a method for allocating IP addresses and routing that replaced the older system based on classes A, B, and C. CIDR uses a slash (`/`) followed by a number to denote the subnet mask length in bits.
+
+- **Example**: In `192.168.1.0/24`, the `/24` indicates that the first 24 bits of the address are used for the network portion. This means that out of the 32 total bits (since IPv4 addresses are 32 bits long), the first 24 bits define the network, and the remaining 8 bits identify specific devices within that network.
+
+**Benefits of CIDR**
+
+1. **Efficient Use of IP Addresses**: By allowing for a more flexible division of address space, CIDR helps in conserving the limited pool of IPv4 addresses.
+   
+2. **Aggregated Routing**: It allows networks to be grouped together into larger blocks, which reduces the size of routing tables and makes internet traffic management more efficient.
+
+### Practical Example
+
+Let's say you have an IP address `192.168.1.10` with a CIDR notation `/24`. This means:
+
+- The network portion is `192.168.1`, covering addresses from `192.168.1.0` to `192.168.1.255`.
+- You can host up to 254 devices (from `.1` to `.254`) within this subnet, with `.0` reserved for the network address and `.255` often used as the broadcast address.
+
+Understanding IP addressing and subnets is crucial for networking tasks such as configuring routers, setting up firewalls, or designing a network layout. It forms the foundation of how devices communicate over networks efficiently and securely.",
+OER,NET_05,mistral:7b,C_highly_simplified,1.0,0.0,1,"HTTP methods differ in semantics and idempotency. A method is idempotent if multiple identical requests have the same effect as a single request. GET, PUT, and DELETE are idempotent: repeated requests do not change the result beyond the initial application. POST is not idempotent, as repeated requests can create multiple resources or cause repeated side effects. Idempotency is important for reliability and retry mechanisms in distributed systems.","Think of HTTP methods as different tools for building a digital Lego castle. Each tool does something specific and important.
+
+* **GET** is like peeking at the castle to see what it looks like without touching it (idempotent). No matter how many times you look, the castle remains the same.
+* **PUT** is like rebuilding the entire castle from scratch with new blocks (idempotent). Regardless of how many times you put a new castle, you always get the same result - a brand-new castle.
+* **DELETE** is like tearing down the castle completely (idempotent). No matter how many times you demolish the castle, it disappears entirely each time.
+* **POST**, however, is like adding a new wing to your castle. Each time you add a new wing, the castle grows bigger and becomes more complex (not idempotent). If you add a new wing twice, you get a different castle than if you just added it once.","In the context of web development, HTTP (Hypertext Transfer Protocol) methods are used to define the type of action that a client (such as a web browser or an application) wants to perform on a server. Here's how four common HTTP methods – GET, PUT, DELETE, and POST – differ in terms of their idempotency:
+
+1. GET: This method is used to retrieve data from a server. When you make a GET request, the server responds with the requested resource. A GET request should not cause any permanent changes on the server. This means that making multiple identical GET requests will always return the same result. In other words, GET requests are idempotent—making the same request multiple times has no additional effect beyond the initial request.
+
+2. PUT: The PUT method is used to update a resource on the server by sending a new version of the resource. When you make a PUT request, the server should replace the existing resource with the updated one sent from the client. Since the purpose of a PUT request is to create or update a specific resource, making multiple identical PUT requests for the same resource will produce the same result as making it once. This means that PUT requests are also idempotent.
+
+3. DELETE: The DELETE method is used to remove a resource from the server. When you make a DELETE request, the server should delete the specified resource. Like with PUT and GET, making multiple identical DELETE requests for the same resource will produce the same result as making it once. This means that DELETE requests are also idempotent.
+
+4. POST: The POST method is used to send data to a server in order to create a new resource or submit data to an existing one. Unlike GET, PUT, and DELETE, POST requests are not idempotent. Making multiple identical POST requests will result in creating multiple resources with the same data. Therefore, it's essential to be careful when using the POST method, as making too many identical requests can lead to unnecessary resource duplication on the server.
+
+In summary, HTTP methods GET, PUT, and DELETE are idempotent, meaning that making the same request multiple times has no additional effect beyond the initial request. On the other hand, POST is not idempotent and should be used with caution to avoid unintended duplicate resources on the server.",
+OER,NET_06,deepseek-r1:8b,C_highly_simplified,0.0,1.0,0,"Distance-vector routing algorithms (e.g., RIP) compute shortest paths based on information from neighboring routers, iteratively updating distance estimates using distributed Bellman-Ford equations. Link-state routing algorithms (e.g., OSPF) require each router to have a complete view of the network topology and compute shortest paths using Dijkstra’s algorithm. Distance-vector approaches are simpler but slower to converge and susceptible to routing loops, while link-state approaches converge faster and provide more accurate routing at the cost of higher complexity.","Okay, imagine your town's highway system.
+
+Routing is like figuring out the *best way* to get from one place to another using highways.
+
+**Distance Vector (like RIP)** is like asking a local driver for directions to a destination. They tell you the *direct* path, but they might not know about other roads or the *best* path because their info isn't connected to a map.
+
+**Link State (like OSPF)** is like having a detailed **GPS map** of the entire highway system. Each part knows its own roads (link) and shares this map, allowing everyone to calculate the *shortest, most efficient route* together.
+
+The big difference is that **Distance Vector** asks for simple directions directly, while **Link State** uses a shared, detailed map to find the best path.","Okay, let's break down how routers know the best way to send data, comparing two main types of routing: Distance Vector (like RIP) and Link State (like OSPF).
+
+Imagine a network as a city with many streets (connected computers/routers). Routers are like drivers who need to know the fastest or best way to get from one building (network) to another.
+
+**1. Distance Vector Routing (Example: RIP - Routing Information Protocol)**
+
+*   **Concept:** Think of this as everyone sharing *snippets* of information with everyone else.
+*   **How it Works:**
+    *   Each router keeps a simple map (its ""view"") of the network. This map shows which neighboring routers it's directly connected to, and the cost (like distance or number of steps/hops) to get to those neighbors.
+    *   Periodically (at regular intervals), each router *broadcasts* this limited information (its ""distance vector"") to its *direct* neighbors.
+    *   When a neighbor receives this update, they compare the information with their own map. If they learn a new way to get somewhere or a better (shorter) way to an existing place, they update their map and, if they've changed, they broadcast their *updated* map to their own neighbors.
+*   **Analogy:** It's like every driver in a city asking just their immediate neighbors ""What's the fastest way to the Central Market?"" Each neighbor then tells their neighbors, and so on. Everyone knows the shortest route *within their immediate knowledge*, but the whole city might not have the most accurate or complete picture *at the same time*. If the route changes (a street closes), it might take a while for the updated information to spread throughout the entire city.
+*   **Key Characteristics:**
+    *   **Simplicity:** Easier to understand and configure initially.
+    *   **Hop Count Metric:** Often uses the number of routers (hops) the packet passes through as the primary metric (RIP uses this). This isn't always the best measure (a slow router one hop away might be worse than a fast router two hops away).
+    *   **Periodic Updates:** Regularly sharing information, which can be inefficient in large networks or stable conditions.
+    *   **Limited Scope:** Best suited for *smaller* networks (traditionally <= Class C network size, though modern variants exist). Convergence (time to stabilize after a change) can be slower.
+    *   **Counting Loops:** Can sometimes find routing loops (packets looping between routers unnecessarily), which RIP tries to prevent (e.g., using the ""hold-down"" timer).
+
+**2. Link State Routing (Example: OSPF - Open Shortest Path First)**
+
+*   **Concept:** Think of this as creating a complete, accurate map of the entire city *first*, then figuring out the best routes.
+*   **How it Works:**
+    *   Each router creates a detailed map (its ""view"") of the *entire* network, but only knows part of it initially (what it's directly connected to).
+    *   Each router *calculates* its view by exchanging information about what it knows with all its neighbors. This information includes: ""I am connected here"", ""This is the cost to get to this directly connected network"", ""This is my ID"", etc. This is often called an ""advertisement"" or ""link-state update"".
+    *   Collectively, all the information shared allows every router to build a complete picture (the ""link-state database"") of the *physical* connections (topology) and the costs of those connections across the *entire* network.
+    *   Using this complete map, each router then runs a complex calculation (like Dijkstra's algorithm) to determine the *single best path* (lowest cost) to every other network it needs to reach.
+*   **Analogy:** It's like surveyors coming to the city. Each surveyor measures the streets directly connected to their block and shares those measurements. From all the measurements, they calculate the exact shape and distances of the *whole* city. Then, drivers (routers) use this official city map to find the most efficient routes, considering factors like distance, road quality, etc.
+*   **Key Characteristics:**
+    *   **Complexity:** More complex to configure and understand initially because routers need to exchange more information and perform complex calculations.
+    *   **Cost Metric:** Uses a flexible cost metric that can be based on bandwidth, delay, reliability, load, or any combination of these factors. This allows for more intelligent routing decisions.
+    *   **Triggered Updates:** Updates are sent *only when* a change occurs in the network (like a router going down or a link changing cost), making it more efficient in stable conditions.
+    *   **Scalability:** Highly scalable. Works extremely well in very large, complex networks (like the internet core).
+    *   **Non-Counting Loops:** Generally avoids routing loops entirely by using sequence numbers and strict SPF calculations.
+    *   **Hierarchical Design (in OSPF):** Often divides large networks into areas to reduce the amount of information each router needs to process and exchange.
+
+**In Summary:**
+
+| Feature             | Distance Vector (RIP)                  | Link State (OSPF)                     |
+| :------------------ | :------------------------------------- | :------------------------------------- |
+| **Information**     | Snippets (local view)                  | Complete map (topology + costs)        |
+| **Metric**          | Usually Hop Count                     | Flexible Cost (Bandwidth, Delay, etc.) |
+| **Updates**         | Periodic                               | Triggered (on changes)                 |
+| **Complexity**      | Simple                                 | Complex                               |
+| **Scalability**     | Limited                                | Excellent                             |
+| **Loop Prevention** | Basic (hold-downs)                    | Robust (SPF calculation)               |
+| **Common Use**      | Small, simple networks (less common now) | Large, complex enterprise networks     |
+
+Think of **RIP** for a small neighborhood where everyone knows each other and the roads are simple. Think of **OSPF** for a large, busy metropolis with many roads, traffic patterns, and efficient public transport systems – a more sophisticated and scalable way to navigate.",
+OER,OS_04,deepseek-r1:32b,C_highly_simplified,0.0,1.0,0,"A deadlock occurs when a set of processes are permanently blocked. It can arise only if all four Coffman conditions hold simultaneously: mutual exclusion, hold and wait, no preemption, and circular wait. Breaking any one of these conditions prevents deadlock.","Imagine two kids trying to swap toys. Child A holds onto their toy while waiting for Child B’s toy, and Child B does the same. Neither lets go first, so they both just stand there, stuck forever. This is like a deadlock in computers—when programs wait endlessly for each other to finish, causing nothing to happen. Just like the kids, no progress is made because everyone is waiting for someone else.","Deadlock in computer science occurs when two or more processes are unable to proceed because each is waiting for the other to release resources. To better understand this, let's explore the four necessary conditions for a deadlock:
+
+1. **Mutual Exclusion**: At least one resource must be used exclusively by a process. This means no sharing of resources between processes.
+
+2. **Hold and Wait**: A process holding some resources waits for additional resources while not releasing the ones it already has.
+
+3. **No Preemption**: Resources cannot be forcibly taken from a process; they must be released voluntarily.
+
+4. **Circular Wait**: Processes form a cycle where each is waiting for another in the same group, creating an unbreakable loop.
+
+For example, consider two processes, A and B. Process A holds resource 1 and needs resource 2 held by B. Conversely, B holds resource 2 and needs resource 1 from A. This mutual waiting under mutual exclusion leads to deadlock.
+
+While these conditions are necessary for a deadlock, they don't always guarantee it. Preventing deadlocks involves breaking at least one condition, such as allowing resource sharing or enabling preemption. Understanding these conditions helps in designing systems that avoid deadlocks effectively.",
+OER,OS_04,ministral-3:14b,C_highly_simplified,0.0,1.0,0,"A deadlock occurs when a set of processes are permanently blocked. It can arise only if all four Coffman conditions hold simultaneously: mutual exclusion, hold and wait, no preemption, and circular wait. Breaking any one of these conditions prevents deadlock.","Imagine four friends trying to use **two swings in a park**—one high and one low.
+
+Friend A takes the **high swing** and won’t let go until they finish their turn, but they *also* want the **low swing** next. Meanwhile, Friend B has the low swing and won’t move until they get the high one. Now both are stuck waiting forever—**no one can swing, and no one can leave!**
+
+A *deadlock* is like this: **two (or more) things are waiting for each other in a circle, none can move, and the system freezes.** In computers, it happens when programs hold resources (like files or memory) and keep waiting for others—**all stuck like the swings.**
+
+**Key rule to fix it:** *Break the circle!* (Like making one friend let go first.)","### **Deadlock in Computer Science – Explained Simply**
+
+A **deadlock** is a situation in computer science where two or more processes (or threads) are **blocked forever**, each waiting for the other to release a resource (such as a file, memory, or a lock), but none of them can proceed.
+
+#### **Example to Understand Deadlock**
+Imagine two friends, Alice and Bob, sharing a single pair of scissors:
+- **Alice** locks the scissors to cut paper but needs **Bob’s glue** to finish her project.
+- **Bob** locks the glue to stick paper but needs **Alice’s scissors** to cut his project.
+Now, both are stuck forever—this is a **deadlock**.
+
+---
+
+### **The Four Necessary Conditions for Deadlock**
+For a deadlock to occur, **all four conditions** must hold simultaneously. If any one is broken, deadlock is avoided.
+
+1. **Mutual Exclusion (Resource Locking)**
+   - At least one resource must be **non-sharable** (only one process can use it at a time).
+   - *Example:* A printer can’t be shared; only one job can print at a time.
+
+2. **Hold and Wait (Resource Holding)**
+   - A process must **hold at least one resource** while waiting for another.
+   - *Example:* Alice holds scissors while waiting for glue.
+
+3. **No Preemption (No Forced Release)**
+   - Resources **cannot be taken away** from a process; they must be released voluntarily.
+   - *Example:* The OS can’t force Alice to drop the scissors.
+
+4. **Circular Wait (Circular Dependency)**
+   - A **cycle** exists where each process waits for a resource held by another.
+   - *Example:*
+     - **P1** → holds R1, waits for R2 (held by **P2**).
+     - **P2** → holds R2, waits for R1 (held by **P1**).
+
+   ```
+   P1 → R1 → P2 → R2 → P1
+   ```
+
+---
+
+### **How to Prevent Deadlock?**
+To avoid deadlocks, we can **break at least one of the four conditions**:
+
+| **Solution**          | **How It Works**                                                                 | **Example** |
+|-----------------------|---------------------------------------------------------------------------------|-------------|
+| **1. Mutual Exclusion** | Allow resource sharing (e.g., read-only files can be shared).                  | Shared memory for read operations. |
+| **2. Hold and Wait**   | Require processes to request **all resources at once** (no waiting while holding). | Bankers’ algorithm in OS. |
+| **3. No Preemption**   | Allow OS to **forcefully take resources** (e.g., kill a process if it waits too long). | Timeouts in database locks. |
+| **4. Circular Wait**   | Impose a **resource ordering** (e.g., always request resources in a fixed order). | Always request `R1` before `R2`. |
+
+---
+
+### **Deadlock Handling Strategies**
+1. **Prevention** → Design the system to **avoid all four conditions** (most restrictive).
+2. **Avoidance** → Use algorithms (like the **Banker’s Algorithm**) to ensure safe resource allocation.
+3. **Detection & Recovery** → Let deadlocks happen but **detect and fix them** (e.g., kill one process).
+4. **Ignorance** → Assume deadlocks are rare (used in some real-time systems).
+
+---
+
+### **Real-World Example: Database Locks**
+- **Scenario:**
+  - **Transaction A** locks `Table1` and waits for `Table2`.
+  - **Transaction B** locks `Table2` and waits for `Table1`.
+- **Result:** Both transactions **deadlock** and must be **rolled back**.
+
+---
+
+### **Key Takeaways**
+✅ Deadlock = **Processes stuck waiting for each other forever**.
+✅ **4 conditions must hold** for deadlock to occur.
+✅ **Solutions:** Break a condition, detect/recover, or ignore (risky).
+✅ Common in **OS (processes), databases (transactions), and distributed systems**.
+
+---
+### **Try It Yourself!**
+Can you think of another real-life example where deadlock might occur? (Hint: Think of traffic at an intersection!)
+
+Would you like a simple code example (e.g., in Python) to see deadlock in action?",
+OER,PLP_01,deepseek-r1:8b,B_simplified,1.0,0.0,1,"Inheritance is a mechanism in object-oriented programming that allows a class (subtype) to inherit properties and behavior from another class (base type), enabling code reuse and hierarchical relationships. The Liskov Substitution Principle (LSP) states that subtypes must be substitutable for their base types without altering the correctness of the program. This requires that inherited behavior is preserved, including method contracts, invariants, and preconditions/postconditions.","Okay, let's break down these two computer science ideas in a really simple way.
+
+**1. Inheritance:**
+
+*   Think about a family tree, but for computer ideas.
+*   Imagine you have a general idea, like ""Animal"".
+*   Then you can create more specific ideas, like ""Dog"" or ""Cat"".
+*   In coding, we say ""Dog"" *inherits* from ""Animal"".
+*   This means:
+    *   ""Dog"" knows it is also an ""Animal"".
+    *   ""Dog"" gets some basic rules from ""Animal"" (like maybe how to eat or sleep).
+    *   ""Dog"" can also have its own special rules (like how to bark).
+*   **Analogy:** It's like a blue print. ""Animal"" is a basic blue print. ""Dog"" and ""Cat"" are more detailed blue prints that *start* from the basic one and add extra features.
+
+**2. Liskov Substitution Principle (LSP):**
+
+*   This is a rule about using these ""Dog"" and ""Cat"" ideas.
+*   The basic rule is: You should be able to treat a ""Dog"" just like a general ""Animal"".
+*   For example, you can write instructions that work for any ""Animal"".
+*   Since ""Dog"" is a type of ""Animal"", your instructions should work perfectly for a ""Dog"".
+*   **What breaks the rule?** If ""Dog"" does something completely different from what ""Animal"" does, then you can't always substitute a ""Dog"" for a general ""Animal"".
+*   **Analogy:** Think about a door lock.
+    *   The main lock (""Animal"") is opened by a key.
+    *   A simple key (""Animal"") works.
+    *   A fancy key (""Dog"") also works because it can use the basic key slot, maybe it just has a button on top.
+    *   BUT, if the lock was specifically designed only for fancy keys (""Dog"") and didn't work with any simple key (""Animal""), that breaks the rule.
+*   **Analogy Explained:** The lock (""Animal"") should have a specific job: accept a key (""Dog"") and unlock. The key (""Dog"") can be fancy, but it MUST still unlock the lock (""Animal""). If the fancy key (""Dog"") breaks the lock or does something else, then you can't just use *any* key (""Animal"") anymore. That's breaking the rule (LSP).
+
+**In simple terms:**
+
+Think of Inheritance like building with **building blocks**. You have a basic block (""Animal""), and you can make specific blocks (""Dog"", ""Cat"") that are built on top of the basic one.
+
+Think of Liskov Substitution Principle (LSP) like **playing a game with rules**. You have a general rule (""Animal""). Anything that follows the rule (like ""Dog"") should work within that game. If a new thing (""Dog"") breaks the core rule of the game, then you can't use it in all the places where the old rule (""Animal"") was allowed.
+
+The main idea is: When you create a new type (like ""Dog""), it should be able to work in the same ways as the type it came from (like ""Animal""). Don't change the basic agreement!","Okay, let's break down **Inheritance** and the **Liskov Substitution Principle (LSP)**. These are fundamental ideas in Object-Oriented Programming (OOP).
+
+## 1. Inheritance
+
+Think of it like a family tree or a category system.
+
+*   **What it is:** Inheritance is a mechanism in OOP where one class (called the **subclass** or **derived class**) can inherit properties (data, state) and behaviors (methods, actions) from another existing class (called the **superclass**, **base class**, or **parent class**).
+*   **Why it's useful:**
+    *   **Code Reuse:** You don't have to rewrite the same code (methods) from scratch in every new class. The subclass can automatically get the existing methods from the superclass. This saves time and effort.
+    *   **Generalization:** The superclass can represent a general concept (e.g., `Animal`), while subclasses represent more specific concepts that share common characteristics (e.g., `Dog`, `Cat`, `Bird`).
+    *   **Hierarchical Structure:** It allows you to organize classes in a logical hierarchy, making your code easier to understand and maintain.
+
+*   **Think of it like this:**
+    *   Imagine a base class called `Car`. It might have properties like `color`, `numberOfWheels` (probably 4), and methods like `drive()` and `honk()`.
+    *   You could create a subclass called `ElectricCar` that inherits from `Car`. This `ElectricCar` automatically has all the properties and methods of a `Car`. You can then add new things specific to electric cars, like `batteryLevel`, or override existing methods (like `drive()`, maybe to add details about using electricity) to change their specific behavior.
+
+    ```python
+    # Base Class (Superclass)
+    class Car:
+        def __init__(self, color):
+            self.color = color
+            self.numberOfWheels = 4  # This is common to all cars
+
+        def drive(self):
+            print(""This car is driving!"")
+
+        def honk(self):
+            print(""Honk!"")
+
+    # Subclass (Derived Class)
+    class ElectricCar(Car):  # Inheriting from Car
+        def __init__(self, color, battery_level):
+            super().__init__(color)  # Call the superclass's constructor
+            self.battery_level = battery_level
+
+        def drive(self):
+            # Override the drive method
+            print(""This electric car is driving quietly using electricity."")
+            # Maybe we use some battery here...
+            self.battery_level -= 5
+
+    # Using it
+    my_car = Car(""Red"")
+    my_electric_car = ElectricCar(""Blue"", 100)
+
+    my_car.drive()  # Uses the Car's drive method
+    my_electric_car.drive()  # Uses the overridden ElectricCar's drive method
+    ```
+
+## 2. Liskov Substitution Principle (LSP)
+
+This is a core principle from the SOLID design patterns set. It complements Inheritance.
+
+*   **What it is:** The Liskov Substitution Principle states that objects of a superclass should be replaceable with objects of its subclasses without affecting the correct functioning of the program. In simpler terms: **If a program is using a base class (like `Car`), it should be able to use any subclass (`ElectricCar`, `SportsCar`, etc.) in its place, and everything should still work as expected.**
+*   **Why it's important:** It ensures that the code designed for the base class will work correctly with the derived classes. This promotes loose coupling (classes depending on fewer things) and makes your code more flexible, robust, and easier to extend without unexpected bugs. It's a key principle for designing maintainable and reliable software.
+*   **Think of it like this:** If `ElectricCar` is a type of `Car`, then any situation where you can normally use a `Car` object should also work with an `ElectricCar` object. They should *behave* like a `Car`, even if they do things slightly differently.
+
+### A Classic Example: The Square-Rectangle Problem
+
+This is a famous example that illustrates *why* the LSP matters.
+
+*   **The Idea:** A `Rectangle` is a special kind of `Shape`. A `Square` is a special kind of `Rectangle`.
+*   **The Problem:** Let's define classes for these shapes.
+
+    ```python
+    class Shape:
+        def __init__(self, width, height):
+            self.width = width
+            self.height = height
+
+        def setWidth(self, width):
+            self.width = width
+
+        def setHeight(self, height):
+            self.height = height
+
+        def getArea(self):
+            return self.width * self.height
+    ```
+
+    ```python
+    class Rectangle(Shape):
+        # This is fine, a rectangle is a shape
+        pass
+    ```
+
+    ```python
+    class Square(Shape):
+        # We want a square to have equal width and height
+        def __init__(self, side_length):
+            self.width = side_length
+            self.height = side_length
+
+        def setWidth(self, width):
+            # If we set the width, we must also set the height to the same value
+            self.width = width
+            self.height = width
+
+        def setHeight(self, height):
+            # Similarly, if we set the height, we must set the width
+            self.height = height
+            self.width = height
+    ```
+
+*   **The Violation:** Now, consider this code that uses a `Rectangle`:
+
+    ```python
+    def calculate_area(rectangle):
+        rectangle.setHeight(10)  # Change the height
+        rectangle.setWidth(5)    # Change the width
+        return rectangle.getArea()
+
+    # This code expects that changing the width and height independently will work.
+    # We pass a Rectangle object...
+
+    my_rectangle = Rectangle(0, 0)
+    print(calculate_area(my_rectangle))  # Should be 0*0 first, then 0*10 then 5*10? Let's track:
+
+    # Step 1: Initial state: width=0, height=0. Area=0.
+    # Step 2: setHeight(10): width=0, height=10. Area=0.
+    # Step 3: setWidth(5): width=5, height=10. Area=50.
+
+    # Now, what happens if we substitute a Square?
+    my_square = Square(0)  # Starts as a square with side 0
+    print(calculate_area(my_square))  # Should be 0?
+
+    # Step 1: Initial state: width=0, height=0. Area=0.
+    # Step 2: setHeight(10): This calls Square.setHeight, which sets both width and height to 10. Area=100.
+    # Step 3: setWidth(5): This calls Square.setWidth, which sets both width and height to 5. Area=25.
+
+    # The final area is 25, but the code expected the area to become 50. The code designed for Rectangle assumed independent changes, which Square does not allow.
+
+    # The function `calculate_area` works perfectly with `Rectangle` (output 50).
+    # But when we pass a `Square` (which is a subclass of `Rectangle`), the expected result (50) is different from what actually happened (25). The program breaks or gives unexpected results.
+
+    # The problem is that the `Square` class violates the contract (the expected behavior) of a `Rectangle`. Changing `width` or `height` independently should change the area, but a `Square` doesn't allow that. Therefore, you cannot always substitute a `Square` for a `Rectangle` without unexpected consequences.
+
+    # This is a clear violation of the Liskov Substitution Principle.
+    ```
+
+*   **The Solution:** Often, it's better not to inherit from `Rectangle` for `Square`. Or, if you do, you need to design carefully so that the `Square` class *doesn't* override the setters in a way that breaks the basic contract of a rectangle. Sometimes, a `Square` is actually its *own* distinct shape, as it has different mathematical properties (like two equal sides and right angles) and doesn't share the independent width/height property of rectangles in the same way.
+
+### In Summary
+
+*   **Inheritance:** Allows subclasses to inherit and extend the behavior of a base class, promoting code reuse and organization.
+*   **Liskov Substitution Principle:** Ensures that subclasses can be used interchangeably with their base classes without causing errors, maintaining the integrity of the original contract (behavior) defined by the base class. It's crucial for writing robust and maintainable object-oriented code.",
+OER,PLP_01,deepseek-r1:8b,C_highly_simplified,0.0,1.0,0,"Inheritance is a mechanism in object-oriented programming that allows a class (subtype) to inherit properties and behavior from another class (base type), enabling code reuse and hierarchical relationships. The Liskov Substitution Principle (LSP) states that subtypes must be substitutable for their base types without altering the correctness of the program. This requires that inherited behavior is preserved, including method contracts, invariants, and preconditions/postconditions.","Okay, imagine **inheritance** like passing down a special trait, like ""having fur"". A base class, say ""Animal"", gets this trait. A subclass, like ""Cat"", *inherits* the fur trait from Animal and adds its own, like ""meowing"". Now, the **Liskov Substitution Principle (LSP)** says that because a Cat *is-a* kind of Animal (it has fur), you can always treat a Cat exactly like you would treat a regular Animal, maybe feeding it or playing with it, without anything going wrong. So, Cat builds on Animal but stays interchangeable with it, just like a kitten can be treated as a baby cat, but you know it's a special kind of cat!","Okay, let's break down **Inheritance** and the **Liskov Substitution Principle (LSP)**. These are fundamental ideas in Object-Oriented Programming (OOP).
+
+## 1. Inheritance
+
+Think of it like a family tree or a category system.
+
+*   **What it is:** Inheritance is a mechanism in OOP where one class (called the **subclass** or **derived class**) can inherit properties (data, state) and behaviors (methods, actions) from another existing class (called the **superclass**, **base class**, or **parent class**).
+*   **Why it's useful:**
+    *   **Code Reuse:** You don't have to rewrite the same code (methods) from scratch in every new class. The subclass can automatically get the existing methods from the superclass. This saves time and effort.
+    *   **Generalization:** The superclass can represent a general concept (e.g., `Animal`), while subclasses represent more specific concepts that share common characteristics (e.g., `Dog`, `Cat`, `Bird`).
+    *   **Hierarchical Structure:** It allows you to organize classes in a logical hierarchy, making your code easier to understand and maintain.
+
+*   **Think of it like this:**
+    *   Imagine a base class called `Car`. It might have properties like `color`, `numberOfWheels` (probably 4), and methods like `drive()` and `honk()`.
+    *   You could create a subclass called `ElectricCar` that inherits from `Car`. This `ElectricCar` automatically has all the properties and methods of a `Car`. You can then add new things specific to electric cars, like `batteryLevel`, or override existing methods (like `drive()`, maybe to add details about using electricity) to change their specific behavior.
+
+    ```python
+    # Base Class (Superclass)
+    class Car:
+        def __init__(self, color):
+            self.color = color
+            self.numberOfWheels = 4  # This is common to all cars
+
+        def drive(self):
+            print(""This car is driving!"")
+
+        def honk(self):
+            print(""Honk!"")
+
+    # Subclass (Derived Class)
+    class ElectricCar(Car):  # Inheriting from Car
+        def __init__(self, color, battery_level):
+            super().__init__(color)  # Call the superclass's constructor
+            self.battery_level = battery_level
+
+        def drive(self):
+            # Override the drive method
+            print(""This electric car is driving quietly using electricity."")
+            # Maybe we use some battery here...
+            self.battery_level -= 5
+
+    # Using it
+    my_car = Car(""Red"")
+    my_electric_car = ElectricCar(""Blue"", 100)
+
+    my_car.drive()  # Uses the Car's drive method
+    my_electric_car.drive()  # Uses the overridden ElectricCar's drive method
+    ```
+
+## 2. Liskov Substitution Principle (LSP)
+
+This is a core principle from the SOLID design patterns set. It complements Inheritance.
+
+*   **What it is:** The Liskov Substitution Principle states that objects of a superclass should be replaceable with objects of its subclasses without affecting the correct functioning of the program. In simpler terms: **If a program is using a base class (like `Car`), it should be able to use any subclass (`ElectricCar`, `SportsCar`, etc.) in its place, and everything should still work as expected.**
+*   **Why it's important:** It ensures that the code designed for the base class will work correctly with the derived classes. This promotes loose coupling (classes depending on fewer things) and makes your code more flexible, robust, and easier to extend without unexpected bugs. It's a key principle for designing maintainable and reliable software.
+*   **Think of it like this:** If `ElectricCar` is a type of `Car`, then any situation where you can normally use a `Car` object should also work with an `ElectricCar` object. They should *behave* like a `Car`, even if they do things slightly differently.
+
+### A Classic Example: The Square-Rectangle Problem
+
+This is a famous example that illustrates *why* the LSP matters.
+
+*   **The Idea:** A `Rectangle` is a special kind of `Shape`. A `Square` is a special kind of `Rectangle`.
+*   **The Problem:** Let's define classes for these shapes.
+
+    ```python
+    class Shape:
+        def __init__(self, width, height):
+            self.width = width
+            self.height = height
+
+        def setWidth(self, width):
+            self.width = width
+
+        def setHeight(self, height):
+            self.height = height
+
+        def getArea(self):
+            return self.width * self.height
+    ```
+
+    ```python
+    class Rectangle(Shape):
+        # This is fine, a rectangle is a shape
+        pass
+    ```
+
+    ```python
+    class Square(Shape):
+        # We want a square to have equal width and height
+        def __init__(self, side_length):
+            self.width = side_length
+            self.height = side_length
+
+        def setWidth(self, width):
+            # If we set the width, we must also set the height to the same value
+            self.width = width
+            self.height = width
+
+        def setHeight(self, height):
+            # Similarly, if we set the height, we must set the width
+            self.height = height
+            self.width = height
+    ```
+
+*   **The Violation:** Now, consider this code that uses a `Rectangle`:
+
+    ```python
+    def calculate_area(rectangle):
+        rectangle.setHeight(10)  # Change the height
+        rectangle.setWidth(5)    # Change the width
+        return rectangle.getArea()
+
+    # This code expects that changing the width and height independently will work.
+    # We pass a Rectangle object...
+
+    my_rectangle = Rectangle(0, 0)
+    print(calculate_area(my_rectangle))  # Should be 0*0 first, then 0*10 then 5*10? Let's track:
+
+    # Step 1: Initial state: width=0, height=0. Area=0.
+    # Step 2: setHeight(10): width=0, height=10. Area=0.
+    # Step 3: setWidth(5): width=5, height=10. Area=50.
+
+    # Now, what happens if we substitute a Square?
+    my_square = Square(0)  # Starts as a square with side 0
+    print(calculate_area(my_square))  # Should be 0?
+
+    # Step 1: Initial state: width=0, height=0. Area=0.
+    # Step 2: setHeight(10): This calls Square.setHeight, which sets both width and height to 10. Area=100.
+    # Step 3: setWidth(5): This calls Square.setWidth, which sets both width and height to 5. Area=25.
+
+    # The final area is 25, but the code expected the area to become 50. The code designed for Rectangle assumed independent changes, which Square does not allow.
+
+    # The function `calculate_area` works perfectly with `Rectangle` (output 50).
+    # But when we pass a `Square` (which is a subclass of `Rectangle`), the expected result (50) is different from what actually happened (25). The program breaks or gives unexpected results.
+
+    # The problem is that the `Square` class violates the contract (the expected behavior) of a `Rectangle`. Changing `width` or `height` independently should change the area, but a `Square` doesn't allow that. Therefore, you cannot always substitute a `Square` for a `Rectangle` without unexpected consequences.
+
+    # This is a clear violation of the Liskov Substitution Principle.
+    ```
+
+*   **The Solution:** Often, it's better not to inherit from `Rectangle` for `Square`. Or, if you do, you need to design carefully so that the `Square` class *doesn't* override the setters in a way that breaks the basic contract of a rectangle. Sometimes, a `Square` is actually its *own* distinct shape, as it has different mathematical properties (like two equal sides and right angles) and doesn't share the independent width/height property of rectangles in the same way.
+
+### In Summary
+
+*   **Inheritance:** Allows subclasses to inherit and extend the behavior of a base class, promoting code reuse and organization.
+*   **Liskov Substitution Principle:** Ensures that subclasses can be used interchangeably with their base classes without causing errors, maintaining the integrity of the original contract (behavior) defined by the base class. It's crucial for writing robust and maintainable object-oriented code.",
+OER,PLP_04,ministral-3:14b,C_highly_simplified,1.0,0.0,0,"Static typing performs type checking at compile time, using static analysis of the program to approximate runtime behavior and detect type errors before execution. Dynamic typing performs type checking at runtime, where variables are not bound to fixed types and type errors are detected during program execution. Type safety is the property that well-typed programs do not produce undefined or invalid behavior, such as applying operations to incompatible types.","Imagine a **pizza order system** where:
+
+- **Static typing** is like a menu with *fixed choices*: *""You can only pick pepperoni, veggie, or margherita—nothing else, ever.""* The chef knows exactly what to make ahead of time, so no surprises (or mistakes).
+- **Dynamic typing** is like shouting your order to the chef: *""Just… make something tasty!""* They figure it out on the spot (maybe sushi? pie?), but if they guess wrong, you get a mess.
+
+**Core idea:** Static typing checks types *before* the code runs (like pre-approving your pizza), while dynamic typing checks *as you go* (trusting the chef to adapt—but risking errors). The pizza’s crust is your **type safety**—static types bake it *perfectly rigid*; dynamic types let it flex (and sometimes crack).","### **Static vs. Dynamic Typing (Type Safety) – Explained Simply**
+
+In programming, **typing** refers to how a language checks and enforces the **data types** of variables, expressions, and functions. The two main approaches are:
+
+1. **Static Typing (Compile-time type checking)**
+2. **Dynamic Typing (Run-time type checking)**
+
+The difference affects **type safety**—how strictly the language prevents type-related errors (e.g., adding a string to a number).
+
+---
+
+### **1. Static Typing (Compile-time Checking)**
+- **Definition:**
+  Variable types are checked **before** the program runs (at **compile time**).
+  The programmer must explicitly declare types (or they are inferred).
+
+- **Key Features:**
+  - Errors (e.g., assigning a string to an integer variable) are caught **before execution**.
+  - Example languages: **Java, C, C++, Rust, TypeScript, Go**.
+  - Example in Java:
+    ```java
+    int age = 25;      // Explicit type declaration
+    // age = ""thirty""; // ERROR: Cannot assign a string to an int
+    ```
+
+- **Pros:**
+  - Fewer runtime errors (bugs caught early).
+  - Better performance (compiler optimizations).
+  - Easier refactoring (IDE tools help with type hints).
+
+- **Cons:**
+  - More verbose (requires explicit declarations).
+  - Less flexible (harder to write generic code).
+
+---
+
+### **2. Dynamic Typing (Run-time Checking)**
+- **Definition:**
+  Variable types are checked **while the program runs** (at **runtime**).
+  No need to declare types—the interpreter figures them out dynamically.
+
+- **Key Features:**
+  - Types are flexible and can change (e.g., a variable can be a number, then a string).
+  - Example languages: **Python, JavaScript, Ruby, PHP**.
+  - Example in Python:
+    ```python
+    age = 25         # Type inferred as 'int'
+    age = ""thirty""   # Now treated as 'str' (no error)
+    print(age + 5)   # ERROR at runtime: Can't add str + int
+    ```
+
+- **Pros:**
+  - More concise and flexible (no type declarations).
+  - Easier to write quick scripts/prototypes.
+
+- **Cons:**
+  - Errors may only appear **while running** (harder to debug).
+  - Slower (runtime type checks add overhead).
+
+---
+
+### **Type Safety: Strict vs. Loose**
+- **Strict Static Typing (e.g., Rust, Haskell):**
+  - Enforces types **rigidly** (e.g., no implicit conversions).
+  - Example: `5 + ""hello""` → **Compile-time error**.
+
+- **Loose Static Typing (e.g., TypeScript, Dart):**
+  - Allows some flexibility (e.g., optional types).
+  - Example: `let x: number = 5; x = ""hello"";` → **Error in strict mode**, but allowed in lenient modes.
+
+- **Dynamic Typing (e.g., Python, JavaScript):**
+  - **""Duck Typing""** (if it walks like a duck, it’s a duck).
+  - Example: `x = 10; x = ""hello"";` → Works, but `x + 5` fails at runtime.
+
+---
+
+### **Analogy: Static vs. Dynamic Typing**
+| **Aspect**          | **Static Typing**               | **Dynamic Typing**              |
+|----------------------|----------------------------------|----------------------------------|
+| **Type Assignment**  | Like a **strict form** (must fill type before submission). | Like a **flexible notebook** (type can change anytime). |
+| **Error Detection**  | Caught by a **teacher before the test** (compile time). | Found only **after submitting the test** (runtime). |
+| **Flexibility**      | Rigid (e.g., a `Pen` can’t be assigned to a `Car`). | Flexible (a variable can be anything). |
+
+---
+
+### **Why Does This Matter?**
+- **Static Typing:**
+  - Preferred for **large, complex systems** (e.g., banking software).
+  - Helps catch bugs early (safer for production).
+
+- **Dynamic Typing:**
+  - Preferred for **rapid development** (e.g., scripts, web apps).
+  - Allows quick experimentation (e.g., data science in Python).
+
+---
+### **Hybrid Approaches**
+Some languages blend both:
+- **TypeScript** (JavaScript + static types).
+- **Python with type hints** (optional static checks via `mypy`).
+- **Kotlin** (static but flexible, with null safety).
+
+---
+### **Key Takeaways for Beginners**
+1. **Static Typing** = ""Tell the computer upfront what type you’re using.""
+2. **Dynamic Typing** = ""Let the computer figure it out while running.""
+3. **Type Safety** = How strictly the language prevents invalid operations.
+4. **Trade-off:** Static = safer but stricter; Dynamic = flexible but riskier.
+
+---
+### **Example Comparison**
+| Language  | Typing       | Example Variable Declaration       | Adding `5 + ""5""` |
+|-----------|--------------|-------------------------------------|------------------|
+| Python    | Dynamic      | `x = 5` → `x = ""hello""`             | **Runtime Error** |
+| Java      | Static       | `int x = 5;` → `String y = ""5"";`    | **Compile Error** |
+| TypeScript| Static/Dynamic| `let x: number = 5;`                | **Compile Error** (if strict) |
+
+---
+### **When to Use Which?**
+- **Use Static Typing** if:
+  - You’re building a **large-scale application**.
+  - You need **performance-critical code** (e.g., game engines).
+  - You want **better tooling** (autocomplete, refactoring).
+
+- **Use Dynamic Typing** if:
+  - You’re **prototyping** or writing **scripts**.
+  - You prefer **concise, expressive code**.
+  - You’re working in **data science/ML** (Python, R).
+
+---
+### **Common Pitfalls**
+- **Dynamic Typing:**
+  - `TypeError: unsupported operand type(s)` (e.g., `5 + ""5""` in Python).
+- **Static Typing:**
+  - Forgetting to declare types → `Variable 'x' used before assignment` (compile error).
+
+---
+### **Summary**
+| Feature               | Static Typing                          | Dynamic Typing                          |
+|-----------------------|----------------------------------------|------------------------------------------|
+| **Type Checking**     | Compile-time (before running)          | Run-time (while running)                 |
+| **Flexibility**       | Less (types fixed)                     | More (types can change)                  |
+| **Safety**            | Higher (errors caught early)           | Lower (errors may appear late)           |
+| **Examples**          | Java, C++, Rust, TypeScript            | Python, JavaScript, Ruby                 |
+
+---
+### **Try It Yourself!**
+1. **Static (Java):**
+   ```java
+   public class Main {
+       public static void main(String[] args) {
+           int num = 10;
+           // num = ""hello""; // ERROR: Incompatible types
+       }
+   }
+   ```
+2. **Dynamic (Python):**
+   ```python
+   x = 10
+   x = ""hello""  # No error!
+   print(x + 5)  # Runtime Error: TypeError
+   ```
+
+---
+### **Final Thought**
+- **Static typing** is like **following a strict recipe** (every step checked before baking).
+- **Dynamic typing** is like **improvising while cooking** (mistakes might show up only after tasting).
+
+Both have their place—choose based on your project’s needs!",
+OER,PLP_06,deepseek-r1:32b,B_simplified,1.0,0.0,0,"Reference counting associates a count of references with each object and reclaims memory when the count reaches zero, but it cannot collect cyclic garbage. The mark-and-sweep algorithm identifies reachable objects by tracing from root references, marks all reachable objects, and reclaims memory occupied by unmarked objects. Unlike reference counting, mark-and-sweep can collect cyclic garbage because it determines reachability through graph traversal rather than reference counts.","Garbage collection is how computers clean up unused stuff to keep things running smoothly. Let's use a room analogy to explain the two methods: mark-and-sweep and reference counting.
+
+**Mark-and-Sweep:** Imagine your room is cluttered with toys. First, you go through each toy and label (mark) the ones you don't need. Then, after marking everything, you throw away all the labeled items (sweep). This method cleans up in two steps: identifying trash first and then removing it. It's efficient but can take time since it checks everything before cleaning.
+
+**Reference Counting:** Think of each toy as having a counter showing how many people are using it. If no one is using a toy (count is zero), it gets thrown away right away. This method cleans up instantly when something is no longer needed, without waiting for a big cleanup.
+
+Both methods help keep your room tidy but do it differently. Mark-and-sweep does a thorough clean-up less often, while reference counting cleans as you go, ensuring nothing stays unused for long.","Garbage collection is an essential process in computer science that automatically manages memory by reclaiming unused space. It prevents memory leaks and helps manage resources efficiently. Two primary methods are mark-and-sweep and reference counting.
+
+**Mark-and-Sweep:**
+1. **Mark Phase:** The algorithm identifies all reachable objects starting from root nodes (like variables) and marks them.
+2. **Sweep Phase:** Unmarked objects, considered unreachable, are freed to reclaim memory.
+
+This method is thorough, handling circular references by marking all reachable objects before sweeping. However, it can cause application pauses during execution.
+
+**Reference Counting:**
+- Tracks the number of references each object has. When a reference is removed, the count decreases.
+- If the count hits zero, the object is deleted immediately.
+
+Efficient for short-lived objects, reference counting doesn't require long pauses but struggles with circular references where counts never reach zero.
+
+**Comparison:**
+- **Circular References:** Mark-and-sweep handles them effectively, while pure reference counting cannot.
+- **Performance Impact:** Reference counting is lightweight and timely but can be inefficient in complex scenarios. Mark-and-sweep may cause noticeable pauses but offers robustness.
+
+In practice, some languages combine methods (e.g., Python uses reference counting with a cyclic garbage collector) to balance efficiency and thoroughness.
+
+This approach provides a clear understanding for a first-year student, highlighting each method's strengths and weaknesses.",
