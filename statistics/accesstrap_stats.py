@@ -992,6 +992,61 @@ def position_adjusted_gee(ev: pd.DataFrame, tw: TableWriter) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Human consensus analysis
+# ---------------------------------------------------------------------------
+
+def human_consensus_analysis(annotations_final: pd.DataFrame, tw: TableWriter) -> None:
+    """Compute human consensus rates by condition and write a new table."""
+    cons = annotations_final[annotations_final["rater"] == "consensus"].copy()
+    if len(cons) == 0:
+        LOG.warning("No consensus rows found; skipping human consensus analysis.")
+        return
+
+    for col in ["SM", "DA", "OER"]:
+        cons[col] = pd.to_numeric(cons[col], errors="coerce")
+    cons["accuracy"] = pd.to_numeric(cons["accuracy"], errors="coerce")
+
+    lines = []
+    for ind, label in [("SM", "SM"), ("DA", "DA"), ("OER", "OER")]:
+        for cond in CONDITION_ORDER:
+            sub = cons[cons["condition"] == cond]
+            vals = sub[ind].dropna()
+            if len(vals) == 0:
+                continue
+            n = len(vals)
+            k = int(vals.sum())
+            lo, hi = wilson_ci(k, n)
+            lines.append("%s & %s & %d/%d & %.1f [%.1f, %.1f] \\\\"
+                         % (label, CONDITION_LABEL[cond], k, n,
+                            100 * k / n, 100 * lo, 100 * hi))
+
+    body = ("Indicator & Condition & Count & Rate (\\%) [95\\% CI] \\\\\n\\midrule\n"
+            + "\n".join(lines))
+    tw.write("tab_reviewer_consensus.tex", body,
+             "Human consensus rates by condition on the validation subsample. "
+             "SM, DA, OER are binary indicators; Wilson 95\\% confidence intervals "
+             "are shown. OER is undefined in condition A by construction. "
+             "These rates represent the adjudicated agreement of two domain experts "
+             "and serve as the human reference standard.",
+             "tab:reviewer:consensus", colspec="llrrr")
+
+    # Accuracy table (separate)
+    acc_lines = []
+    for cond in CONDITION_ORDER:
+        sub = cons[cons["condition"] == cond]
+        vals = sub["accuracy"].dropna()
+        if len(vals) == 0:
+            continue
+        acc_lines.append("%s & %d & %.2f (%.2f) \\\\"
+                         % (CONDITION_LABEL[cond], len(vals),
+                            vals.mean(), vals.std(ddof=1)))
+    body_acc = ("Condition & $n$ & Mean (SD) \\\\\n\\midrule\n" + "\n".join(acc_lines))
+    tw.write("tab_reviewer_consensus_accuracy.tex", body_acc,
+             "Human consensus accuracy scores by condition on the validation subsample.",
+             "tab:reviewer:consensus:accuracy", colspec="lrr")
+
+
+# ---------------------------------------------------------------------------
 # Judge validation
 # ---------------------------------------------------------------------------
 
@@ -1519,6 +1574,7 @@ def main():
         position_adjusted_gee(eval_df, tw)
 
         judge_validation(eval_df, annotations_final, validation_map, tw)
+        human_consensus_analysis(annotations_final, tw)
 
     if args.only in ("all", "figures"):
         LOG.info("--- Figures ---")
