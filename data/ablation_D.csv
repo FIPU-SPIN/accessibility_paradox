@@ -1,0 +1,375 @@
+﻿ID,Concept,keyword_analogy,response
+ALG_01,QuickSort (average vs worst-case complexity),True,"Hey there! Let's talk about QuickSort, a computer sorting method.
+
+QuickSort is a way to arrange numbers (like a deck of cards) in order. It works by choosing one number (called a pivot) and splitting the rest of the numbers into two groups – those that are less than the pivot and those that are greater than the pivot. Then it sorts each group using the same method.
+
+The best thing about QuickSort is that it's really fast for most lists. But, sometimes it can take a long time to sort a list. This happens when the list is already sorted or reversed sorted. That's called the worst-case scenario.
+
+Now, let's talk about the complexity. Complexity is a way to measure how long it takes for a computer to do something. For QuickSort, it's measured in a special way – O(n log n) for the average case, and O(n^2) for the worst-case scenario. The ""n"" stands for the number of numbers you're sorting.
+
+So, QuickSort is usually very fast, but it can sometimes be slower. But don't worry, computers are really fast, so it's still a great sorting method!"
+ALG_02,Dijkstra's algorithm (negative edge weights limitation),True,"Hey there! Let's talk about Dijkstra's algorithm with a special rule.
+
+Dijkstra's algorithm helps find the shortest path between two points in a network. Imagine you have a map with many cities and roads connecting them. The goal is to find the shortest way from one city to another.
+
+Now, here's the special rule: The roads can have negative weights, but not all paths from one city to another can have a negative total weight. This means that some roads can make the path shorter, but not all paths can get shorter by using them.
+
+In simple words, Dijkstra's algorithm with negative edge weights limitation helps find the shortest path between two cities in a network, but some roads can make the path shorter, but not all paths can become shorter by using them."
+ALG_03,Dynamic Programming vs Greedy Approach,True,"Hi there! Let's talk about two ways to solve problems in computer science: Dynamic Programming and Greedy Approach.
+
+1. Dynamic Programming:
+This is a way to solve problems by breaking them down into smaller, easier parts. Each smaller part's solution depends on solutions to even smaller parts. The idea is to store the solutions to the smaller parts, so we don't have to solve them again and again. This makes the solution faster and more efficient.
+
+Example: Imagine you have a backpack and you want to put in books with different weights and values. Each book can only be picked up once. You want to pick the books that give you the most value but don't make the backpack too heavy. In Dynamic Programming, you'd solve this by checking all possible combinations of books, and storing the best solution for each possible weight the backpack can hold.
+
+2. Greedy Approach:
+This is a way to solve problems by always choosing the ""best"" option at each step, without looking too far ahead. It's called ""greedy"" because it always chooses what seems to be the best choice right now, without considering if it's actually the best choice in the long run.
+
+Example: Imagine you have a lot of coins and you want to make the most amount of change using these coins. The coins have different values, like pennies, nickels, dimes, and quarters. In the Greedy Approach, you'd start with the highest value coin you have, and keep adding them until you reach the amount you want to make change for, or run out of that coin. Then you'd move on to the next highest value coin.
+
+In summary, Dynamic Programming is a way to solve problems by breaking them down into smaller parts and storing solutions, while the Greedy Approach is a way to solve problems by always choosing the ""best"" option at each step."
+ALG_04,Hash tables (collisions and load factor),True,"A hash table is a special kind of box that helps store data quickly!
+
+1. **Data**: Think of each piece of data as a unique item like a toy or a book.
+
+2. **Box**: The hash table is the big box that keeps all the items safe.
+
+3. **Address**: Each item gets a special number (address) when it enters the box. This number helps find the item quickly.
+
+4. **Collision**: Sometimes, two items might have the same number (address) by accident. This is called a collision. When a collision happens, we need to find another spot for the second item.
+
+5. **Load factor**: This number tells us how full the box is. If the box is too full, there might be more collisions. A good load factor is around 0.75, which means the box can hold more items without too many collisions.
+
+6. **Resolving collisions**: There are different ways to handle collisions, but the most common one is called chaining. When a collision happens, we create a new small box (called a bucket) and add the item to the bucket. Now, instead of looking for the item using its address, we look for it in its bucket.
+
+7. **Finding items**: To find an item, we use its number (address) and find it in its bucket. If there's a collision, we look in the next bucket until we find the item.
+
+Hash tables help us find items quickly even when the box is full. They are very useful in computer science for storing data efficiently!"
+ALG_05,Binary search tree balancing (AVL vs Red-Black),True,"Hey there! Let's talk about something called ""Binary Search Trees Balancing.""
+
+A Binary Search Tree (BST) is a special kind of tree used in computers to store data. It helps us find things quickly, like finding a word in a dictionary.
+
+But sometimes, the BST can get unbalanced, which means one side can become very long, and the other short. This makes finding things slower.
+
+To fix this, we use something called ""Balancing."" There are two main ways to balance a BST: AVL and Red-Black trees.
+
+1. AVL Tree:
+In an AVL tree, each node (the parts connecting data) has a number called the balance factor. When a node's balance factor becomes -1 or 1, we need to balance it. Balancing involves rotating nodes, like a spinning top.
+
+2. Red-Black Tree:
+A Red-Black tree is another way to balance a BST. Each node has a color: red or black. The rules for red-black trees ensure that the tree stays balanced. For example, no node can have two red children, and the number of black nodes between any two leaves is the same.
+
+Both AVL and Red-Black trees help us keep our BST balanced, so we can find things quickly!"
+ALG_06,Breadth-First Search (BFS) and Depth-First Search (DFS) - memory consumption,True,"Breadth-First Search (BFS) and Depth-First Search (DFS) are methods to explore or search through a graph, like a map of connections between different places.
+
+Graph: A group of places (called nodes) connected by paths (called edges).
+
+BFS: A way to explore all the nodes in a graph by going as far as possible from the starting node, then going as far as possible from each of those nodes, and so on. BFS remembers all the nodes it visits so it doesn't get lost or repeat visits. This means it uses more memory compared to DFS.
+
+DFS: A way to explore a graph by choosing the next unvisited node connected to the current node and going as deep as possible into the graph. DFS does not remember all the nodes it visits and can get lost or repeat visits, but it uses less memory compared to BFS.
+
+In short, BFS explores all nodes at the same depth before moving on to deeper nodes, using more memory, while DFS explores as deep as possible without remembering all visited nodes, using less memory."
+ALG_07,Space Complexity and trade-offs,True,"Hi there! Let's talk about Space Complexity.
+
+In computer science, Space Complexity tells us how much memory a program uses. It's important because if a program uses too much memory, it might not work properly or could even crash.
+
+When we talk about Space Complexity, we usually use something called Big O notation. This helps us understand how the amount of memory a program uses grows as the size of the data we're working with increases.
+
+For example, if a program uses 2 times the amount of data as the input size, we say its Space Complexity is O(n). If it uses 3 times the amount of data, it's O(3n), but we usually simplify that to O(n) because it's still growing linearly with the input size.
+
+Trade-offs are like choices we make when designing algorithms. For example, some algorithms might use less memory but take more time to run. Or they might use more memory but run faster. It's important to find the right balance so our programs can do what they need to do efficiently.
+
+Hope this helps! If you have any more questions, feel free to ask."
+PLP_01,Inheritance and Liskov Substitution Principle (LSP),True,"Hello! Let's talk about two important concepts in computer science: Inheritance and Liskov Substitution Principle (LSP).
+
+1. Inheritance: Imagine you have a blueprint for a simple car, and then you decide to make a sporty car. You can use the same blueprint, but add some extra features like speed and style. This is like inheritance in programming. A ""child"" class (sporty car) takes the properties and methods from a ""parent"" class (simple car), and can also have its own unique traits.
+
+2. Liskov Substitution Principle (LSP): This is a rule that makes sure the child classes can be used just like their parent classes, without causing any problems. Going back to our car example, if you have a function that expects a car, it should be able to work with a simple car or a sporty car, without knowing the difference. This means that a sporty car should behave the same way as a simple car, except for its extra features. If a child class breaks this rule, it's not following LSP.
+
+So, in simple words, Inheritance is when one class takes properties and methods from another class, and LSP is a rule that ensures the child class can be used in the same way as the parent class without causing issues."
+PLP_02,Interfaces vs Abstract Classes,True,"Interfaces and Abstract Classes are special types of classes in programming that help us organize and structure our code. They are not like regular classes that you might be used to.
+
+1. **Interfaces**: An interface is a special kind of class that only contains methods (functions) but no implementation (how to do the job). It's like a blueprint for a house that only has the design but no bricks or wood. Other classes can use this interface to follow the design.
+
+2. **Abstract Class**: An abstract class is a regular class that can contain methods with implementation as well as some methods without implementation. It's like a house with some rooms already built and some rooms marked as ""to be built later"". Other classes can inherit (copy) this abstract class and fill in the ""to be built later"" methods.
+
+In simple words, both interfaces and abstract classes are used to guide how other classes should behave or what they should contain. Interfaces only provide the guide and no implementation, while abstract classes provide some implementation but still need more work to be done."
+PLP_03,Closures and lexical scope,True,"Hi there! Let's talk about closures and lexical scope.
+
+1. **Lexical Scope**: Think of a story book. The words in each chapter are the ""scope"" of that chapter. In programming, variables have a similar ""scope"". They exist and can be used in certain parts of the program. For example, a variable can only be used within the function where it was created.
+
+2. **Closure**: A closure is like a special function that has access to variables from its parent function, even when the parent function has finished running. It's like a function's memory of its parent's variables. This is useful because it allows us to reuse functions with different data.
+
+For example, imagine a function `makeAdder` that creates a new function that can add a given number to a starting number. The new function (created by `makeAdder`) remembers the starting number, even after `makeAdder` finishes running. That's a closure!
+
+Hope this helps! If you have more questions, feel free to ask."
+PLP_04,Static vs Dynamic typing (Type safety),True,"Hi there! Let's talk about something called ""static typing"" and ""dynamic typing"" in computer science, which is about how computers know what kind of information we want to use in our programs.
+
+1. Static typing: This means that the computer checks the type of information we use before we even run the program. For example, if we write a number (like 5), the computer knows it's a number and won't let us use it like a word. This helps catch mistakes early.
+
+2. Dynamic typing: This means that the computer checks the type of information we use when the program is running. For example, if we write something that might be a number or a word, the computer will figure it out as it runs and do what it needs to do based on that. This can be a bit risky because mistakes might not be caught until the program is actually running.
+
+Both static and dynamic typing are ways to make sure our programs use the right type of information. Static typing is often used in languages like Java and C++, while dynamic typing is used in languages like Python and JavaScript. Hope that helps!"
+PLP_05,Exceptions: Checked vs Unchecked,True,"Exceptions in computer science are like special messages that a program can send to let you know something went wrong. They help the program to deal with errors and continue running or to stop if needed.
+
+There are two types of exceptions: Checked and Unchecked.
+
+1. Checked exceptions: These are errors that the program should always try to handle. If not handled, the program won't run. They are usually caused by the programmer making mistakes or when the program tries to do something impossible.
+
+2. Unchecked exceptions: These are errors that can happen unexpectedly, like running out of memory or trying to divide by zero. The program doesn't have to handle unchecked exceptions, but it's good practice to do so because they can cause the program to crash.
+
+Remember, handling exceptions can help your program work better and avoid crashing when something goes wrong!"
+PLP_06,Garbage Collection (Mark-and-Sweep vs Reference counting),True,"Hey there! Let's talk about something cool called Garbage Collection. It's like a helpful clean-up crew for your computer.
+
+In a program, we use different parts called variables to store information. But sometimes, we no longer need some of these parts. They are like toys we're done playing with and left on the floor. That's where Garbage Collection comes in.
+
+There are two main ways for Garbage Collection to find these unused parts: Mark-and-Sweep and Reference Counting.
+
+1. Mark-and-Sweep: Imagine you're playing hide and seek. The Garbage Collector marks all the variables that are being used in the game (these are not garbage). Then, it checks all parts of the game one by one, and if it finds a marked part that is not being used anymore, it removes it (sweeps it away).
+
+2. Reference Counting: It's like keeping count of how many friends a toy has. If a toy has no friends (no one is using it), it's garbage and can be removed.
+
+Both methods help the computer to keep running smoothly by getting rid of the parts we no longer need. That way, it can use its memory for new games (programs)!"
+PLP_07,Concurrency: Threads vs Asynchronous programming (Async/Await),True,"Concurrency is about doing multiple tasks at the same time in a computer program. There are two ways to do this: Threads and Asynchronous programming.
+
+1. Threads:
+Think of threads like workers in a factory. Each worker can do a different task or work on a different part of the same task. In a computer program, threads let different parts run at the same time, making the program faster.
+
+2. Asynchronous programming (Async/Await):
+Asynchronous programming is like having a manager in the factory who can tell workers to start a task and then do something else while they work. The manager doesn't have to wait for the workers to finish before doing something else. This makes the program more efficient because it can do many tasks at the same time without waiting for each one to finish.
+
+Async/Await is a way to write asynchronous code. With Async, you tell a part of the program to do a task asynchronously, and Await lets you pause the program until that task is done. This makes it easier to write asynchronous code because you can write it like synchronous code (where each part runs one after the other)."
+DB_01,ACID properties (especially Isolation vs Consistency),True,"Hi there! Let's talk about ACID properties, a special thing in computer science that helps keep things running smoothly when many things happen at once.
+
+ACID stands for Atomicity, Consistency, Isolation, and Durability. Today, I'll explain two important ones: Isolation and Consistency.
+
+1. Isolation: This means that changes to data (like a word document or a game score) are kept separate from other changes. So if someone is editing a document, another person can't change it at the same time, until the first person is done. This helps keep things organized and avoids mistakes.
+
+2. Consistency: This means that the changes made to data should always make sense. For example, if a bank account has $100 and you take out $50, it should never show $150 or $0. If things don't make sense, the system checks for errors and tries to fix them.
+
+These properties are important because they help keep your data safe and reliable when many things are happening at the same time!"
+DB_02,"Normalization (1NF, 2NF, 3NF) and its limits",False,"Hi there! Let's talk about Normalization.
+
+Normalization is a process that helps organize data in a database in a better way. It makes the data easier to understand, manage, and use.
+
+There are three main levels of normalization:
+
+1. **First Normal Form (1NF)**: This means that each piece of data in a table is atomic, or cannot be divided further. Each column should contain the same type of data, and each row should be unique.
+
+2. **Second Normal Form (2NF)**: This means that each column should depend on the primary key. If a column doesn't depend on the primary key, it should be moved to a different table.
+
+3. **Third Normal Form (3NF)**: This means that there should be no transitive dependencies. If one column depends on another column, and the other column does not depend on the primary key, then it should be moved to a different table.
+
+The limit of normalization is reaching the Third Normal Form. If we continue to normalize beyond 3NF, it can make the database more complex and harder to work with. But, normalization is important to keep the data organized and easy to manage.
+
+That's a simple explanation of normalization and its limits. I hope it helps! If you have any more questions, feel free to ask."
+DB_03,SQL JOIN: INNER vs OUTER (LEFT/RIGHT/FULL),True,"Hey there! Let's talk about SQL JOINs, a tool that helps us combine data from different tables in a database.
+
+1. **INNER JOIN**: This is like matching up two lists of names where both lists have the same names. Only the matching names will be shown.
+
+2. **OUTER JOIN**: This is like matching up two lists of names, but it can also show names that are in one list but not the other.
+
+   - **LEFT (or LEFT OUTER) JOIN**: This shows all the names from the first list and the matching names from the second list. If there are no matches, it will show NULL for the second list's names.
+
+   - **RIGHT (or RIGHT OUTER) JOIN**: This shows all the names from the second list and the matching names from the first list. If there are no matches, it will show NULL for the first list's names.
+
+   - **FULL (or FULL OUTER) JOIN**: This shows all the names from both lists. If there are no matches, it will show NULL for the missing names.
+
+So, SQL JOINs help us combine data from different tables and show us the results in different ways. It's a powerful tool for working with databases!"
+DB_04,Indexes: When a B-tree index does not speed up a query,True,"B-tree indexes are like a special list in a database. They help find data faster.
+
+Here's a simple way to understand it:
+
+1. Imagine you have a big box of letters. Finding a specific letter in the box is slow.
+
+2. Now, you create an index card system. Each card has a letter and a number (the location in the box). Finding a letter now is fast, as you just need to look at the card.
+
+3. In a B-tree index, the database does the same thing. It creates a special list (the index) to find data faster.
+
+4. However, there's a problem. If you ask for a letter that's not common (a ""query""), the index might not always speed up the search. This happens when the index doesn't have the exact location for the requested data. The database still has to search through many places to find it, just like searching through the letters in the box. This is when a B-tree index doesn't speed up a query."
+DB_05,Transactions: Different isolation levels (Read Committed vs Serializable),True,"Hello! Let's talk about something called ""Transactions"" in computer science.
+
+A transaction is a series of steps that happen together in a computer program, like when you buy something online.
+
+Now, there are two types of ""isolation levels"" for transactions:
+
+1. **Read Committed**: This means that when one transaction is happening, another transaction can read the results of the first one, but not before. This helps to make sure the second transaction doesn't see any changes that the first one might make later.
+
+2. **Serializable**: This means that the transactions are like they're happening one after the other, even if they're not. This ensures that the final result is the same as if the transactions were done one at a time, making it easier to understand and predict what's happening.
+
+So, in simple terms, these isolation levels help to make sure that multiple transactions don't mess each other up, like when you and your friends are playing a game, and you need to make sure no one cheats!"
+DB_06,"CAP theorem (Consistency, Availability, Partition tolerance)",True,"Hey there! Let's talk about something cool called the CAP theorem.
+
+The CAP theorem says that a computer system can only be fast and reliable, or fast and flexible, but not all three at the same time.
+
+Here's what that means:
+
+1. Consistency: This means that all users see the same data at the same time. If one person changes something, everyone else will see that change too.
+
+2. Availability: This means that the system is always ready to respond when you ask it a question. It never takes a break.
+
+3. Partition tolerance: This means that the system can still work even if some parts of it are broken or not connected.
+
+So, the CAP theorem tells us that if we want a system to be both consistent and available, it might not be able to handle being broken into parts (like if a part of the internet goes down). Or if we want a system to be both available and tolerant of being broken into parts, it might not always show the same data to everyone.
+
+Hope that helps! If you have any more questions, just ask. :)"
+DB_07,Denormalization: When and why to use it,True,"Denormalization is a process in database design where we store redundant data to improve the speed of certain database operations.
+
+Imagine a library with multiple shelves. Normally, each book has its own place on the shelf, but sometimes we might put multiple copies of the same book on different shelves for faster access. This is similar to denormalization.
+
+In databases, normally each record has unique information. But in denormalization, we might copy some information from one record to another related record, so that related records can be accessed faster.
+
+When to use it: If your database often needs to perform operations that require joining multiple tables, and these operations are slowing down your program, then denormalization can help speed things up.
+
+Why to use it: Faster database operations can make your program run more smoothly and respond quicker to user requests. However, denormalization can make updates and maintenance more difficult, so it's not always the best choice."
+NET_01,"TCP three-way handshake (SYN, SYN-ACK, ACK)",True,"Hey there! Let's talk about a special dance that computers do before they start talking to each other. This dance is called the ""TCP three-way handshake.""
+
+1. **SYN**: First, a computer sends a message (like a greeting) called SYN. It's like saying, ""Hey, I want to start talking.""
+
+2. **SYN-ACK**: The other computer receives the greeting and sends back a message called SYN-ACK. This means, ""Hey, I also want to talk, and here's my part of the conversation.""
+
+3. **ACK**: Finally, the first computer sends back an ACK message, saying, ""Got it! Let's start talking now.""
+
+So, the three-way handshake is like a friendly chat between computers to make sure they can talk to each other safely."
+NET_02,OSI model vs TCP/IP model (differences in layers),True,"Hey there! Let's talk about two ways we can think about how computers communicate on a network. They are called the OSI (pronounced oh-sy) model and the TCP/IP (pronounced tee-see-pee-eye-pee) model.
+
+1. OSI model:
+   - It has 7 layers:
+     a. Application layer: This is where programs like web browsers live.
+     b. Presentation layer: It helps to format data in a way the application layer can understand.
+     c. Session layer: It manages connections between computers.
+     d. Transport layer: It makes sure data is delivered without errors and in the right order.
+     e. Network layer: It's responsible for routing data to the correct destination.
+     f. Data link layer: It takes care of sending data between devices on the same network.
+     g. Physical layer: It describes the hardware used to transmit data.
+
+2. TCP/IP model:
+   - It has 4 layers:
+     a. Application layer: Same as the OSI model.
+     b. Transport layer: This layer is combined with the transport layer of the OSI model.
+     c. Internet layer: It's similar to the network layer of the OSI model, but it also handles address assignments.
+     d. Link layer: This layer is combined with the data link layer and the physical layer of the OSI model.
+
+In summary, the OSI model has more layers than the TCP/IP model, but both models help us understand how computers communicate on a network. The main difference is that the TCP/IP model combines some of the layers of the OSI model."
+NET_03,DNS resolution (Recursive vs Iterative),True,"Hi there! Let's talk about DNS resolution, a very important part of how computers find websites on the internet.
+
+First, let's understand DNS (Domain Name System). It's like a phonebook for computers. Instead of remembering complicated numbers (IP addresses) for websites, we can remember easy-to-remember names (like google.com).
+
+When you type a website name in your browser, it sends a request to find the matching IP address. There are two types of responses: recursive and iterative.
+
+1. Recursive response: This is when your computer asks a DNS server to find the answer and keeps asking other DNS servers if needed until it gets the correct IP address. Your computer doesn't have to remember all the IP addresses, it can ask others to help.
+
+2. Iterative response: This is when your computer asks a DNS server for help, but the server only gives it one possible answer. If your computer doesn't find the correct IP address with that answer, it asks another DNS server and so on.
+
+That's it! Both methods are used to translate website names into IP addresses, making it easier for us to navigate the internet."
+NET_04,IP addressing and subnets (CIDR mask),True,"Hey there! Let's talk about IP addresses and subnets in a simple way.
+
+1. IP Address: Imagine every computer on the internet as a house on a big street. Each house has a unique address so we can find it easily. On the internet, each computer has an IP address (Internet Protocol address). It's like a home address for a computer.
+
+2. Subnet: Now, let's say we want to build smaller streets within our big city. Each smaller street will have houses too. But these houses will only communicate with other houses on their own street. This is what a subnet does. It divides a large network into smaller ones for better organization.
+
+3. CIDR Mask: To create a subnet, we use something called a CIDR (Classless Inter-Domain Routing) mask. It helps us decide how big or small a subnet will be. Think of it like a tool that lets us divide the big internet street into smaller streets, or houses into smaller groups.
+
+That's it! I hope it helps. If you have any more questions, feel free to ask!"
+NET_05,"HTTP methods: Idempotency of GET, PUT, DELETE versus POST",True,"Hello! Let's talk about something called HTTP methods. They are special commands that computers use to talk to each other on the internet. Here are four important ones:
+
+1. GET: This is like asking a question. When you send a GET request, the computer just wants information. No matter how many times you ask the same question, the answer will always be the same. It's safe and won't change anything.
+
+2. PUT: This is like putting a new toy in a box. When you send a PUT request, you're sending new information to replace old information. No matter how many times you put the same toy in the box, it will always replace the existing one.
+
+3. DELETE: This is like taking a toy out of a box. When you send a DELETE request, you're asking to remove information. No matter how many times you do it, the information will be gone each time.
+
+4. POST: This is like adding a toy to a collection. When you send a POST request, you're adding new information that wasn't there before. But each time you do it, a new toy will be added, not replacing any existing ones.
+
+In short, GET, PUT, DELETE, and POST are commands that computers use to send and receive information. GET, PUT, and DELETE are idempotent, which means they won't change anything if you do them multiple times with the same information. POST is not idempotent because it can add new information each time."
+NET_06,Routing: Distance Vector (RIP) vs Link State (OSPF),True,"Hey there! Let's talk about routing in computers, which helps data find its way from one place to another on the internet. There are two main types of routing methods: Distance Vector (RIP) and Link State (OSPF).
+
+1. Distance Vector (RIP):
+Think of it like a road map. Each computer tells its neighbors about the distance (number of hops) to other destinations. When a computer gets new information, it shares it with all its neighbors. This way, all the computers update their maps and find the shortest path to destinations.
+
+2. Link State (OSPF):
+Imagine each computer sending its own complete map (of all the links it knows) to every other computer. This way, every computer has the same detailed map of the network. It uses this map to find the best path to destinations. This method is more efficient than Distance Vector, but it requires more memory and processing power.
+
+Hope that helps! Routing is an important part of how the internet works, and understanding Distance Vector and Link State can help you appreciate how data travels around the network."
+NET_07,TLS handshake (RSA vs Diffie-Hellman key exchange),False,"The TLS handshake is a process that happens when you connect to a website using HTTPS. It helps to make sure that the data between your computer and the website is safe.
+
+In the TLS handshake, two keys are used to keep the information secret: a public key and a private key. There are two ways to create these keys: RSA and Diffie-Hellman.
+
+RSA:
+1. The website sends its public RSA key to your computer.
+2. Your computer generates a secret number and sends it to the website using the website's RSA public key.
+3. The website uses its RSA private key to decrypt the secret number sent from your computer.
+4. Now, both your computer and the website can use the secret number to create a new secret key, which will be used to protect the data during the rest of the communication.
+
+Diffie-Hellman:
+1. The website sends its public Diffie-Hellman key to your computer.
+2. Your computer and the website both generate secret numbers separately.
+3. Using the public Diffie-Hellman key, your computer and the website exchange information about their secret numbers.
+4. With this information, both your computer and the website can calculate the same new secret key, which will be used to protect the data during the rest of the communication.
+
+Both RSA and Diffie-Hellman methods are used to create a secure connection during the TLS handshake, but they work slightly differently. RSA is used to exchange the initial secret number, while Diffie-Hellman is used to generate the shared secret key."
+OS_01,Processes vs threads,True,"A computer does many things at once, like running programs and completing tasks. To understand how it does this, you need to know about ""processes"" and ""threads"".
+
+1. Process: A process is like a program that is running on your computer. It has its own resources, like memory and CPU time, and it runs independently. When you open a new program, a new process starts.
+
+2. Thread: A thread is like a part of a process. It can do different tasks within the same process at the same time. For example, when you watch a video on YouTube, the video and the sound are two different threads. They run together, but they can also do things separately.
+
+In simple words, a process is a program running on your computer, and a thread is a part of a process that can do different tasks at the same time. This helps your computer do more things faster and more efficiently."
+OS_02,Context switching,True,"Hello! Let's talk about something called ""Context Switching.""
+
+In a computer, context switching happens when a computer switches from working on one task to another. Imagine you're playing a game, and then someone calls you to help with something. You stop playing the game (task A) and do the other thing (task B), and then you go back to playing the game.
+
+In a computer, the operating system helps manage tasks like this. It keeps track of where it left off with each task so it can go back to it later. This helps the computer run many tasks at once, but it takes a little bit of time to switch between them. That's what we mean by ""context switching.""
+
+Hope that helps! If you have more questions, feel free to ask!"
+OS_03,CPU scheduling algorithms,True,"CPU Scheduling is like a traffic cop in a busy city. Just like a traffic cop decides which cars to let pass through an intersection, the CPU scheduler decides which tasks to let run on the computer.
+
+1. **First-Come, First-Served (FCFS):** The first task that arrives gets served first. It's like waiting in line at a grocery store.
+
+2. **Shortest Job Next (SJN):** The CPU chooses the task with the shortest time to complete next. It's like choosing the smallest tasks to do first.
+
+3. **Round Robin (RR):** The CPU gives each task a turn to run for a short time. It's like taking turns playing a game.
+
+4. **Priority Scheduling:** Some tasks are more important than others. The CPU gives more time to important tasks. It's like helping the doctor before the patient in an emergency room.
+
+Each of these algorithms has advantages and disadvantages, and the best one to use depends on the situation."
+OS_04,Deadlock conditions,True,"Hey there! Let's talk about something called ""Deadlock conditions"".
+
+A deadlock is a tricky situation in a computer program where two or more parts of the program are stuck, and each one is waiting for the other to move first.
+
+Imagine you and your friend both want to play a game on the same computer, but you both need the computer mouse to start playing. If you both grab the mouse at the same time and refuse to let go until the other starts the game, neither of you can play. That's a deadlock!
+
+In a computer program, deadlocks can happen when multiple processes or tasks are trying to access shared resources, like files or databases. If one process has a resource that another needs, and both are waiting for the other to release it, then a deadlock can occur. This can cause the whole program to stop working properly.
+
+To fix a deadlock, we need to make sure that processes or tasks always follow a rule: either they get all the resources they need at once, or they release any resources they no longer need before asking for new ones. This way, we can prevent the situation where everyone is waiting for everyone else, and the program can keep running smoothly."
+OS_05,Virtual memory and paging,False,"Virtual memory is a way for a computer to make it seem like it has more memory than it really does. It does this by using your hard drive as extra memory that the computer can use when it needs it.
+
+Here's how it works:
+
+1. The computer splits the memory into smaller pieces called pages.
+2. Each page is given a number, and these numbers are stored in a table called the page table.
+3. When the computer needs to use a page of memory, it looks up the page number in the page table to find out where the page is on the hard drive.
+4. The computer then brings the page from the hard drive into the actual memory (called ""real memory"") so it can be used.
+5. When the computer is done using a page, it can put it back on the hard drive and free up the space in real memory for other pages.
+6. This way, the computer can use more memory than it has in real memory by using the hard drive as extra memory.
+
+This is called ""paging"" because the computer is dividing the memory into pages and moving pages between real memory and the hard drive."
+OS_06,Paging vs Segmentation,False,"Paging and Segmentation are two methods used by computer operating systems to manage memory.
+
+1. **Paging**:
+Paging is a memory management scheme where the entire memory is divided into equal-sized blocks called pages. Each program is also divided into pages. The computer swaps these pages in and out of the memory as needed. This means that a page that a program isn't currently using can be temporarily moved out of the memory to make room for another program.
+
+2. **Segmentation**:
+Segmentation is another memory management scheme where the memory is divided into segments, which can be of different sizes. Each program is also divided into segments. These segments can be data, stack, or code segments. The advantage of segmentation is that it allows for more flexible memory usage because segments can be of different sizes.
+
+In both paging and segmentation, the operating system keeps track of where everything is stored. This helps the computer run multiple programs at the same time without them interfering with each other."
+OS_07,Semaphores and synchronization,True,"Semaphores are like traffic lights in a computer program. They help control the flow of data and make sure everything runs smoothly.
+
+Imagine you and your friends want to play a game but there's only one game console. You can't all play at the same time, so you take turns. Semaphores do the same thing for computer programs.
+
+1. A semaphore starts with a number, let's say 5. This means 5 tasks can run at the same time.
+2. When a task starts, it subtracts 1 from the semaphore.
+3. When a task finishes, it adds 1 back to the semaphore.
+4. If the semaphore is 0, that means all tasks are busy and a new task must wait.
+
+Synchronization is when semaphores are used to make sure the tasks in a program work together nicely. This keeps things organized and prevents problems from happening."
